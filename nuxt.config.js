@@ -10,8 +10,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - msas',
-    title: 'msas',
+    titleTemplate: '%s - Sirat',
+    title: 'Sirat',
     htmlAttrs: {
       lang: 'fr'
     },
@@ -55,7 +55,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'https://msas.ip3dev.com/api-msas/public/api',
+    baseURL: 'https://msas.ip3dev.com/api-sirat/public/api',
   },
   
   auth: {
@@ -122,6 +122,6 @@ export default {
   },
 
   env: {
-    baseUrl: 'https://msas.ip3dev.com/api-msas/public/api',
+    baseUrl: 'https://msas.ip3dev.com/api-sirat/public/api',
   }
 }
