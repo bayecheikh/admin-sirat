@@ -16,6 +16,24 @@
     },
     {
       "icon": "mdi-cog-outline",
+      "href": "/categories",
+      "title": "Categories",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/contenus",
+      "title": "Contenus",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/postepeages",
+      "title": "Poste de péages",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
       "href": "/departements",
       "title": "Districts",
       "name": "gerer-departements"

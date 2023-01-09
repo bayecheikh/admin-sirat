@@ -36,6 +36,7 @@ export default {
   plugins: [
     '~/plugins/api.js',
     '~/plugins/helpers.js',
+    { src: '~/plugins/TiptapVuetify', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,7 +56,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'https://msas.ip3dev.com/api-sirat/public/api',
+    baseURL: 'https://ip3dev.com/api-sirat/public/api',
   },
   
   auth: {
@@ -119,9 +120,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['vuetify/lib', "tiptap-vuetify"]
   },
 
   env: {
-    baseUrl: 'https://msas.ip3dev.com/api-sirat/public/api',
+    baseUrl: 'https://ip3dev.com/api-sirat/public/api',
   }
 }
