@@ -90,7 +90,7 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
             await localStorage.setItem('msasToken', response.data.token)
             await localStorage.setItem('loggedInUser', JSON.stringify(response.data.user))
             await localStorage.setItem('isAuthenticated', true)       
-            this.$router.push('/dashboard');
+            this.$router.push('/parametres');
           }).
           catch((error) => {
               console.log('Code error ++++++: ', error.response)
