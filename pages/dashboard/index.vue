@@ -3,34 +3,31 @@
     <div class="custom-container mt-5">
       <v-row class="d-flex justify-content-between">
         <v-col md="3" sm="12" lg="3" class="">
-          <div class="bg-marron mr-3 pl-4 pr-5 pt-5 pb-5 text-sm-center">
-            <h4 class="">MONTANT TOTAL DE FINANCEMENT PRÉVU</h4>
-            <h1 class="">14.000.000 F</h1>
-          </div>
-        </v-col>
-        <v-col md="3" sm="12" lg="3" class="">
-          <div class="bg-marron mr-3 pl-4 pr-5 pt-5 pb-5 text-sm-center">
-            <h4 class="">MONTANT TOTAL DE FINANCEMENT MOBILISÉ</h4>
-            <h1 class="">13.000.000 F</h1>
-          </div>
-        </v-col>
-        <v-col md="3" sm="12" lg="3" class="">
-          <div class="bg-marron mr-3 pl-4 pr-5 pt-5 pb-5 text-sm-center">
-            <h4 class="">MONTANT TOTAL DE FINANCEMENT EXECUTÉ</h4>
-            <h1 class="">12.000.000 F</h1>
+          <div class="bg-marron pl-4 pr-5 pt-5 pb-5 text-sm-center">
+            <h4 class="color-yellow">NOMBRE TOTAL DE PEAGES</h4>
+            <h1 class="color-yellow">174</h1>
           </div>
         </v-col>
         <v-col md="3" sm="12" lg="3" class="">
           <div class="bg-marron pl-4 pr-5 pt-5 pb-5 text-sm-center">
-            <h4 class="color-yellow">NOMBRE TOTAL DE FINANCEMENT EXECUTÉ</h4>
+            <h4 class="color-yellow">NOMBRE TOTAL DE PROJETS</h4>
+            <h1 class="color-yellow">174</h1>
+          </div>
+        </v-col>
+        <v-col md="3" sm="12" lg="3" class="">
+          <div class="bg-marron pl-4 pr-5 pt-5 pb-5 text-sm-center">
+            <h4 class="color-yellow">NOMBRE TOTAL DE MARCHES PUBLICS</h4>
+            <h1 class="color-yellow">174</h1>
+          </div>
+        </v-col>
+        <v-col md="3" sm="12" lg="3" class="">
+          <div class="bg-marron pl-4 pr-5 pt-5 pb-5 text-sm-center">
+            <h4 class="color-yellow">NOMBRE TOTAL D'ARTICLES</h4>
             <h1 class="color-yellow">174</h1>
           </div>
         </v-col>
       </v-row>  
-    </div> 
-    <div class="custom-container mt-5 mr-8 ml-8 pl-4 pr-1 pt-5 pb-5">     
-      <list-chart></list-chart>    
-    </div> 
+    </div>  
   </div>
 </template>
 
