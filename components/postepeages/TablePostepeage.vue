@@ -127,7 +127,7 @@
 import { mapMutations, mapGetters } from 'vuex'
   export default {
     mounted: function() {
-      this.$store.dispatch('categories/getList')
+      //this.$store.dispatch('categories/getList')
     },
     computed: mapGetters({
       listpostepeages: 'postepeages/listpostepeages',

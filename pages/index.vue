@@ -10,7 +10,7 @@
           if(!isAuthenticate)
           this.$router.push('/login')
           else
-          this.$router.push('/dashboard')
+          this.$router.push('/parametres')
         }
     }
 </script>
