@@ -5,7 +5,8 @@ export default {
   ssr: false,
   generate: {
     fallback: true
-},
+  },
+  target: 'static', // default is 'server'
 
 
   // Global page headers: https://go.nuxtjs.dev/config-head
