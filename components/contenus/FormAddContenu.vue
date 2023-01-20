@@ -4,7 +4,7 @@
       <v-row>
         <v-col md="12" lg="12" sm="12">
           <v-text-field
-            label="Titre"
+            label="Titre *"
             outlined dense
             v-model="model.titre"
             :rules="rules.textRules"
@@ -12,13 +12,14 @@
         </v-col>
         <v-col md="12" lg="12" sm="12">
           <v-textarea
-            label="Résumé"
+            label="Résumé *"
             outlined dense
             v-model="model.resume"
             :rules="rules.textRules"
           ></v-textarea>
         </v-col>
         <v-col md="12" lg="12" sm="12">
+          <p>Body *</p>
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
@@ -41,10 +42,17 @@
               label="Categorie"
               item-text="libelle"
               item-value="id"
-              clearable
-              multiple
+              return-object
+              @change="changeCategorie"
             >
           </v-autocomplete>
+        </v-col>
+        <v-col md="12" lg="12" sm="12">
+          <v-text-field
+            label="Lien externe (optionel)"
+            outlined dense
+            v-model="model.lien"
+          ></v-text-field>
         </v-col>
       </v-row>
       <v-row  class="mb-6">
@@ -154,7 +162,9 @@ import {
         resume: '',
         body: ``,
         categories: [],
-        id_categorie:''
+        categorie:'',
+        id_categorie:'',
+        lien:''
       },
       rules:{
         textRules: [
@@ -179,8 +189,10 @@ import {
         formData.append("resume", this.model.resume );
         formData.append("body", this.model.body);
         formData.append("id_categorie", this.model.id_categorie);
-        formData.append("categories", this.model.categories);
+        formData.append("categories", [this?.model?.categories]?.map((item)=>{return item.id}));
+        formData.append("categorie", this.sanitizeTitle(this.model.categorie));
         formData.append("slug", this.sanitizeTitle(this.model.titre));
+        formData.append("lien", this.sanitizeTitle(this.model.lien));
 
         console.log('donnee envoyées++++++++++++++',this.model)
 
@@ -250,7 +262,10 @@ import {
         return slug;
       },
       async changeCategorie(value) {
-        this.model.categories.push(value.id)
+        console.log("id categorie : ++++++++++++ ",value)
+        this.model.categorie = value.libelle
+        this.model.categories = value
+
         //this.selectedRegions.push(value.id)
         
       },

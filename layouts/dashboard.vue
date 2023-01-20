@@ -12,7 +12,7 @@
         style="height:63px;"
       >
         <nuxt-link class="customTopNav flex text-sm-left" to="/">
-        <img src="@/static/logo.png" width="180" alt="Espace Senegal Service">
+        <img src="@/static/logo.png" width="100" alt="SIRAT">
       </nuxt-link>
       </v-sheet>
 

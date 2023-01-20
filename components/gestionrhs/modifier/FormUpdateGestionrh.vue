@@ -4,29 +4,92 @@
       <v-row>
         <v-col md="12" lg="12" sm="12">
           <v-text-field
-            label="Titre *"
+            label="Référence"
             outlined dense
-            v-model="model.titre"
+            v-model="model.reference"
             :rules="rules.textRules"
           ></v-text-field>
         </v-col>
+
         <v-col md="12" lg="12" sm="12">
-          <v-textarea
-            label="Résumé *"
-            outlined dense
-            v-model="model.resume"
-            :rules="rules.textRules"
-          ></v-textarea>
-        </v-col>
-        <v-col md="12" lg="12" sm="12">
-          <p>Body *</p>
+          <h3>Détail de l'offre</h3> 
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
-              <tiptap-vuetify v-model="model.body" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
+              <tiptap-vuetify v-model="model.objet" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
             </ClientOnly>
           </template>
         </v-col>
+        <v-col md="4" lg="4" sm="12">
+          <v-text-field
+            label="Secteur"
+            outlined dense
+            v-model="model.secteur"
+            :rules="rules.textRules"
+          ></v-text-field>
+        </v-col>
+        <v-col lg="4" sm="12" md="4">
+          <v-menu
+            v-model="menu1"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="model.date_publication"
+                label="Date publication"
+                append-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                outlined
+                dense
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="model.date_publication"
+              @input="menu1 = false"
+            ></v-date-picker>
+          </v-menu>
+        </v-col>
+        <v-col lg="4" sm="12" md="4">
+          <v-menu
+            v-model="menu2"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="model.date_limite"
+                label="Date limite"
+                append-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                outlined
+                dense
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="model.date_limite"
+              @input="menu2 = false"
+            ></v-date-picker>
+          </v-menu>
+        </v-col>
+        <v-col md="12" lg="12" sm="12">
+          <v-text-field
+            label="Lien externe"
+            outlined dense
+            v-model="model.lien"
+          ></v-text-field>
+        </v-col>
+
         <v-col
         lg="6"
         md="6"
@@ -42,19 +105,11 @@
               label="Categorie"
               item-text="libelle"
               item-value="id"
-              multiple
+              return-object
+              @change="changeCategorie"
             >
           </v-autocomplete>
         </v-col>
-        <v-col md="12" lg="12" sm="12">
-          <v-text-field
-            label="Lien externe (optionel)"
-            outlined dense
-            v-model="model.lien"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row  class="mb-6">
         <v-col md="6" lg="6" sm="12">
             <v-flex>
               <v-btn
@@ -63,7 +118,7 @@
                 @click="$refs.file.click()"
                 depressed
               >
-                Image
+                Joindre fichier
                 <v-icon right dark> mdi-cloud-upload </v-icon>
               </v-btn>
             </v-flex>
@@ -78,6 +133,7 @@
             />
           </v-col>
       </v-row>
+      
       <v-btn
       :loading="loading"
         :disabled="!valid"
@@ -121,10 +177,14 @@ import {
       this.getDetail(this.$nuxt._route.params.id)
     },
     computed: mapGetters({
-      detailcontenu:'contenus/detailcontenu',
+      detailgestionrh:'gestionrhs/detailgestionrh',
       listcategories: 'categories/listcategories',
     }),
     data: () => ({
+      itemsTypeMarches:[{id:'Travaux',libelle:'Travaux'},
+        {id:'Fournitures',libelle:'Fournitures'},
+        {id:'Services',libelle:'Services'}
+      ],
       extensions: [
       History,
       Blockquote,
@@ -159,19 +219,20 @@ import {
       filename:'',
       model: {
         id:'',
-        futured_image:'',
-        titre: '',
-        resume: '',
-        body: '',
-        categories: [],
-        categorie:'',
-        id_categorie:'',
-        lien:''
+        reference: '',
+        objet: '',
+        secteur: '',
+        categorie: '',
+        date_publication: '',
+        date_limite: '',
+        futured_image: '',
+        lien: '',
+        categories: []
       },
       rules:{
         textRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => !!v || 'Contenu obligatoire',
+          v => !!v || 'gestionrh obligatoire',
         ],
         descriptionRules: [
           v => !!v || 'Description est obligatoire'
@@ -181,19 +242,21 @@ import {
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/contenus/'+id)
+          this.$msasApi.$get('/gestionrhs/'+id)
         .then(async (response) => {
-            console.log('Detail contenu ++++++++++',response.data)
-            this.$store.dispatch('contenus/getDetail',response.data)
-            this.model.titre= response.data.titre
+            console.log('Detail gestionrh ++++++++++',response.data)
+            this.$store.dispatch('gestionrhs/getDetail',response.data)
+            this.model.reference= response.data.reference
             this.model.id= response.data.id
-            this.model.resume= response.data.resume
-            this.model.body= response.data.body
-            this.model.lien= response.data.lien
+            this.model.objet= response.data.objet
+            this.model.secteur= response.data.secteur
             this.model.categorie= response.data.categorie
+            this.model.date_publication= response.data.date_publication
+            this.model.date_limite= response.data.date_limite
+            this.model.lien= response.data.lien
             this.model.futured_image= response.data.futured_image  
             this.model.categories = response.data.categories.map((item)=>{return item.id})[0] 
-            this.changeCategorie(response.data.categories.map((item)=>{return item})[0])         
+            this.changeCategorie(response.data.categories.map((item)=>{return item})[0])        
             //this.SelectedSource_financements= response.data.source_financements[0]
         }).catch((error) => {
              this.$toast.error(error?.response?.data?.message).goAway(3000)
@@ -211,13 +274,13 @@ import {
 
         let formData = new FormData();
         formData.append("futured_image", this.model.futured_image);
-        formData.append("titre", this.model.titre );
-        formData.append("slug", this.sanitizeTitle(this.model.titre));
-        formData.append("resume", this.model.resume );
-        formData.append("body", this.model.body);
-        formData.append("lien", this.model.lien);
+        formData.append("reference", this.model.reference);
+        formData.append("objet", this.model.objet );
+        formData.append("secteur", this.model.secteur);
         formData.append("categorie", this.sanitizeTitle(this.model.categorie));
-        formData.append("id_categorie", this.model.id_categorie);
+        formData.append("date_publication", this.model.date_publication);
+        formData.append("date_limite", this.model.date_limite);
+        formData.append("lien", this.model.lien);
         formData.append("categories", [this?.model?.categories]?.map((item)=>{return item.id}));
         formData.append("id", this.model.id);
         formData.append("_method", "put");
@@ -226,10 +289,10 @@ import {
         console.log('donnee envoyées++++++++++++++',this.model)
 
         
-        validation && this.$msasFileApi.post('/contenus/'+this.model.id, formData)
+        validation && this.$msasFileApi.post('/gestionrhs/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Mofication réussie'})
-            this.$router.push('/contenus');
+            this.$router.push('/gestionrhs');
             console.log('donnee recu modifie ++++++++++++++',res)
           })
           .catch((error) => {

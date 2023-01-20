@@ -1,7 +1,7 @@
 export default () => ({
-    listmarchepublics: [],
+    listgestionrhs: [],
 
-    headermarchepublics : [
+    headergestionrhs : [
         /* {
             text: 'Nom',
             align: 'start',
@@ -10,11 +10,11 @@ export default () => ({
         }, */
         { text: 'Référence', value: 'reference' },
         { text: 'Objet', value: 'objet' },
-        { text: 'Type de marché', value: 'type_marche' },
+        { text: 'Secteur', value: 'secteur' },
         { text: 'Date de publication', value: 'date_publication' },
         { text: 'Date limite', value: 'date_limite' },
         { text: 'Categorie', value: 'categories',sortable: true },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
-    detailmarchepublic :{}
+    detailgestionrh :{}
 })

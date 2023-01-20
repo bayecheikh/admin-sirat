@@ -90,7 +90,6 @@
             label="Lien externe"
             outlined dense
             v-model="model.lien"
-            :rules="rules.textRules"
           ></v-text-field>
         </v-col>
 
@@ -109,7 +108,6 @@
               label="Categorie"
               item-text="libelle"
               item-value="id"
-              clearable
               return-object
               @change="changeCategorie"
             >

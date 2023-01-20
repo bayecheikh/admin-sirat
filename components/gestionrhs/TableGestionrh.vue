@@ -26,11 +26,11 @@
 </v-card-title>
 <v-data-table
   :headers="headers"
-  :items="tab=='tout'?listmarchepublics : listmarchepublics.filter(marchepublic => marchepublic.status === tab)"
+  :items="tab=='tout'?listgestionrhs : listgestionrhs.filter(gestionrh => gestionrh.status === tab)"
   item-key="id"
   items-per-page="20"
   class="flat pt-4"
-  :loading="listmarchepublics.length?false:true" 
+  :loading="listgestionrhs.length?false:true" 
   loading-text="Loading... Please wait"
   :rows-per-page-items="[10,20,30,40,50]"
   hide-default-footer
@@ -141,12 +141,12 @@
 import { mapMutations, mapGetters } from 'vuex'
   export default {
     mounted: function() {
-      //this.$store.dispatch('categories/getList')
+      this.$store.dispatch('categories/getList')
     },
     computed: mapGetters({
-      listmarchepublics: 'marchepublics/listmarchepublics',
-      headers: 'marchepublics/headermarchepublics',
-      //listcategories: 'categories/listcategories',
+      listgestionrhs: 'gestionrhs/listgestionrhs',
+      headers: 'gestionrhs/headergestionrhs',
+      listcategories: 'categories/listcategories',
     }),
     props: ['tab'],
     metaInfo () {
@@ -156,20 +156,20 @@ import { mapMutations, mapGetters } from 'vuex'
     },
     methods: {
       visualiserItem (item) {   
-        this.$store.dispatch('marchepublics/getDetail',item)
-        this.$router.push('/marchepublics/detail/'+item.id);
+        this.$store.dispatch('gestionrhs/getDetail',item)
+        this.$router.push('/gestionrhs/detail/'+item.id);
       },
       editItem (item) {   
-        this.$store.dispatch('marchepublics/getDetail',item)
-        this.$router.push('/marchepublics/modifier/'+item.id);
+        this.$store.dispatch('gestionrhs/getDetail',item)
+        this.$router.push('/gestionrhs/modifier/'+item.id);
       },
        deleteItem (item) {
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'}) 
-        this.$msasApi.$delete('/marchepublics/'+this.activeItem.id)
+        this.$msasApi.$delete('/gestionrhs/'+this.activeItem.id)
         .then(async (response) => { 
             console.log('Reponse delete ++++++: ', response)
-            this.$store.dispatch('marchepublics/deletemarchepublic',this.activeItem.id)
+            this.$store.dispatch('gestionrhs/deletegestionrh',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
               this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
@@ -187,18 +187,18 @@ import { mapMutations, mapGetters } from 'vuex'
         if(this.selected.length!=1)
         alert('Veuillez selectionner un element')
         else{
-          let marchepublic = this.selected.map(function(value){ return value})[0]
-          this.$store.commit('marchepublics/initdetail',marchepublic)
-          this.$router.push('/marchepublics/detail/'+marchepublic.id);
+          let gestionrh = this.selected.map(function(value){ return value})[0]
+          this.$store.commit('gestionrhs/initdetail',gestionrh)
+          this.$router.push('/gestionrhs/detail/'+gestionrh.id);
         }
       },
       modifier(){
         if(this.selected.length!=1)
         alert('Veuillez selectionner un element')
         else{
-          let marchepublic = this.selected.map(function(value){ return value})[0]
-          this.$store.commit('marchepublics/initdetail',marchepublic)
-          this.$router.push('/marchepublics/modifier/'+marchepublic.id);
+          let gestionrh = this.selected.map(function(value){ return value})[0]
+          this.$store.commit('gestionrhs/initdetail',gestionrh)
+          this.$router.push('/gestionrhs/modifier/'+gestionrh.id);
         }
       },
       supprimer(){
@@ -222,7 +222,7 @@ import { mapMutations, mapGetters } from 'vuex'
       }
     },
     data: () => ({
-      headermarchepublics : [
+      headergestionrhs : [
         /* {
             text: 'Nom',
             align: 'start',

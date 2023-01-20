@@ -25,6 +25,12 @@
       "href": "/postepeages",
       "title": "Poste de péages",
       "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/gestionrhs",
+      "title": "Gestion RH",
+      "name": "gerer-parametres"
     }
   ]
  }
