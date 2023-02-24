@@ -22,7 +22,7 @@ import FormUpdateBailleur from '@/components/bailleurs/modifier/FormUpdateBaille
       FormUpdateBailleur
     },
     middleware: function ({redirect,$hasPermission}) {
-      if(!$hasPermission('gerer-bailleurs')){
+      if(!$hasPermission('gerer-utilisateurs')){
         return redirect('/')
       }
     },

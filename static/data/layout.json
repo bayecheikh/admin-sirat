@@ -13,6 +13,18 @@
       "href": "/parametres",
       "title": "Paramétrage",
       "name": "gerer-parametres"
+    },
+     {
+      "icon": "mdi-account-group-outline",
+      "href": "/membres",
+      "title": "Membres",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-account-group-outline",
+      "href": "/adherents",
+      "title": "Adherents",
+      "name": "gerer-utilisateurs"
     }
   ]
  }

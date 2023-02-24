@@ -16,6 +16,42 @@
     },
     {
       "icon": "mdi-cog-outline",
+      "href": "/activites",
+      "title": "Activités",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/actualites",
+      "title": "Actualités",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/quisommesnous",
+      "title": "Qui sommes-nous",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/numerosverts",
+      "title": "Numéros Verts",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/foiresauxquestions",
+      "title": "Foires aux questions",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/tarifspeages",
+      "title": "Tarifs Péages",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
       "href": "/marchepublics",
       "title": "Marchés publics",
       "name": "gerer-parametres"
@@ -30,6 +66,12 @@
       "icon": "mdi-cog-outline",
       "href": "/gestionrhs",
       "title": "Gestion RH",
+      "name": "gerer-parametres"
+    },
+    {
+      "icon": "mdi-cog-outline",
+      "href": "/roles",
+      "title": "Roles",
       "name": "gerer-parametres"
     }
   ]

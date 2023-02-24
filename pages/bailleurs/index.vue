@@ -18,7 +18,7 @@ import ListBailleur from '@/components/bailleurs/ListBailleur'
   export default {
     layout: "dashboard",
     middleware: function ({redirect,$hasPermission}) {
-      if(!$hasPermission('gerer-bailleurs')){
+      if(!$hasPermission('gerer-utilisateurs')){
         return redirect('/')
       }
     },

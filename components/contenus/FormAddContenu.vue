@@ -33,7 +33,7 @@
         sm="12"
         >
           <v-autocomplete
-              v-model="model.categories"
+              v-model="listcategories[this.$route.query.categorie_id]"
               :items="listcategories"
               :rules="rules.categoriesRules"
               outlined

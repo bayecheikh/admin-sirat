@@ -34,6 +34,7 @@ export default {
   plugins: [
     '~/plugins/api.js',
     '~/plugins/helpers.js',
+    '~/plugins/goToAddAdherent.js',
     { src: '~/plugins/TiptapVuetify', mode: 'client' }
   ],
 

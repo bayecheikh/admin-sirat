@@ -25,7 +25,7 @@ import FormAddAnnee from '@/components/annees/FormAddAnnee';
       if(!$hasPermission('gerer-annees')){
         return redirect('/')
       }
-    },
+    },     
     data () {
       return {
         headerItems: [

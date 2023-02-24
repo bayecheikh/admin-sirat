@@ -2,7 +2,7 @@ export default {
     getList({commit}){
       this.$msasApi.$get('/contenus')
       .then(async (response) => { 
-        console.log('Données reçu+++++++++++',response)
+        console.log('Données reçu contenu+++++++++++',response)
             await commit('initlist', response.data)
           }).catch((error) => {
               console.log('Code error ++++++: ', error?.response?.data?.message)

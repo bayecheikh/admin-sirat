@@ -22,7 +22,7 @@ import FormAddBailleur from '@/components/bailleurs/FormAddBailleur';
       FormAddBailleur
     },
     middleware: function ({redirect,$hasPermission}) {
-      if(!$hasPermission('gerer-bailleurs')){
+      if(!$hasPermission('gerer-utilisateurs')){
         return redirect('/')
       }
     },
