@@ -43,7 +43,7 @@ import ActionsDemande from '@/components/demandes/detail/ActionsDemande';
           exact: true
         },
         {
-          text: 'Detail',
+          text: 'Détail',
           disabled: true,
           to: '/demandes/detail',
           exact: true

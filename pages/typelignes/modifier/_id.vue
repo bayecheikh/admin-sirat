@@ -36,7 +36,7 @@ import FormUpdateTypeLigne from '@/components/typelignes/modifier/FormUpdateType
           exact: true
         },
         {
-          text: 'Detail type ligne',
+          text: 'Détail type ligne',
           disabled: true,
           to: '/typelignes/94',
           exact: true

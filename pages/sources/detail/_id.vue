@@ -49,7 +49,7 @@ import ActionsSource from '@/components/sources/detail/ActionsSource';
           exact: true
         },
         {
-          text: 'Detail source',
+          text: 'Détail source',
           disabled: true,
           to: '/sources/94',
           exact: true

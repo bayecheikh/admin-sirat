@@ -7,7 +7,7 @@
             <v-card flat class="elevation-0 pl-5 pr-5 pt-0 pb-0 border-grey">
               <v-card-text>
                 <div class="layout column align-center py-5">
-                  <img src="@/static/logo.png" alt="Espace Senegal Service" width="150" height="">
+                  <img src="@/static/logo.png" alt="Espace SIRAT" width="150" height="">
                   <p class="flex my-8 custom-font-mark">Connectez-vous</p>
                 </div>
                 <v-form class="row text-align-center pt-0" ref="form">
@@ -19,7 +19,7 @@
                       <v-checkbox dense v-model="checkbox" rounded class="pl-3 pt-0 mt-0">
                         <template v-slot:label>
                             <div class="caption pt-0 mt-0">
-                            Restez connecter
+                            Restez connecté
                             </div>                                 
                         </template>
                       </v-checkbox>
@@ -63,11 +63,11 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
        rules:{
         passwordRules: [
           v => !!v || 'Mot de passe est obligatoire',
-          v => (v && v.length >= 4) || 'Mot de passe doit etre superieur a 3 caracteres',
+          v => (v && v.length >= 4) || 'Mot de passe doit être supérieur à 3 caractères',
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ]
       },
     }),
@@ -87,17 +87,17 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
           }).then(async (response) => { 
             console.log('Utilisateur connecté++++++++++++++++++++++++++',response.data)
 
-            await localStorage.setItem('msasToken', response.data.token)
+            await localStorage.setItem('siratToken', response.data.token)
             await localStorage.setItem('loggedInUser', JSON.stringify(response.data.user))
             await localStorage.setItem('isAuthenticated', true)       
             this.$router.push('/parametres');
           }).
           catch((error) => {
               console.log('Code error ++++++: ', error.response)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error.response.data.message || 'Echec de la connexion'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error.response.data.message || 'Échec de la connexion'})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
           }); 
       }
     }

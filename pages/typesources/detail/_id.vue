@@ -47,7 +47,7 @@ import ActionsTypesource from '@/components/typesources/detail/ActionsTypesource
           exact: true
         },
         {
-          text: 'Detail type source',
+          text: 'Détail type source',
           disabled: true,
           to: '/typesources/94',
           exact: true

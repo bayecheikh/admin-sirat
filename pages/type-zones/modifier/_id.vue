@@ -37,7 +37,7 @@ import FormUpdateTypeZone from '@/components/type-zones/modifier/FormUpdateTypeZ
           exact: true
         },
         {
-          text: 'Detail type-zone',
+          text: 'Détail type-zone',
           disabled: true,
           to: '/type-zones/94',
           exact: true

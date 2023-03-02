@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddtarifpeage"
+        @click="goToAddTarifPeage"
         >
           <v-icon left>
             mdi-plus
@@ -37,13 +37,13 @@ import TableTarifPeage from '@/components/tarifspeages/TableTarifPeage'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddtarifpeage() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 25}});
+      goToAddTarifPeage() {      
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "tarifs-peages"}});
       },
     }
   }

@@ -41,7 +41,7 @@ import ActionsTypeLigne from '@/components/typelignes/detail/ActionsTypeLigne';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'typelignes', icon: 'mdi-lock',link:'/typelignes',position:2  }
         ],
         headerItems: [
@@ -52,7 +52,7 @@ import ActionsTypeLigne from '@/components/typelignes/detail/ActionsTypeLigne';
           exact: true
         },
         {
-          text: 'Detail typeligne',
+          text: 'Détail typeligne',
           disabled: true,
           to: '/typelignes/94',
           exact: true

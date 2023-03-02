@@ -102,7 +102,7 @@
               outlined
               dense
               small-chips
-              label="Categorie"
+              label="Catégorie"
               item-text="libelle"
               item-value="id"
               return-object
@@ -229,7 +229,7 @@ import {
       },
       rules:{
         textRules: [
-          v => !!v || 'Libelle est obligatoire',
+          v => !!v || 'Ce champ est obligatoire',
           v => !!v || 'contenu obligatoire',
         ],
         descriptionRules: [
@@ -245,7 +245,7 @@ import {
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
-        /* console.log('Donées formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
+        /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
         let formData = new FormData();
@@ -259,13 +259,13 @@ import {
         formData.append("lien", this.model.lien);
         formData.append("categories", [this?.model?.categories]?.map((item)=>{return item.id}));
 
-        console.log('donnee envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model)
 
-       validation && this.$msasFileApi.post('/gestionrhs',formData)
+       validation && this.$siratFileApi.post('/gestionrhs',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             
-            if(this.$route.path=='/gestionrhs/addGestionrh'){
+            if(this.$route.path=='/gestionrhs/addGestionRH'){
             this.$router.push('/gestionrhs');
             }
             else
@@ -273,10 +273,10 @@ import {
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

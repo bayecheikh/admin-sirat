@@ -30,7 +30,7 @@ import FormAddContenu from '@/components/contenus/FormAddContenu';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'contenus', icon: 'mdi-lock',link:'/contenus',position:2  }
         ],
         headerItems: [

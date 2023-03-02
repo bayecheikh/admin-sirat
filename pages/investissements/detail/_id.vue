@@ -66,7 +66,7 @@ import HistoriqueInvestissement from '@/components/investissements/detail/Histor
           exact: true
         },
         {
-          text: 'Detail investissement',
+          text: 'Détail investissement',
           disabled: true,
           to: '/investissements/94',
           exact: true

@@ -40,18 +40,18 @@ import ActionsCategorie from '@/components/categories/detail/ActionsCategorie';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
-          { text: 'categories', icon: 'mdi-lock',link:'/categories',position:2  }
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'catégories', icon: 'mdi-lock',link:'/categories',position:2  }
         ],
         headerItems: [
         {
-          text: 'Categories',
+          text: 'Catégories',
           disabled: false,
           to: '/categories',
           exact: true
         },
         {
-          text: 'Detail categorie',
+          text: 'Détail catégorie',
           disabled: true,
           to: '/categories/94',
           exact: true

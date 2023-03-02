@@ -270,22 +270,22 @@
         rules:{
           firstnameRules: [
             v => !!v || 'Prénom est obligatoire',
-            v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+            v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
           ],
           lastnameRules: [
             v => !!v || 'Nom est obligatoire',
-            v => (v && v.length <= 50) || 'Nom doit etre inférieur à 10 caratères',
+            v => (v && v.length <= 50) || 'Nom doit être inférieur à 10 caractères',
           ],
           emailRules: [
             v => !!v || 'E-mail est obligatoire',
-            v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+            v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
           ],
           usernameRules: [
             v => !!v || 'Login est obligatoire',
-            v => (v && v.length <= 10) || 'Nom doit etre inférieur à 10 caratères',
+            v => (v && v.length <= 10) || 'Nom doit être inférieur à 10 caractères',
           ],
           rolesRules: [
-            v => (v && !!v.length) || 'Role est obligatoire',
+            v => (v && !!v.length) || 'Rôle est obligatoire',
           ],
           telephoneRules: [
             v => !!v || 'Téléphone est obligatoire',
@@ -301,18 +301,18 @@
           ],
           adresseRules: [
             v => !!v || 'Adresse est obligatoire',
-            v => (v && v.length <= 100) || 'Adresse doit etre inférieur à 50 caratères',
+            v => (v && v.length <= 100) || 'Adresse doit être inférieur à 50 caractères',
           ],
           nationalityRules: [
             v => !!v || 'Nationalité est obligatoire',
-            v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+            v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
           ],
           date_of_birthRules: [
             v => !!v || 'Date de naissance est obligatoire',
           ],
           place_of_birthRules: [
             v => !!v || 'Lieu de naissance est obligatoire',
-            v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+            v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
           ],
           /* sexeRules: [
             v => !!v || 'Civilité est obligatoire',
@@ -333,9 +333,9 @@
       methods: {
         getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/users/'+id)
+          this.$siratApi.$get('/users/'+id)
         .then(async (response) => {
-            console.log('Detail ++++++++++',response)
+            console.log('Détail ++++++++++',response)
             this.$store.dispatch('utilisateurs/getDetail',response.data)
             this.model.id = response.data.id
             /* this.imageData = this.detailutilisateur.avatar, */
@@ -350,7 +350,7 @@
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
@@ -404,17 +404,17 @@
           formData.append("fonction",this.model.fonction),
           formData.append("structure_id",this.model.structure_id) */
   
-          validation && this.$msasFileApi.put('/users/'+this.model.id,{...this.model,roles:selectedRoles,...this.model.avatar})
+          validation && this.$siratFileApi.put('/users/'+this.model.id,{...this.model,roles:selectedRoles,...this.model.avatar})
             .then((res) => {
               this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Modification réussi'})
               this.$router.push('/utilisateurs');
             })
             .catch((error) => {
                 console.log('Code error ++++++: ', error)
-                this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la modification '})
+                this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la modification '})
             }).finally(() => {
               this.loading = false;
-              console.log('Requette envoyé ')
+              console.log('Requête envoyée ')
           });
         },
         resetForm () {

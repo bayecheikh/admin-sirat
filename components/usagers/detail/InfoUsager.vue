@@ -3,7 +3,7 @@
     <v-card-text>
       <v-row>
         <v-col md="3" sm="12" lg="3" text-md-center>
-          <!-- <img src="@/static/avatar/user.png" class="user-profil" alt="Espace Senegal Service"> -->
+          <!-- <img src="@/static/avatar/user.png" class="user-profil" alt="Espace SIRAT"> -->
           <div class="headline">
             <v-avatar tile v-if="detailUsager.avatar" size="150px" style="border: solid 2px #d8d8d8;">
               <img :src="detailUsager.avatar" alt="Avatar"/>

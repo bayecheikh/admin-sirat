@@ -37,7 +37,7 @@ import TablePermission from '@/components/permissions/TablePermission'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),

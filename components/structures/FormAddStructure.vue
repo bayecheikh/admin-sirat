@@ -419,10 +419,10 @@ import { mapMutations, mapGetters } from 'vuex'
           v => !!v || 'Champ obligatoire'
         ],
         emailRules: [
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         rolesRules: [
-          v => (v && !!v.length) || 'Role est obligatoire',
+          v => (v && !!v.length) || 'Rôle est obligatoire',
         ],
         telephoneRules: [
           v => !!v || 'Téléphone est obligatoire',
@@ -438,18 +438,18 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         adresseRules: [
           v => !!v || 'Adresse est obligatoire',
-          v => (v && v.length <= 100) || 'Adresse doit etre inférieur à 50 caratères',
+          v => (v && v.length <= 100) || 'Adresse doit être inférieur à 50 caractères',
         ],
         nationalityRules: [
           v => !!v || 'Nationalité est obligatoire',
-          v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+          v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
         ],
         date_of_birthRules: [
           v => !!v || 'Date de naissance est obligatoire',
         ],
         place_of_birthRules: [
           v => !!v || 'Lieu de naissance est obligatoire',
-          v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
         ],
         /* sexeRules: [
           v => !!v || 'Civilité est obligatoire',
@@ -538,24 +538,24 @@ import { mapMutations, mapGetters } from 'vuex'
           type_zone_interventions : type_zone_interventions
         }
 
-        console.log('Donées formulaire source financements ++++++: ',data)
+        console.log('Données formulaire source financements ++++++: ',data)
 
         console.log('FormData ++++++ : ',formData)
 
 
 
-       validation && this.$msasFileApi.post('/structures',formData)
+       validation && this.$siratFileApi.post('/structures',formData)
           .then((res) => {
-            console.log('Donées reçus ++++++: ',res)
+            console.log('Données reçus ++++++: ',res)
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message})
             this.$router.push('/structures');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

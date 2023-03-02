@@ -398,7 +398,7 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         emailRules: [
           v => !!v || 'l\'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         rolesRules: [
           v => (v && !!v.length) || 'Role est obligatoire',
@@ -417,18 +417,18 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         adresseRules: [
           v => !!v || 'Adresse est obligatoire',
-          v => (v && v.length <= 100) || 'Adresse doit etre inférieur à 50 caratères',
+          v => (v && v.length <= 100) || 'Adresse doit être inférieur à 50 caractères',
         ],
         nationalityRules: [
           v => !!v || 'Nationalité est obligatoire',
-          v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+          v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
         ],
         date_of_birthRules: [
           v => !!v || 'Date de naissance est obligatoire',
         ],
         place_of_birthRules: [
           v => !!v || 'Lieu de naissance est obligatoire',
-          v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
         ],
         /* sexeRules: [
           v => !!v || 'Civilité est obligatoire',
@@ -452,9 +452,9 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/structures/'+id)
+          this.$siratApi.$get('/structures/'+id)
         .then(async (response) => {
-            console.log('Detail structure ++++++++++',response.data)
+            console.log('Détail structure ++++++++++',response.data)
             this.$store.dispatch('structures/getDetail',response.data)
             this.model.id= response.data.id
             this.model.nom_structure= response.data.nom_structure
@@ -479,7 +479,7 @@ import { mapMutations, mapGetters } from 'vuex'
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
@@ -551,24 +551,24 @@ import { mapMutations, mapGetters } from 'vuex'
           type_zone_interventions : type_zone_interventions
         }
 
-        console.log('Donées formulaire source financements ++++++: ',data)
+        console.log('Données formulaire source financements ++++++: ',data)
 
         console.log('FormData ++++++ : ',formData)
 
 
 
-       validation && this.$msasFileApi.post('/structures/'+this.model.id,formData)
+       validation && this.$siratFileApi.post('/structures/'+this.model.id,formData)
           .then((res) => {
-            console.log('Donées reçus ++++++: ',res)
+            console.log('Données reçus ++++++: ',res)
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message})
             this.$router.push('/structures');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

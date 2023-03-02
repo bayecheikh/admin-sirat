@@ -30,7 +30,7 @@
               :headers="headers"
               :items="listmodefinancements"
               :loading="listmodefinancements.length?false:true" 
-              loading-text="Loading... Please wait"
+              loading-text="Chargement... Patientez svp"
               :single-select="singleSelect"
               item-key="id"
               show-select
@@ -95,7 +95,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         libelle_dimensionRules: [
           v => !!v || 'Libellé est obligatoire',
-          v => (v && v.length <= 50) || 'Libelle doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Libellé doit être inférieur à 20 caractères',
         ]
       },
     }),
@@ -104,19 +104,19 @@ import { mapMutations, mapGetters } from 'vuex'
         this.loading = true;
         let validation = this.$refs.form.validate()
         let selectedModeFinancements = this.selected.map((item)=>{return item.id})
-        console.log('Donées formulaire ++++++ : ',{...this.model,ligne_modes:selectedModeFinancements})
+        console.log('Données formulaire ++++++ : ',{...this.model,ligne_modes:selectedModeFinancements})
         
-        validation && this.$msasApi.put('/dimensions/'+this.model.id, {...this.model,ligne_modes:selectedModeFinancements})
+        validation && this.$siratApi.put('/dimensions/'+this.model.id, {...this.model,ligne_modes:selectedModeFinancements})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/dimensions');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

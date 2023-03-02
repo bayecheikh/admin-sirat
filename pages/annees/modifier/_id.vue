@@ -36,7 +36,7 @@ import FormUpdateAnnee from '@/components/annees/modifier/FormUpdateAnnee';
           exact: true
         },
         {
-          text: 'Detail annee',
+          text: 'Détail annee',
           disabled: true,
           to: '/annees/94',
           exact: true

@@ -4,7 +4,7 @@
     <v-row>
       <v-col md="6" lg="6" sm="12">
         <v-text-field
-          label="Libelle"
+          label="Libellé"
           outlined dense
           v-model="model.libelle_source"
           :rules="rules.libelle_sourceRules"
@@ -30,7 +30,7 @@
             :headers="headers"
             :items="listtypesources"
             :loading="listtypesources.length?false:true" 
-            loading-text="Loading... Please wait"
+            loading-text="Chargement... Patientez svp"
             :single-select="singleSelect"
             item-key="libelle_type_source"
             show-select
@@ -96,8 +96,8 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         libelle_sourceRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Libelle doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Libellé doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -110,19 +110,19 @@ import { mapMutations, mapGetters } from 'vuex'
         let validation = this.$refs.form.validate()
         let selectedtype_sources = this.selected.map((item)=>{return item.id})
         let id = this.model.id
-        console.log('Donées formulaire ++++++ : ',{...this.model,type_sources:selectedtype_sources})
+        console.log('Données formulaire ++++++ : ',{...this.model,type_sources:selectedtype_sources})
         
-        validation && this.$msasApi.put('/source_financements/'+id, {...this.model,type_sources:selectedtype_sources})
+        validation && this.$siratApi.put('/source_financements/'+id, {...this.model,type_sources:selectedtype_sources})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Modification réussie'})
             this.$router.push('/sources');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

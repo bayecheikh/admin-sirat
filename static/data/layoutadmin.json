@@ -3,76 +3,89 @@
   "homePage":"/dashboard",
   "menuItems":[
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-file-tree-outline",
       "href": "/categories",
-      "title": "Categories",
+      "title": "Catégories",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-file-document-edit-outline",
       "href": "/contenus",
       "title": "Contenus",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-clipboard-flow-outline",
       "href": "/activites",
       "title": "Activités",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "activites"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-newspaper",
       "href": "/actualites",
       "title": "Actualités",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "actualites"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-account-question-outline",
       "href": "/quisommesnous",
       "title": "Qui sommes-nous",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "qui-sommes-nous"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-phone-in-talk-outline",
       "href": "/numerosverts",
       "title": "Numéros Verts",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "numero-vert"
     },
     {
-      "icon": "mdi-cog-outline",
-      "href": "/foiresauxquestions",
-      "title": "Foires aux questions",
-      "name": "gerer-parametres"
+      "icon": "mdi-comment-text-multiple-outline",
+      "href": "/foireauxquestions",
+      "title": "Foire aux questions",
+      "name": "gerer-parametres",
+      "slug": "foire-aux-questions"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-cash-multiple",
       "href": "/tarifspeages",
       "title": "Tarifs Péages",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "tarifs-peages"
     },
     {
-      "icon": "mdi-cog-outline",
-      "href": "/marchepublics",
+      "icon": "mdi-folder-text-outline",
+      "href": "/marchespublics",
       "title": "Marchés publics",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-car-brake-parking",
       "href": "/postepeages",
-      "title": "Poste de péages",
+      "title": "Postes de péage",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-chart-timeline",
+      "href": "/projets",
+      "title": "Projets",
+      "name": "gerer-parametres",
+      "slug": "projets"
+    },
+    {
+      "icon": "mdi-account-details",
       "href": "/gestionrhs",
       "title": "Gestion RH",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-cog-outline",
+      "icon": "mdi-account-tie-outline",
       "href": "/roles",
-      "title": "Roles",
-      "name": "gerer-parametres"
+      "title": "Rôles",
+      "name": "gerer-roles"
     }
   ]
  }

@@ -34,7 +34,7 @@ import ListActualite from '@/components/actualites/ListActualite'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'actualites', icon: 'mdi-lock',link:'/actualites',position:2  }
         ],
         headerItems: [

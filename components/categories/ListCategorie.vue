@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddcategorie"
+        @click="goToAddCategorie"
         >
           <v-icon left>
             mdi-plus
@@ -37,12 +37,12 @@ import TableCategorie from '@/components/categories/TableCategorie'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddcategorie() {      
+      goToAddCategorie() {      
         this.$router.push('/categories/addCategorie');
       },
     }

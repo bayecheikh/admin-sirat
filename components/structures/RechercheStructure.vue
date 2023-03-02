@@ -177,7 +177,7 @@
           v-model="value"
           :items="roles"
           
-          label="Roles"
+          label="Rôles"
           outlined dense
         ></v-select>
       </v-col> -->
@@ -290,7 +290,7 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         structurenameRules: [
           v => !!v || 'Login est obligatoire',
@@ -340,7 +340,7 @@ import { mapMutations, mapGetters } from 'vuex'
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
-        console.log('donnee envoyées++++++++++++++',this.model.dataSearch)
+        console.log('Données envoyées++++++++++++++',this.model.dataSearch)
         this.$store.commit('structures/initdatasearch',this.model.dataSearch)
         validation && this.getResult(1,this.model.dataSearch)
       },
@@ -354,7 +354,7 @@ import { mapMutations, mapGetters } from 'vuex'
         this.page=1
         this.progress=true
         this.$store.dispatch('structures/getDataSearch',null)
-         this.$msasApi.$get('/structures?page=1')
+         this.$siratApi.$get('/structures?page=1')
         .then(async (response) => {
           this.page=1
             let totalPages = Math.ceil(response.data.data.total / response.data.data.per_page)
@@ -366,7 +366,7 @@ import { mapMutations, mapGetters } from 'vuex'
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
             this.progress=false
         });
         console.log('total items++++++++++',this.paginationstructure)
@@ -374,7 +374,7 @@ import { mapMutations, mapGetters } from 'vuex'
       getResult(page,param){
         this.page=1
          this.progress=true
-         this.$msasApi.get('/structure-multiple-search/'+param+'?page='+page)
+         this.$siratApi.get('/structure-multiple-search/'+param+'?page='+page)
           .then(async (response) => {
             console.log('Données reçus++++++++++++',response.data.data.data)
             await this.$store.dispatch('structures/getList',response.data.data.data)
@@ -387,7 +387,7 @@ import { mapMutations, mapGetters } from 'vuex'
             this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
              this.progress=false;
              this.loading = false;
         });

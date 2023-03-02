@@ -36,7 +36,7 @@ import FormUpdateBailleur from '@/components/bailleurs/modifier/FormUpdateBaille
           exact: true
         },
         {
-          text: 'Detail bailleur',
+          text: 'Détail bailleur',
           disabled: true,
           to: '/bailleurs/94',
           exact: true

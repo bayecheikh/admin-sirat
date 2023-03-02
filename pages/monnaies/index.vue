@@ -34,7 +34,7 @@ import ListMonnaie from '@/components/monnaies/ListMonnaie'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'monnaies', icon: 'mdi-lock',link:'/monnaies',position:2  }
         ],
         headerItems: [

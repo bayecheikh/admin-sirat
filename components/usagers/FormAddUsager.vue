@@ -204,7 +204,7 @@
           v-model="value"
           :items="roles"
           
-          label="Roles"
+          label="Rôles"
           outlined dense
         ></v-select>
       </v-col> -->
@@ -305,7 +305,7 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         usernameRules: [
           v => !!v || 'Login est obligatoire',
@@ -379,7 +379,7 @@ import { mapMutations, mapGetters } from 'vuex'
         let validation = this.$refs.form.validate()
         let selectedRoles = this?.model?.roles?.map((item)=>{return item.id})
         this.loading = true;
-        /* console.log('Donées formulaire++++++: ',{...this.model,roles:selectedRoles,...this.model.avatar}) */
+        /* console.log('Données formulaire++++++: ',{...this.model,roles:selectedRoles,...this.model.avatar}) */
 
 
         let formData = new FormData();
@@ -400,7 +400,7 @@ import { mapMutations, mapGetters } from 'vuex'
         formData.append("fonction", this.model.fonction);
         formData.append("structure_id", this.model.structure_id);
 
-        console.log('donnee envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model)
 
        validation && this.$essFileApi.post('/register-user-ess',formData)
           .then((res) => {
@@ -414,10 +414,10 @@ import { mapMutations, mapGetters } from 'vuex'
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

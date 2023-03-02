@@ -122,7 +122,7 @@
             dense
             multiple
             small-chips
-            label="Role"
+            label="Rôle"
             item-text="description"
             item-value="id"
             clearable
@@ -203,19 +203,19 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         firstnameRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         lastnameRules: [
           v => !!v || 'Nom est obligatoire',
-          v => (v && v.length <= 50) || 'Nom doit etre inférieur à 10 caratères',
+          v => (v && v.length <= 50) || 'Nom doit être inférieur à 10 caractères',
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         usernameRules: [
           v => !!v || 'Login est obligatoire',
-          v => (v && v.length <= 10) || 'Nom doit etre inférieur à 10 caratères',
+          v => (v && v.length <= 10) || 'Nom doit être inférieur à 10 caractères',
         ],
         rolesRules: [
           v => (v && !!v.length) || 'Role est obligatoire',
@@ -234,18 +234,18 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         adresseRules: [
           v => !!v || 'Adresse est obligatoire',
-          v => (v && v.length <= 100) || 'Adresse doit etre inférieur à 50 caratères',
+          v => (v && v.length <= 100) || 'Adresse doit être inférieur à 50 caractères',
         ],
         nationalityRules: [
           v => !!v || 'Nationalité est obligatoire',
-          v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+          v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
         ],
         date_of_birthRules: [
           v => !!v || 'Date de naissance est obligatoire',
         ],
         place_of_birthRules: [
           v => !!v || 'Lieu de naissance est obligatoire',
-          v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
         ],
         /* sexeRules: [
           v => !!v || 'Civilité est obligatoire',
@@ -297,7 +297,7 @@ import { mapMutations, mapGetters } from 'vuex'
         let selectedRoles = this.model.roles && this.model.roles.map((item)=>{return item.id})
         this.model.roles=selectedRoles
         this.loading = true;
-        console.log('Donées formulaire++++++: ',{...this.model,roles:selectedRoles})
+        console.log('Données formulaire++++++: ',{...this.model,roles:selectedRoles})
 
 
         /* let formData = new FormData();
@@ -319,23 +319,23 @@ import { mapMutations, mapGetters } from 'vuex'
         formData.append("fonction",this.model.fonction),
         formData.append("structure_id",this.model.structure_id)
 
-        console.log('Donées formulaire files ++++++: ',formData) */
+        console.log('Données formulaire files ++++++: ',formData) */
 
         //console.log('Données formulaire +++++',{...this.model,roles:selectedRoles,structure_id:this.model.structure_id?.id})
         console.log('Données formulaire +++++',{...this.model,roles:selectedRoles,structure_id:this.model.structure_id?.id})
 
-       validation && this.$msasFileApi.post('/users',{...this.model,roles:selectedRoles,structure_id:this.model.structure_id?.id})
+       validation && this.$siratFileApi.post('/users',{...this.model,roles:selectedRoles,structure_id:this.model.structure_id?.id})
           .then((res) => {           
-            console.log('Donées reçus ++++++: ',res.data)
+            console.log('Données reçus ++++++: ',res.data)
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message})
             this.$router.push('/utilisateurs');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

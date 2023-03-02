@@ -6,7 +6,7 @@ export default {
            }).catch((error) => {
                console.log('Code error ++++++: ', error?.response?.data?.message)
            }).finally(() => {
-             console.log('Requette envoyé ')
+             console.log('Requête envoyée ')
        });
     }
 }

@@ -40,7 +40,7 @@ import ActionsContenu from '@/components/contenus/detail/ActionsContenu';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'contenus', icon: 'mdi-lock',link:'/contenus',position:2  }
         ],
         headerItems: [
@@ -51,7 +51,7 @@ import ActionsContenu from '@/components/contenus/detail/ActionsContenu';
           exact: true
         },
         {
-          text: 'Detail contenu',
+          text: 'Détail contenu',
           disabled: true,
           to: '/contenus/94',
           exact: true

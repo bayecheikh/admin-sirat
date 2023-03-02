@@ -1,29 +1,29 @@
 export default {
     getList({commit}){
-        this.$msasApi.$get('roles')
+        this.$siratApi.$get('roles')
         .then(async (response) => { 
-        console.log('Données reçu+++++++++++',response)
+        console.log('Données reçues+++++++++++',response)
             await commit('initlist', response.data)
             await commit('initSelectList', response.data)
             }).catch((error) => {
                 console.log('Code error ++++++: ', error?.response?.data?.message)
             }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
     },
 
     async getDetail({commit},payload){
         /* this.$essApi.$get('/list-roles')
         .then(async (response) => { 
-        console.log('Données reçu+++++++++++',response)
+        console.log('Données reçues+++++++++++',response)
             await commit('initlist', response.roles)
             await commit('initSelectList', response.roles)
             }).catch((error) => {
                 console.log('Code error ++++++: ', error?.response?.data?.message)
             }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         }); */
-        console.log('Données detail reçu +++++++++++',payload)
+        console.log('Données détail reçues +++++++++++',payload)
         await commit('initdetail', payload)
     },
     async deleteRole({commit,dispatch},payload){

@@ -34,7 +34,7 @@ import ListQuiSommesNous from '@/components/quisommesnous/ListQuiSommesNous'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'quisommesnous', icon: 'mdi-lock',link:'/quisommesnous',position:2  }
         ],
         headerItems: [

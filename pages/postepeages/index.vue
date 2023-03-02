@@ -34,12 +34,12 @@ import ListPostepeage from '@/components/postepeages/ListPostepeage'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'postepeages', icon: 'mdi-lock',link:'/postepeages',position:2  }
         ],
         headerItems: [
           {
-            text: 'Liste des poste de peages',
+            text: 'Liste des postes de péage',
             disabled: true,
             to: '/postepeages',
             exact: true

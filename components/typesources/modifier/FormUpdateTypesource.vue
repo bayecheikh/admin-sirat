@@ -53,8 +53,8 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         libelle_type_sourceRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Libelle doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Libellé doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -65,20 +65,20 @@ import { mapMutations, mapGetters } from 'vuex'
       submitForm () {
         this.loading = true;
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         this.loading = false;
         
-        validation && this.$msasApi.put('/type_sources/'+this.model.id, {...this.model})
+        validation && this.$siratApi.put('/type_sources/'+this.model.id, {...this.model})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/typesources');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

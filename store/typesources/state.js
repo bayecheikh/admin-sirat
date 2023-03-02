@@ -3,12 +3,12 @@ export default () => ({
 
     headertypesources : [
         {
-            text: 'Libelle',
+            text: 'Libellé',
             align: 'start',
             sortable: true,
             value: 'libelle_type_source',
         },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailtypesource :{}

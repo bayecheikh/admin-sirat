@@ -52,7 +52,7 @@ import ActionsAxe from '@/components/axes/detail/ActionsAxe';
           exact: true
         },
         {
-          text: 'Detail axe',
+          text: 'Détail axe',
           disabled: true,
           to: '/axes/94',
           exact: true

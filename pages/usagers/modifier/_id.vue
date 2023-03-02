@@ -36,7 +36,7 @@ import FormUpdateUsager from '@/components/usagers/modifier/FormUpdateUsager';
       return {
         leftmenuItems: [
           { text: 'Accueil', icon: 'mdi-home',link:'/dashboard',position:1  },
-          { text: 'Nouveau usager', icon: 'mdi-account-plus-outline',link:'/usagers/addUsager',position:0 }
+          { text: 'Nouvel usager', icon: 'mdi-account-plus-outline',link:'/usagers/addUsager',position:0 }
         ],
         headerItems: [
         {
@@ -46,7 +46,7 @@ import FormUpdateUsager from '@/components/usagers/modifier/FormUpdateUsager';
           exact: true
         },
         {
-          text: 'Detail',
+          text: 'Détail',
           disabled: true,
           to: '/usagers/addUsager',
           exact: true

@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddmonnaie"
+        @click="goToAddMonnaie"
         >
           <v-icon left>
             mdi-plus
@@ -37,12 +37,12 @@ import TableMonnaie from '@/components/monnaies/TableMonnaie'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddmonnaie() {      
+      goToAddMonnaie() {      
         this.$router.push('/monnaies/addmonnaie');
       },
     }

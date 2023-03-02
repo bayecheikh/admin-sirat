@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddinvestissement"
+        @click="goToAddInvestissement"
         >
           <v-icon left>
             mdi-plus
@@ -42,7 +42,7 @@ import TableInvestissement from '@/components/investissements/TableInvestissemen
       selected: []
     }),
     methods:{
-      goToAddinvestissement() {      
+      goToAddInvestissement() {      
         this.$router.push('/investissements/addInvestissement');
       },
     }

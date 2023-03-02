@@ -4,7 +4,7 @@
       <v-row>
         <v-col md="8" lg="8" sm="12">
           <v-text-field
-            label="Libelle"
+            label="Libellé"
             outlined dense
             v-model="model.libelle"
             :rules="rules.nameRules"
@@ -78,7 +78,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         nameRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -88,9 +88,9 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/categories/'+id)
+          this.$siratApi.$get('/categories/'+id)
         .then(async (response) => {
-            console.log('Detail categorie ++++++++++',response.data)
+            console.log('Détail catégorie ++++++++++',response.data)
             this.$store.dispatch('categories/getDetail',response.data)
             this.model.libelle= response.data.libelle
             this.model.id= response.data.id
@@ -101,14 +101,14 @@ import { mapMutations, mapGetters } from 'vuex'
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
       submitForm () {
         this.loading = true;
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         this.loading = false;
 
         let formData = new FormData();
@@ -118,17 +118,17 @@ import { mapMutations, mapGetters } from 'vuex'
         formData.append("id", this.model.id);
         formData.append("_method", "put");
         
-        validation && this.$msasApi.post('/categories/'+this.model.id, formData)
+        validation && this.$siratApi.post('/categories/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/categories');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

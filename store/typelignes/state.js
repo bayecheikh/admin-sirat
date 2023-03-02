@@ -3,12 +3,12 @@ export default () => ({
 
     headertypelignes : [
         {
-            text: 'Libelle',
+            text: 'Libellé',
             align: 'start',
             sortable: true,
             value: 'libelle',
         },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailtypeligne :{}

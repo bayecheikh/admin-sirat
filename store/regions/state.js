@@ -11,7 +11,7 @@ export default () => ({
         { text: 'Slug', value: 'slug' },
         { text: 'Latitude', value: 'latitude' },
         { text: 'Longitude', value: 'longitude' },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailregion :{}

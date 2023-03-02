@@ -38,7 +38,7 @@ import FormValidationUsager from '@/components/usagers/FormValidationUsager';
       return {
         leftmenuItems: [
           { text: 'Accueil', icon: 'mdi-home',link:'/dashboard/charge-clientel',position:1  },
-          { text: 'Nouveau usager', icon: 'mdi-account-plus-outline',link:'/usagers/addUsager',position:0 }
+          { text: 'Nouvel usager', icon: 'mdi-account-plus-outline',link:'/usagers/addUsager',position:0 }
         ],
         headerItems: [
         {
@@ -48,7 +48,7 @@ import FormValidationUsager from '@/components/usagers/FormValidationUsager';
           exact: true
         },
         {
-          text: 'Nouveau usager',
+          text: 'Nouvel usager',
           disabled: false,
           to: '/usagers/addUsager',
           exact: true

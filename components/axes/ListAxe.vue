@@ -16,7 +16,7 @@
           <v-icon left>
             mdi-plus
           </v-icon>
-          Nouveau Axe
+          Nouvel Axe
         </v-btn>
       </div>
     </div>
@@ -37,7 +37,7 @@ import TableAxe from '@/components/axes/TableAxe'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),

@@ -9,7 +9,7 @@
         </v-tabs>
       </div>
       <div class="ml-auto p-2" v-if="$hasPermission('ajouter_investissement')">
-        <v-btn depressed rounded color="primary" @click="goToAddinvestissement">
+        <v-btn depressed rounded color="primary" @click="goToAddInvestissement">
           <v-icon left> mdi-plus </v-icon>
           Nouveau financement
         </v-btn>
@@ -29,7 +29,7 @@
             :items-per-page="perpage"
             class="flat pt-4"
             :loading="progress"
-            loading-text="Loading... Please wait"
+            loading-text="Chargement... Patientez svp"
             hide-default-footer
           >
             <template v-slot:top="{}">
@@ -82,7 +82,7 @@
                         Confirmation
                       </v-card-title>
                       <v-card-text
-                        >Voulez-vous supprimer cet element ?</v-card-text
+                        >Voulez-vous supprimer cet élément ?</v-card-text
                       >
                       <v-card-actions>
                         <v-spacer></v-spacer>
@@ -227,7 +227,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
     methods: {
       getList(page){
           this.progress=true
-          this.$msasApi.$get('/investissements?page='+page)
+          this.$siratApi.$get('/investissements?page='+page)
         .then(async (response) => {
             console.log('list investissement ++++++++++',response)
             let totalPages = Math.ceil(response.data.total / response.data.per_page)
@@ -240,7 +240,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
              //this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
             this.progress=false
         });
         //console.log('total items++++++++++',this.paginationinvestissement)
@@ -248,7 +248,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
       getResult(param){
          this.progress=true
        
-         this.$msasFileApi.post('/recherche_avance_investissements',param)
+         this.$siratFileApi.post('/recherche_avance_investissements',param)
           .then(async (response) => {
             console.log('Données reçus++++++++++++',response.data.data.data)
             await this.$store.dispatch('investissements/getList',response.data.data.data)
@@ -261,7 +261,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
            // this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
              this.progress=false;
              this.loading = false;
         });
@@ -285,15 +285,15 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
       async deleteItem () {
         this.dialog=false
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'})
-        this.$msasApi.$delete('/investissements/'+this.activeItem.id)
+        this.$siratApi.$delete('/investissements/'+this.activeItem.id)
         .then(async (response) => {
             this.$store.dispatch('investissements/deleteinvestissement',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la suppression'})
               console.log('Code error ++++++: ',error)
             }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
        opendialog (item) {
@@ -305,7 +305,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
       },
       visualiser(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let investissement = this.selected.map(function(value){ return value})[0]
           this.$store.commit('investissements/initdetail',investissement)
@@ -314,7 +314,7 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
       },
       modifier(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let investissement = this.selected.map(function(value){ return value})[0]
           this.$store.commit('investissements/initdetail',investissement)
@@ -325,15 +325,15 @@ import RechercheAvance from '@/components/investissements/RechercheAvance';
         if(this.selected.length>=1)
         alert('Supprimer '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       exporter(){
         if(this.selected.length>=1)
         alert('Exporter '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
-      goToAddinvestissement() {
+      goToAddInvestissement() {
         this.$router.push('/investissements/addInvestissement');
       },
     },

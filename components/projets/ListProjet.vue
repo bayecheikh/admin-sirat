@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddprojet"
+        @click="goToAddProjet"
         >
           <v-icon left>
             mdi-plus
@@ -34,16 +34,19 @@ import TableProjet from '@/components/projets/TableProjet'
     components: {
       TableProjet
     },
+    mounted: function(){
+      this.layoutadmin= this.$getParametreMenu()
+    },
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddprojet() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 0}});
+      goToAddProjet() {    
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "projets"}});
       },
     }
   }

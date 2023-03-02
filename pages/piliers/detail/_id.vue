@@ -52,7 +52,7 @@ import ActionsPilier from '@/components/piliers/detail/ActionsPilier';
           exact: true
         },
         {
-          text: 'Detail pilier',
+          text: 'Détail pilier',
           disabled: true,
           to: '/piliers/94',
           exact: true

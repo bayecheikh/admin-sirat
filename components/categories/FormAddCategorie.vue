@@ -4,7 +4,7 @@
       <v-row>
         <v-col md="8" lg="8" sm="12">
           <v-text-field
-            label="Libelle"
+            label="Libellé"
             outlined dense
             v-model="model.libelle"
             :rules="rules.nameRules"
@@ -70,8 +70,8 @@ import Notification from '@/components/Notification'
       },
       rules:{
         nameRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Description est obligatoire'
@@ -82,7 +82,7 @@ import Notification from '@/components/Notification'
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
-        /* console.log('Donées formulaire++++++: ',{...this.model,roles:selectedRoles,...this.model.futured_image}) */
+        /* console.log('Données formulaire++++++: ',{...this.model,roles:selectedRoles,...this.model.futured_image}) */
 
 
         let formData = new FormData();
@@ -90,9 +90,9 @@ import Notification from '@/components/Notification'
         formData.append("libelle", this.model.libelle );
         formData.append("slug", this.sanitizeTitle(this.model.libelle));
 
-        console.log('donnee envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model)
 
-       validation && this.$msasFileApi.post('/categories',formData)
+       validation && this.$siratFileApi.post('/categories',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             
@@ -104,10 +104,10 @@ import Notification from '@/components/Notification'
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

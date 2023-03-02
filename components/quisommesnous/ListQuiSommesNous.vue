@@ -16,7 +16,7 @@
           <v-icon left>
             mdi-plus
           </v-icon>
-          Ajouter un élément
+          Ajouter une rubrique
         </v-btn>
       </div>
     </div>
@@ -37,13 +37,13 @@ import TableQuiSommesNous from '@/components/quisommesnous/TableQuiSommesNous'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
       goToAddquisommesnous() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 20}});
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "qui-sommes-nous"}});
       },
     }
   }

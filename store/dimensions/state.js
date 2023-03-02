@@ -3,7 +3,7 @@ export default () => ({
 
     headerdimensions : [
         {
-            text: 'Libelle',
+            text: 'Libellé',
             align: 'start',
             sortable: true,
             value: 'libelle_dimension',

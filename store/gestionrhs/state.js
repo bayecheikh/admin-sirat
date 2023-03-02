@@ -13,7 +13,7 @@ export default () => ({
         { text: 'Secteur', value: 'secteur' },
         { text: 'Date de publication', value: 'date_publication' },
         { text: 'Date limite', value: 'date_limite' },
-        { text: 'Categorie', value: 'categories',sortable: true },
+        { text: 'Catégorie', value: 'categories',sortable: true },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailgestionrh :{}

@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddactualite"
+        @click="goToAddActualite"
         >
           <v-icon left>
             mdi-plus
@@ -37,13 +37,13 @@ import TableActualite from '@/components/actualites/TableActualite'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddactualite() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 1}});
+      goToAddActualite() {      
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "actualites"}});
       },
     }
   }

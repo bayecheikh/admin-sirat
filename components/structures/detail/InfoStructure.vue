@@ -59,16 +59,16 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/structures/'+id)
+          this.$siratApi.$get('/structures/'+id)
         .then(async (response) => {
-            console.log('Detail ++++++++++',response)
+            console.log('Détail ++++++++++',response)
             this.$store.dispatch('structures/getDetail',response.data)
             this.changeSource_financement(response.data?.source)
         }).catch((error) => {
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },

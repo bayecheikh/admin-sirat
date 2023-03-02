@@ -50,7 +50,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         libelleRules: [
           v => !!v || 'Nom est obligatoire',
-          v => (v && v.length <= 50) || 'Nom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Nom doit être inférieur à 20 caractères',
         ],
         slugRules: [
           v => !!v || 'Slug est obligatoire'
@@ -61,20 +61,20 @@ import { mapMutations, mapGetters } from 'vuex'
       submitForm () {
         this.loading = true;
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         this.loading = false;
         
-        validation && this.$msasApi.put('/type_lignes/'+this.model.id, {...this.model})
+        validation && this.$siratApi.put('/type_lignes/'+this.model.id, {...this.model})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/typelignes');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

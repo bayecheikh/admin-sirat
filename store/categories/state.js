@@ -8,7 +8,7 @@ export default () => ({
             sortable: true,
             value: 'name',
         }, */
-        { text: 'Labelle', value: 'libelle' },
+        { text: 'Libellé', value: 'libelle' },
         { text: 'Slug', value: 'slug' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],

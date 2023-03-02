@@ -2,15 +2,15 @@ import state from "./state";
 
 export default {
     async getSelectList({commit}){
-        this.$msasApi.$get('selectstructures')
+        this.$siratApi.$get('selectstructures')
         .then(async (response) => { 
-        console.log('Données reçu select list +++++++++++',response)
+        console.log('Données reçues select list +++++++++++',response)
             //await commit('initlist', response.data)
             await commit('initSelectList', response.data)
             }).catch((error) => {
                 console.log('Code error ++++++: ', error?.response?.data?.message)
             }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });        
      },
     async getList({commit},payload){

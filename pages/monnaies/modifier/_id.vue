@@ -35,7 +35,7 @@ import FormUpdateMonnaie from '@/components/monnaies/modifier/FormUpdateMonnaie'
           exact: true
         },
         {
-          text: 'Detail monnaie',
+          text: 'Détail monnaie',
           disabled: true,
           to: '/monnaies/94',
           exact: true

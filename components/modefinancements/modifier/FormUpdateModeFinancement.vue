@@ -4,7 +4,7 @@
       <v-row>
         <v-col md="4" lg="4" sm="12">
           <v-text-field
-            label="Libelle"
+            label="Libellé"
             outlined dense
             v-model="model.libelle"
             :rules="rules.libelleRules"
@@ -71,7 +71,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         libelleRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         slugRules: [
           v => !!v || 'Nom est obligatoire'
@@ -83,21 +83,21 @@ import { mapMutations, mapGetters } from 'vuex'
         this.loading = true;
         let validation = this.$refs.form.validate()
         let predefini = this.model.predefini==null?'0':'1'
-        console.log('Donées formulaire ++++++ : ',{...this.model,predefini:predefini})
+        console.log('Données formulaire ++++++ : ',{...this.model,predefini:predefini})
         this.loading = false;
         
-        validation && this.$msasApi.put('/ligne_mode_investissements/'+this.model.id, {...this.model,predefini:predefini})
+        validation && this.$siratApi.put('/ligne_mode_investissements/'+this.model.id, {...this.model,predefini:predefini})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             //this.$router.push('/modefinancements');
-            console.log('Donées reçu++++++ : ',res.data)
+            console.log('Données reçues++++++ : ',res.data)
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

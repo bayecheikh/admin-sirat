@@ -58,12 +58,12 @@ import StatBox from '@/components/dashboard/admin/StatBox';
       getDashboardData(){
         this.$essApi.$get('/dashboard-employee')
         .then(async (response) => { 
-          console.log('Données reçu+++++++++++',response)
+          console.log('Données reçues+++++++++++',response)
               await this.$store.commit('dashboard/initdashboardData', response)
         }).catch((error) => {
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-          console.log('Requette envoyé ')
+          console.log('Requête envoyée ')
         });
       }
     }

@@ -21,7 +21,7 @@
       :items-per-page="perpage"
       class="flat pt-4"
       :loading="progress"
-      loading-text="Loading... Please wait"
+      loading-text="Chargement... Patientez svp"
       hide-default-footer
       :search="search"
     >
@@ -67,7 +67,7 @@
       <v-dialog v-model="dialog" width="500">
         <v-card>
           <v-card-title class="text-h5"> Confirmation </v-card-title>
-          <v-card-text>Voulez-vous supprimer cet element ?</v-card-text>
+          <v-card-text>Voulez-vous supprimer cet élément ?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -178,9 +178,9 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
     methods: {
       getList(page){
           this.progress=true
-          this.$msasApi.$get('/users?page='+page)
+          this.$siratApi.$get('/users?page='+page)
         .then(async (response) => {
-            console.log('Données reçu utilisateurs ++++++: ', response.data.data)
+            console.log('Données reçues utilisateurs ++++++: ', response.data.data)
             let totalPages = Math.ceil(response.data.total / response.data.per_page)
             this.$store.dispatch('utilisateurs/getTotalPage',totalPages)
             this.$store.dispatch('utilisateurs/getPerPage',response.data.per_page)
@@ -191,14 +191,14 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
             this.progress=false
         });
         //console.log('total items++++++++++',this.paginationUtilisateur)
       },
        getResult(page,param){
          this.progress=true
-         this.$msasApi.get('/user-multiple-search/'+param+'?page='+page)
+         this.$siratApi.get('/user-multiple-search/'+param+'?page='+page)
           .then(async (response) => {
             console.log('Données reçus++++++++++++',response.data.data.data)
             await this.$store.dispatch('utilisateurs/getList',response.data.data.data)
@@ -211,7 +211,7 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
            // this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
              this.progress=false;
         });
       },
@@ -219,7 +219,7 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
         console.log('------------- user active',id)
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'})  
-        this.$msasApi.$get('/active_user/'+id)
+        this.$siratApi.$get('/active_user/'+id)
         .then(async (response) => {   
           console.log('-----************-------- reponse active',response)          
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Opération réussie'})
@@ -227,7 +227,7 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
               this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Opération échoué'})
               console.log('Code error ++++++: ',error)
             }).finally(() => {              
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         }); 
       },
       handlePageChange(value){
@@ -249,15 +249,15 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
       async deleteItem () {
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'})  
-        this.$msasApi.$delete('/users/'+this.activeItem.id)
+        this.$siratApi.$delete('/users/'+this.activeItem.id)
         .then(async (response) => {             
             this.$store.dispatch('utilisateurs/deleteUtilisateur',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la suppression'})
               console.log('Code error ++++++: ',error)
             }).finally(() => {              
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
        opendialog (item) {
@@ -269,7 +269,7 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
       },
       visualiser(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let user = this.selected.map(function(value){ return value})[0]
           this.$store.commit('utilisateurs/initdetail',user)
@@ -278,7 +278,7 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
       },
       modifier(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let user = this.selected.map(function(value){ return value})[0]
           this.$store.commit('utilisateurs/initdetail',user)
@@ -289,13 +289,13 @@ import RechercheUser from '@/components/utilisateurs/RechercheUser';
         if(this.selected.length>=1)
         alert('Supprimer '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       exporter(){
         if(this.selected.length>=1)
         alert('Exporter '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       }
     },
     data: () => ({

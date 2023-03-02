@@ -455,21 +455,21 @@
       submitForm () {
         let validation = this.$refs.form.validate()  
         let data = {...this.model,user_id:this.model.user_id.id,codeProcedure:this.model.codeProcedure.code}
-        console.log('Donées formulaire ++++++: ',data)
+        console.log('Données formulaire ++++++: ',data)
 
         /*   this.loading = true;
           validation && this.$essApi.post('/ess/dossiers',data)
           .then((res) => {           
-            console.log('Donées reçus ++++++: ',res.data)
+            console.log('Données reçus ++++++: ',res.data)
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/demandes');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         }); */
       },
       async changeProcedure(procedure) {
@@ -486,11 +486,11 @@
               this.hasDocumentation= false;
               this.messageDoc='Pas de documention'
               console.log('Code error ++++++: ', error.response.data.message)
-              let message = error.response?.data?.message || 'Echec de la connection'
+              let message = error.response?.data?.message || 'Échec de la connexion'
               console.log(message)
           }).finally(() => {
             this.processing= false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         
       },

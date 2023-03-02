@@ -36,7 +36,7 @@ import FormUpdateModeFinancement from '@/components/modefinancements/modifier/Fo
           exact: true
         },
         {
-          text: 'Detail modefinancement',
+          text: 'Détail modefinancement',
           disabled: true,
           to: '/modefinancements/94',
           exact: true

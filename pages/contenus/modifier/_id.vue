@@ -30,7 +30,7 @@ import FormUpdateContenu from '@/components/contenus/modifier/FormUpdateContenu'
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'contenus', icon: 'mdi-lock',link:'/contenus',position:2  }
         ],
         headerItems: [
@@ -41,7 +41,7 @@ import FormUpdateContenu from '@/components/contenus/modifier/FormUpdateContenu'
           exact: true
         },
         {
-          text: 'Detail contenu',
+          text: 'Détail contenu',
           disabled: true,
           to: '/contenus/94',
           exact: true

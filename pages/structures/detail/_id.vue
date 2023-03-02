@@ -59,7 +59,7 @@ import HistoriqueStructure from '@/components/structures/detail/HistoriqueStruct
           exact: true
         },
         {
-          text: 'Detail structure',
+          text: 'Détail structure',
           disabled: true,
           to: '/structures/94',
           exact: true

@@ -39,7 +39,7 @@ import FormAddAxe from '@/components/axes/FormAddAxe';
           exact: true
         },
         {
-          text: 'Nouveau axe',
+          text: 'Nouvel axe',
           disabled: false,
           to: '/axes/addaxe',
           exact: true

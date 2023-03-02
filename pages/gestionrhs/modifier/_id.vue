@@ -5,7 +5,7 @@ M<template>
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container pl-10 pt-10 pb-10 pr-10" flat>  
-      <form-update-gestionrh></form-update-gestionrh>
+      <form-update-gestion-r-h></form-update-gestion-r-h>
     </v-card>
   </div> 
 </div>
@@ -14,13 +14,13 @@ M<template>
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import FormUpdateGestionrh from '@/components/gestionrhs/modifier/FormUpdateGestionrh';
+import FormUpdateGestionRH from '@/components/gestionrhs/modifier/FormUpdateGestionRH';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      FormUpdateGestionrh
+      FormUpdateGestionRH
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){
@@ -30,8 +30,8 @@ import FormUpdateGestionrh from '@/components/gestionrhs/modifier/FormUpdateGest
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
-          { text: 'Gestionrhs', icon: 'mdi-lock',link:'/Gestionrhs',position:2  }
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Gestion RH', icon: 'mdi-lock',link:'/gestionrhs',position:2  }
         ],
         headerItems: [
         {
@@ -41,7 +41,7 @@ import FormUpdateGestionrh from '@/components/gestionrhs/modifier/FormUpdateGest
           exact: true
         },
         {
-          text: 'Detail offre',
+          text: 'Détail offre',
           disabled: true,
           to: '/gestionrhs/94',
           exact: true
@@ -56,7 +56,7 @@ import FormUpdateGestionrh from '@/components/gestionrhs/modifier/FormUpdateGest
         menu2: false,
         menu3: false,
         modal: false,
-        Gestionrhs: ['Sperviseur national'],
+        gestionrhs: ['Sperviseur national'],
         localisations: ['Thiès','Dakar'],
 
       }

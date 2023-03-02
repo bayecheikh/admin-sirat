@@ -38,7 +38,7 @@
             :headers="headers"
             :items="listpermissions"
             :loading="listpermissions.length?false:true" 
-            loading-text="Loading... Please wait"
+            loading-text="Chargement... Patientez svp"
             :single-select="singleSelect"
             item-key="name"
             show-select
@@ -101,7 +101,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         nameRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -113,19 +113,19 @@ import { mapMutations, mapGetters } from 'vuex'
         this.loading = true;
         let validation = this.$refs.form.validate()
         let selectedPermissions = this.selected.map((item)=>{return item.id})
-        console.log('Donées formulaire ++++++ : ',{...this.model,permissions:selectedPermissions})
+        console.log('Données formulaire ++++++ : ',{...this.model,permissions:selectedPermissions})
         
-        validation && this.$msasApi.post('/roles', {...this.model,permissions:selectedPermissions})
+        validation && this.$siratApi.post('/roles', {...this.model,permissions:selectedPermissions})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/roles');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

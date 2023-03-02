@@ -8,7 +8,7 @@
               <v-card-text>
                 <Notification :message="message" :color="color" v-if="message"/>
                 <div class="layout column align-center py-5">
-                  <img src="@/static/logo.png" alt="Espace Senegal Service" width="150" height="">
+                  <img src="@/static/logo.png" alt="Espace SIRAT" width="150" height="">
                   <p class="flex my-8 custom-font-mark">Mot de passe oublié</p>
                 </div>
                 <v-form class="row text-align-center pt-0"  v-model="valid" ref="form" lazy-validation>
@@ -54,8 +54,8 @@ import { mapMutations, mapGetters } from 'vuex'
       confirm_passwordRules() {
         return [
           v => !!v || 'Confirmation mot de passe est obligatoire',
-          v => (v && v.length >= 8) || 'Mot de passe doit etre superieur ou égal à 8 caracteres',
-          v => v === this.model.password || 'Les mot de passe ne sont pas identiques',
+          v => (v && v.length >= 8) || 'Mot de passe doit être supérieur ou égal à 8 caractères',
+          v => v === this.model.password || 'Les mots de passe ne sont pas identiques',
         ];
       },
     },
@@ -73,11 +73,11 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         passwordRules: [
           v => !!v || 'Mot de passe est obligatoire',
-          v => (v && v.length >= 8) || 'Mot de passe doit etre superieur ou égal à 8 caracteres',
+          v => (v && v.length >= 8) || 'Mot de passe doit être supérieur ou égal à 8 caractères',
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ]
       },
     }),
@@ -85,7 +85,7 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       submitForm () {
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire++++++: ',{...this.model,token:this.tokenTemporaire})
+        console.log('Données formulaire++++++: ',{...this.model,token:this.tokenTemporaire})
 
         this.loading = true;
         
@@ -93,18 +93,18 @@ import { mapMutations, mapGetters } from 'vuex'
           .then((res) => {    
             this.message = res.data.message
             this.color = 'success'
-            console.log('Donées reçus ++++++: ',res.data)
+            console.log('Données reçus ++++++: ',res.data)
             setTimeout(() => {
               this.$router.push('/login');
             }, 1000);
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error.response.data.message)
-              this.message = error.response?.data?.message || 'Echec de la connection'
+              this.message = error.response?.data?.message || 'Échec de la connexion'
               this.color='red'
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         }); 
       },
     }

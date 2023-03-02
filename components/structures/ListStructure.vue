@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddstructure"
+        @click="goToAddStructure"
         >
           <v-icon left>
             mdi-plus
@@ -42,7 +42,7 @@ import TableStructure from '@/components/structures/TableStructure'
       selected: []
     }),
     methods:{
-      goToAddstructure() {      
+      goToAddStructure() {      
         this.$router.push('/structures/addStructure');
       },
     }

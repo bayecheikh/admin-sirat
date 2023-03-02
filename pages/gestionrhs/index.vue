@@ -5,7 +5,7 @@
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container" flat>  
-      <list-Gestionrh></list-Gestionrh>
+      <list-gestion-r-h></list-gestion-r-h>
     </v-card>
   </div> 
 </div>
@@ -14,7 +14,7 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import ListGestionrh from '@/components/Gestionrhs/ListGestionrh'
+import ListGestionRH from '@/components/gestionrhs/ListGestionRH'
   export default {
     layout: "dashboard",
     middleware: function ({redirect,$hasPermission}) {
@@ -25,7 +25,7 @@ import ListGestionrh from '@/components/Gestionrhs/ListGestionrh'
     components: {
       LeftMenu,
       PageHeader,
-      ListGestionrh
+      ListGestionRH
     },
     mounted: function() {
       this.$store.dispatch('gestionrhs/getList')
@@ -34,14 +34,14 @@ import ListGestionrh from '@/components/Gestionrhs/ListGestionrh'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
-          { text: 'Gestionrhs', icon: 'mdi-lock',link:'/Gestionrhs',position:2  }
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Gestion RH', icon: 'mdi-lock',link:'/gestionrhs',position:2  }
         ],
         headerItems: [
           {
             text: 'Liste des offres',
             disabled: true,
-            to: '/Gestionrhs',
+            to: '/gestionrhs',
             exact: true
           }
         ]

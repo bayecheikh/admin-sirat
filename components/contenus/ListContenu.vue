@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddcontenu"
+        @click="goToAddContenu"
         >
           <v-icon left>
             mdi-plus
@@ -37,12 +37,12 @@ import TableContenu from '@/components/contenus/TableContenu'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddcontenu() {      
+      goToAddContenu() {      
         this.$router.push('/contenus/addContenu');
       },
     }

@@ -20,7 +20,7 @@
 
   class="flat pt-4"
   :loading="listannees.length?false:true" 
-  loading-text="Loading... Please wait"
+  loading-text="Chargement... Patientez svp"
   :rows-per-page-items="[10,20,30,40,50]"
   hide-default-footer
   :search="search"
@@ -45,7 +45,7 @@
       <v-dialog v-model="dialog" width="500">
         <v-card>
           <v-card-title class="text-h5"> Confirmation </v-card-title>
-          <v-card-text>Voulez-vous supprimer cet element ?</v-card-text>
+          <v-card-text>Voulez-vous supprimer cet élément ?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -132,16 +132,16 @@ import { mapMutations, mapGetters } from 'vuex'
        deleteItem (item) {
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'}) 
-        this.$msasApi.$delete('/annees/'+this.activeItem.id)
+        this.$siratApi.$delete('/annees/'+this.activeItem.id)
         .then(async (response) => { 
             this.$store.dispatch('annees/deleteannee',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la suppression'})
               console.log('Code error ++++++: ', error)
             }).finally(() => {
               
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         /* alert('Supprimer '+item.id) */
       },
@@ -150,7 +150,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       visualiser(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let annee = this.selected.map(function(value){ return value})[0]
           this.$store.commit('annees/initdetail',annee)
@@ -159,7 +159,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       modifier(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let annee = this.selected.map(function(value){ return value})[0]
           this.$store.commit('annees/initdetail',annee)
@@ -170,13 +170,13 @@ import { mapMutations, mapGetters } from 'vuex'
         if(this.selected.length>=1)
         alert('Supprimer '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       exporter(){
         if(this.selected.length>=1)
         alert('Exporter '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       opendialog (item) {
         this.dialog=true

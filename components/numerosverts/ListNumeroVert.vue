@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddnumerovert"
+        @click="goToAddNumeroVert"
         >
           <v-icon left>
             mdi-plus
@@ -37,13 +37,13 @@ import TableNumeroVert from '@/components/numerosverts/TableNumeroVert'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddnumerovert() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 11}});
+      goToAddNumeroVert() {      
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "numero-vert"}});
       },
     }
   }

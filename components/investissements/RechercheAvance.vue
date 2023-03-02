@@ -237,7 +237,7 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         emailRules: [
           v => !!v || 'l\'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         rolesRules: [
           v => (v && !!v.length) || 'Role est obligatoire',
@@ -256,18 +256,18 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         adresseRules: [
           v => !!v || 'Adresse est obligatoire',
-          v => (v && v.length >= 1) || 'Adresse doit etre inférieur à 50 caratères',
+          v => (v && v.length >= 1) || 'Adresse doit être inférieur à 50 caractères',
         ],
         nationalityRules: [
           v => !!v || 'Nationalité est obligatoire',
-          v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+          v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
         ],
         date_of_birthRules: [
           v => !!v || 'Date de naissance est obligatoire',
         ],
         place_of_birthRules: [
           v => !!v || 'Lieu de naissance est obligatoire',
-          v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
         ],
         /* sexeRules: [
           v => !!v || 'Civilité est obligatoire',
@@ -341,7 +341,7 @@ import { mapMutations, mapGetters } from 'vuex'
 
        this.$store.commit('ligneinvestissements/initdatasearch',{...data})
 
-        console.log('Donées formulaire recherche ++++++: ',data)
+        console.log('Données formulaire recherche ++++++: ',data)
         this.getResult(data)
       },
       getResult(param){
@@ -362,7 +362,7 @@ import { mapMutations, mapGetters } from 'vuex'
 
 
          console.log('données recherche ligne financements',param)    
-         this.$msasFileApi.post('/recherche_ligne_financements',formData)
+         this.$siratFileApi.post('/recherche_ligne_financements',formData)
           .then(async (response) => {
             console.log('Données lignes reçus++++++++++++',response)
             await this.$store.dispatch('ligneinvestissements/getList',response.data.data.data)
@@ -375,7 +375,7 @@ import { mapMutations, mapGetters } from 'vuex'
             this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
              this.progress=false;
              this.loading = false;
         });

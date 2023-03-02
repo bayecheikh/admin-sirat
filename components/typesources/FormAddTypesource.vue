@@ -43,8 +43,8 @@ import Notification from '@/components/Notification'
       },
       rules:{
         libelle_type_sourceRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Libelle doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Libellé doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Description est obligatoire'
@@ -55,9 +55,9 @@ import Notification from '@/components/Notification'
       submitForm () {
         this.loading = true;
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         
-        validation && this.$msasApi.post('/type_sources', {...this.model})
+        validation && this.$siratApi.post('/type_sources', {...this.model})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/typesources');
@@ -65,10 +65,10 @@ import Notification from '@/components/Notification'
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

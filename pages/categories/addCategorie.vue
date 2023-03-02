@@ -30,18 +30,18 @@ import FormAddCategorie from '@/components/categories/FormAddCategorie';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'categories', icon: 'mdi-lock',link:'/categories',position:2  }
         ],
         headerItems: [
         {
-          text: 'Categories',
+          text: 'Catégories',
           disabled: false,
           to: '/categories',
           exact: true
         },
         {
-          text: 'Nouvelle categorie',
+          text: 'Nouvelle catégorie',
           disabled: false,
           to: '/categories/addCategorie',
           exact: true

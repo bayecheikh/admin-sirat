@@ -34,7 +34,7 @@ import ListActivite from '@/components/activites/ListActivite'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'activites', icon: 'mdi-lock',link:'/activites',position:2  }
         ],
         headerItems: [

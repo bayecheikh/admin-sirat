@@ -9,7 +9,7 @@ export default () => ({
             value: 'name',
         }, */
         { text: 'Description', value: 'description' },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailpermission :{}

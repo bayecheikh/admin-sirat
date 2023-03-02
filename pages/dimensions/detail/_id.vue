@@ -39,7 +39,7 @@ import ActionsDimension from '@/components/dimensions/detail/ActionsDimension';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'dimensions', icon: 'mdi-lock',link:'/dimensions',position:2  }
         ],
         headerItems: [
@@ -50,7 +50,7 @@ import ActionsDimension from '@/components/dimensions/detail/ActionsDimension';
           exact: true
         },
         {
-          text: 'Detail dimension',
+          text: 'Détail dimension',
           disabled: true,
           to: '/dimensions/94',
           exact: true

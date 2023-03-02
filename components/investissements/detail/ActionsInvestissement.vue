@@ -116,8 +116,8 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         nameRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Description est obligatoire'
@@ -137,9 +137,9 @@ import { mapMutations, mapGetters } from 'vuex'
 
       valider () {
         this.loadingValidation = true;
-        console.log('Donées formulaire ++++++ : ',{id:this.detailinvestissement.id})
+        console.log('Données formulaire ++++++ : ',{id:this.detailinvestissement.id})
         
-        this.$msasApi.post('/validation_investissement', {id:this.detailinvestissement.id})
+        this.$siratApi.post('/validation_investissement', {id:this.detailinvestissement.id})
           .then((res) => {  
             this.state = res.data.data.state  
             this.status = res.data.data.status  
@@ -149,17 +149,17 @@ import { mapMutations, mapGetters } from 'vuex'
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loadingValidation = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       rejeter () {
         this.loadingRejet = true;
-        console.log('Donées formulaire ++++++ : ',{id:this.detailinvestissement.id})
+        console.log('Données formulaire ++++++ : ',{id:this.detailinvestissement.id})
         
-        this.$msasApi.post('/rejet_investissement', {id:this.detailinvestissement.id,motif_rejet:this.model.motif})
+        this.$siratApi.post('/rejet_investissement', {id:this.detailinvestissement.id,motif_rejet:this.model.motif})
           .then((res) => {  
             this.state = res.data.data.state  
             this.status = res.data.data.status 
@@ -169,10 +169,10 @@ import { mapMutations, mapGetters } from 'vuex'
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loadingRejet = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       reinitialiser(){  

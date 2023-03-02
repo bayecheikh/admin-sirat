@@ -8,7 +8,7 @@
         outlined
         dense
         small-chips
-        label="Categorie"
+        label="Catégorie"
         item-text="libelle"
         item-value="libelle"
         clearable
@@ -31,7 +31,7 @@
   items-per-page="20"
   class="flat pt-4"
   :loading="listcontenus.length?false:true" 
-  loading-text="Loading... Please wait"
+  loading-text="Chargement... Patientez svp"
   :rows-per-page-items="[10,20,30,40,50]"
   hide-default-footer
   :search="search"
@@ -61,7 +61,7 @@
       <v-dialog v-model="dialog" width="500">
         <v-card>
           <v-card-title class="text-h5"> Confirmation </v-card-title>
-          <v-card-text>Voulez-vous supprimer cet element ?</v-card-text>
+          <v-card-text>Voulez-vous supprimer cet élément ?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -119,7 +119,7 @@
                   >Modifier
                 </v-list-item-title>
               </v-list-item>
-              <v-list-item v-if="$hasRole('super_admin')" @click="opendialog(item)" class="custom-v-list-action pl-2 pr-1" >
+              <v-list-item  @click="opendialog(item)" class="custom-v-list-action pl-2 pr-1" >
                 <v-list-item-title>
                   <v-icon small class="mr-2" v-bind="attrs" v-on="on">
                     mdi-delete-outline </v-icon
@@ -163,17 +163,17 @@ import { mapMutations, mapGetters } from 'vuex'
        deleteItem (item) {
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'}) 
-        this.$msasApi.$delete('/contenus/'+this.activeItem.id)
+        this.$siratApi.$delete('/contenus/'+this.activeItem.id)
         .then(async (response) => { 
-            console.log('Reponse delete ++++++: ', response)
+            console.log('Réponse delete ++++++: ', response)
             this.$store.dispatch('contenus/deletecontenu',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la suppression'})
               console.log('Code error ++++++: ', error)
             }).finally(() => {
               
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         /* alert('Supprimer '+item.id) */
       },
@@ -182,7 +182,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       visualiser(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let contenu = this.selected.map(function(value){ return value})[0]
           this.$store.commit('contenus/initdetail',contenu)
@@ -191,7 +191,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       modifier(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let contenu = this.selected.map(function(value){ return value})[0]
           this.$store.commit('contenus/initdetail',contenu)
@@ -202,13 +202,13 @@ import { mapMutations, mapGetters } from 'vuex'
         if(this.selected.length>=1)
         alert('Supprimer '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       exporter(){
         if(this.selected.length>=1)
         alert('Exporter '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       opendialog (item) {
         this.dialog=true
@@ -227,7 +227,7 @@ import { mapMutations, mapGetters } from 'vuex'
             value: 'name',
         }, */
         { text: 'Titre', value: 'titre' },
-        { text: 'Categorie', value: 'categories',sortable: true},
+        { text: 'Catégorie', value: 'categories',sortable: true},
         { text: 'Actions', value: 'actions', sortable: false },
     ],
      dialog: false,

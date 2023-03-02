@@ -3,7 +3,7 @@ import layoutadmin from '@/static/data/layoutadmin'
 export default function ({store ,redirect}, inject) { 
 
     const getToken = () => {
-        return localStorage.getItem('msasToken')
+        return localStorage.getItem('siratToken')
     }
     
     const getUser = () => {
@@ -88,7 +88,7 @@ export default function ({store ,redirect}, inject) {
             break;
             case 'livre': return 'green'
             break;
-            case 'innactif': return 'orange'
+            case 'inactif': return 'orange'
             break;
             case 'suspendu': return 'red'
             break;
@@ -109,7 +109,7 @@ export default function ({store ,redirect}, inject) {
     }
     
     const loggout = async () => {
-        await localStorage.removeItem('msasToken')
+        await localStorage.removeItem('siratToken')
         await localStorage.removeItem('loggedInUser')
         await localStorage.removeItem('layout')
         await localStorage.removeItem('isAuthenticated') 

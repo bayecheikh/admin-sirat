@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddbailleur"
+        @click="goToAddBailleur"
         >
           <v-icon left>
             mdi-plus
@@ -37,12 +37,12 @@ import TableBailleur from '@/components/bailleurs/TableBailleur'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddbailleur() {      
+      goToAddBailleur() {      
         this.$router.push('/bailleurs/addbailleur');
       },
     }

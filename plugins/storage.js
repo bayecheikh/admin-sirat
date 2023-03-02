@@ -54,7 +54,7 @@ export default function ({store ,redirect}, inject) {
             break;
             case 'livre': return 'green'
             break;
-            case 'innactif': return 'orange'
+            case 'inactif': return 'orange'
             break;
             case 'suspendu': return 'red'
             break;

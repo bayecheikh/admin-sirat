@@ -40,7 +40,7 @@ import ActionsPermission from '@/components/permissions/detail/ActionsPermission
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'Permissions', icon: 'mdi-lock',link:'/permissions',position:2  }
         ],
         headerItems: [
@@ -51,7 +51,7 @@ import ActionsPermission from '@/components/permissions/detail/ActionsPermission
           exact: true
         },
         {
-          text: 'Detail permission',
+          text: 'Détail permission',
           disabled: true,
           to: '/permissions/94',
           exact: true

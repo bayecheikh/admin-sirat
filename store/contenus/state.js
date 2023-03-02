@@ -9,8 +9,8 @@ export default () => ({
             value: 'name',
         }, */
         { text: 'Titre', value: 'titre' },
-        { text: 'Categorie', value: 'categories',sortable: true },
-        { text: 'Categorie', value: 'categorie',sortable: true, align: ' d-none' },
+        { text: 'Catégorie', value: 'categories',sortable: true },
+        { text: 'Catégorie', value: 'categorie',sortable: true, align: ' d-none' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailcontenu :{}

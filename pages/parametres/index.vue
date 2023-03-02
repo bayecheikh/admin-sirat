@@ -98,7 +98,7 @@ input {
 
 
 .error {
-  background-color: orangered;
+  background-color: orangered
 }
 
 </style>

@@ -102,7 +102,7 @@
               outlined
               dense
               small-chips
-              label="Categorie"
+              label="Catégorie"
               item-text="libelle"
               item-value="id"
               return-object
@@ -242,9 +242,9 @@ import {
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/gestionrhs/'+id)
+          this.$siratApi.$get('/gestionrhs/'+id)
         .then(async (response) => {
-            console.log('Detail gestionrh ++++++++++',response.data)
+            console.log('Détail gestionrh ++++++++++',response.data)
             this.$store.dispatch('gestionrhs/getDetail',response.data)
             this.model.reference= response.data.reference
             this.model.id= response.data.id
@@ -262,14 +262,14 @@ import {
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
-        /* console.log('Donées formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
+        /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
         let formData = new FormData();
@@ -289,7 +289,7 @@ import {
         console.log('donnee envoyées++++++++++++++',this.model)
 
         
-        validation && this.$msasFileApi.post('/gestionrhs/'+this.model.id, formData)
+        validation && this.$siratFileApi.post('/gestionrhs/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Mofication réussie'})
             this.$router.push('/gestionrhs');
@@ -297,10 +297,10 @@ import {
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddactivite"
+        @click="goToAddActivite"
         >
           <v-icon left>
             mdi-plus
@@ -37,13 +37,13 @@ import TableActivite from '@/components/activites/TableActivite'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddactivite() {      
-        this.$router.push({path: '/contenus/addContenu', query: {categorie_id: 0}});
+      goToAddActivite() {      
+        this.$router.push({path: '/contenus/addContenu', query: {categorie_slug: "activites"}});
       },
     }
   }

@@ -28,7 +28,7 @@ import FormAddDepartement from '@/components/departements/FormAddDepartement';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'Districts', icon: 'mdi-lock',link:'/departements',position:2  }
         ],
         headerItems: [

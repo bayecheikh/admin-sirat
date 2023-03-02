@@ -9,7 +9,7 @@ export default () => ({
         { text: 'Telephone', value: 'telephone' },
         { text: 'Sujet', value: 'subject' },
         { text: 'Message', value: 'message' },
-        { text: 'Status', value: 'status' },
+        { text: 'Statut', value: 'status' },
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detaildemande :{},

@@ -67,11 +67,11 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
        rules:{
         passwordRules: [
           v => !!v || 'Mot de passe est obligatoire',
-          v => (v && v.length >= 4) || 'Mot de passe doit etre superieur a 3 caracteres',
+          v => (v && v.length >= 4) || 'Mot de passe doit être supérieur à 3 caractères',
         ],
         emailRules: [
           v => !!v || 'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ]
       },
     }),
@@ -81,12 +81,12 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
         let validation = this.$refs.form.validate()
         this.loading = true;
         this.color="success"
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         
         validation && this.$axios.post('/forget_password',{...this.model})
           .then((res) => {    
-            this.$toast.success(res.data.message || 'Vérifiez votre boite de récéption').goAway(4000)
-            console.log('Donées reçus ++++++: ',res.data)
+            this.$toast.success(res.data.message || 'Vérifiez votre boîte de réception').goAway(4000)
+            console.log('Données reçus ++++++: ',res.data)
              setTimeout(() => {
               this.$router.push('/login');
             }, 1000);
@@ -97,7 +97,7 @@ import layoutchargeclientel from '@/static/data/layoutchargeclientel'
           }).finally(() => {
             this.loading = false;
             this.dialog = false
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         }); 
       }
     }

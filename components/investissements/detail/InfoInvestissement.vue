@@ -36,7 +36,7 @@
                   <p class="info-profil"><span>Source de financement : </span>{{detailinvestissement.source[0].libelle_source}}</p>
               </div>
               <div class="col-md-4 my-0 py-0" v-if="detailinvestissement.status">
-                  <p class="info-profil"><span>Status: </span>
+                  <p class="info-profil"><span>Statut: </span>
                     <v-chip
                       :color="(detailinvestissement.status=='a_valider' && 'primary') || (detailinvestissement.status=='rejete' && 'error') || (detailinvestissement.status=='brouillon' && 'orange') || (detailinvestissement.status=='publie' && 'green')"
                       small
@@ -191,16 +191,16 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/investissements/'+id)
+          this.$siratApi.$get('/investissements/'+id)
         .then(async (response) => {
           this.LigneFinancementInputs = JSON.parse(JSON.stringify(response.data.ligne_financements))
-            console.log('Detail ++++++++++',response)
+            console.log('Détail ++++++++++',response)
             this.$store.dispatch('investissements/getDetail',response.data)
         }).catch((error) => {
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationinvestissement)
       },

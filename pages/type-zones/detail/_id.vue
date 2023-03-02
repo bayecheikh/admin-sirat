@@ -38,7 +38,7 @@ import ActionsTypeZone from '@/components/type-zones/detail/ActionsTypeZone';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'dimensions', icon: 'mdi-lock',link:'/dimensions',position:2  }
         ],
         headerItems: [
@@ -49,7 +49,7 @@ import ActionsTypeZone from '@/components/type-zones/detail/ActionsTypeZone';
           exact: true
         },
         {
-          text: 'Detail dimension',
+          text: 'Détail dimension',
           disabled: true,
           to: '/dimensions/94',
           exact: true

@@ -30,18 +30,18 @@ import FormAddPostepeage from '@/components/postepeages/FormAddPostepeage';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'postepeages', icon: 'mdi-lock',link:'/postepeages',position:2  }
         ],
         headerItems: [
         {
-          text: 'Poste de peages',
+          text: 'Poste de péage',
           disabled: false,
           to: '/postepeages',
           exact: true
         },
         {
-          text: 'Nouveau poste de peage',
+          text: 'Nouveau poste de péage',
           disabled: true,
           to: '/postepeages/addPostepeage',
           exact: true

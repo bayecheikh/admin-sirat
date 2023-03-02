@@ -39,7 +39,7 @@ import FormUpdateDimension from '@/components/dimensions/modifier/FormUpdateDime
           exact: true
         },
         {
-          text: 'Detail dimension',
+          text: 'Détail dimension',
           disabled: true,
           to: '/dimensions/94',
           exact: true

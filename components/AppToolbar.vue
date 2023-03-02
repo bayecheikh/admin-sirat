@@ -5,7 +5,7 @@
     color="#fff"
   >   
       <nuxt-link class="customTopNav flex text-sm-left" to="/">
-        <img src="@/static/logo.png" width="170" alt="Espace Senegal Service">
+        <img src="@/static/logo.png" width="170" alt="Espace SIRAT">
       </nuxt-link>
 
       <nuxt-link class="customTopNav flex text-sm-center" v-for="(item,i) in layout" :key="i" :to="item.href? item.href : null">
@@ -68,7 +68,7 @@
                   tile
                 >
                   <v-btn text  deprmsased @click="goToProfile" class="customTopNav pop-user-button flex text-sm-center">
-                    Parametres
+                    Paramètres
                   </v-btn> 
                 </v-card>
               </div>
@@ -117,15 +117,15 @@
       async logout() {
         try {
             this.loading = true; 
-            //this.$store.dispatch('toast/getMmsasage',{type:'procmsasing',text:'Deconnexion en cours ...'})
-            await this.$msasApi.$post('/logout').then(async (response) => { 
+            //this.$store.dispatch('toast/getMessage',{type:'procmsasing',text:'Deconnexion en cours ...'})
+            await this.$siratApi.$post('/logout').then(async (response) => { 
             this.$loggout()
             this.loading = false;
-            //this.$store.dispatch('toast/getMmsasage',{type:'succmsas',text:'Deconnexion réussie'})   
+            //this.$store.dispatch('toast/getMessage',{type:'succmsas',text:'Deconnexion réussie'})   
             this.$router.push('/login');
           })
         } catch (e) {
-          this.$store.dispatch('toast/getMmsasage',{type:'error',text:e})
+          this.$store.dispatch('toast/getMessage',{type:'error',text:e})
           console.log(e)
           this.loading = false;
         }

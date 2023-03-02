@@ -34,12 +34,12 @@ import ListCategorie from '@/components/categories/ListCategorie'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'categories', icon: 'mdi-lock',link:'/categories',position:2  }
         ],
         headerItems: [
           {
-            text: 'Liste des categories',
+            text: 'Liste des catégories',
             disabled: true,
             to: '/categories',
             exact: true

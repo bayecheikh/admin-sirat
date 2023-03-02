@@ -43,7 +43,7 @@ import FormUpdatePilier from '@/components/piliers/modifier/FormUpdatePilier';
           exact: true
         },
         {
-          text: 'Detail pilier',
+          text: 'Détail pilier',
           disabled: true,
           to: '/piliers/94',
           exact: true

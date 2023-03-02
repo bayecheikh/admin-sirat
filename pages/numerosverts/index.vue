@@ -34,7 +34,7 @@ import ListNumeroVert from '@/components/numerosverts/ListNumeroVert'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'numerosverts', icon: 'mdi-lock',link:'/numerosverts',position:2  }
         ],
         headerItems: [

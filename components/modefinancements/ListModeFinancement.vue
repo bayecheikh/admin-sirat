@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddmodefinancement"
+        @click="goToAddModeFinancement"
         >
           <v-icon left>
             mdi-plus
@@ -37,12 +37,12 @@ import TableModeFinancement from '@/components/modefinancements/TableModeFinance
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddmodefinancement() {      
+      goToAddModeFinancement() {      
         this.$router.push('/modefinancements/addModeFinancement');
       },
     }

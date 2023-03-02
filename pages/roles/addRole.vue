@@ -25,7 +25,7 @@ import FormAddRole from '@/components/roles/FormAddRole';
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-roles')){
-        return redirect('/')
+        return redirect('/roles')
       }
     },
     mounted: function() {
@@ -34,12 +34,12 @@ import FormAddRole from '@/components/roles/FormAddRole';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'Permissions', icon: 'mdi-lock',link:'/permissions',position:2  }
         ],
         headerItems: [
         {
-          text: 'Roles',
+          text: 'Rôles',
           disabled: false,
           to: '/roles',
           exact: true

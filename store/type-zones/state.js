@@ -3,12 +3,12 @@ export default () => ({
 
     headertypezones : [
         {
-            text: 'Libelle',
+            text: 'Libellé',
             align: 'start',
             sortable: true,
             value: 'libelle_zone',
         },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailtypezone :{}

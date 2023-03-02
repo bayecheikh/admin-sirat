@@ -42,8 +42,8 @@ import Notification from '@/components/Notification'
       },
       rules:{
         nom_axeRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Nom doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Nom doit être inférieur à 20 caractères',
         ],
         slugRules: [
           v => !!v || 'Slug est obligatoire'
@@ -54,9 +54,9 @@ import Notification from '@/components/Notification'
       submitForm () {
         this.loading = true;
         let validation = this.$refs.form.validate()
-        console.log('Donées formulaire ++++++ : ',{...this.model})
+        console.log('Données formulaire ++++++ : ',{...this.model})
         
-        validation && this.$msasApi.post('/axes', {...this.model})
+        validation && this.$siratApi.post('/axes', {...this.model})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/axes');
@@ -64,10 +64,10 @@ import Notification from '@/components/Notification'
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

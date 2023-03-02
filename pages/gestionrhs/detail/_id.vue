@@ -8,10 +8,10 @@
      <v-row align="center"
             justify="center">
             <v-col cols="12" md="12" lg="12" sm="12">
-              <info-gestionrh></info-gestionrh>
+              <info-gestion-r-h></info-gestion-r-h>
             </v-col>
             <v-col cols="12" md="12" lg="12" sm="12">
-              <actions-gestionrh></actions-gestionrh>
+              <actions-gestion-r-h></actions-gestion-r-h>
             </v-col>
           </v-row>
     </v-card>
@@ -22,15 +22,15 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import InfoGestionrh from '@/components/gestionrhs/detail/InfoGestionrh';
-import ActionsGestionrh from '@/components/gestionrhs/detail/ActionsGestionrh';
+import InfoGestionRH from '@/components/gestionrhs/detail/InfoGestionRH';
+import ActionsGestionRH from '@/components/gestionrhs/detail/ActionsGestionRH';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      InfoGestionrh,
-      ActionsGestionrh
+      InfoGestionRH,
+      ActionsGestionRH
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){
@@ -40,8 +40,8 @@ import ActionsGestionrh from '@/components/gestionrhs/detail/ActionsGestionrh';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
-          { text: 'Gestionrhs', icon: 'mdi-lock',link:'/Gestionrhs',position:2  }
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Gestion RH', icon: 'mdi-lock',link:'/gestionrhs',position:2  }
         ],
         headerItems: [
         {
@@ -51,7 +51,7 @@ import ActionsGestionrh from '@/components/gestionrhs/detail/ActionsGestionrh';
           exact: true
         },
         {
-          text: 'Detail offre',
+          text: 'Détail offre',
           disabled: true,
           to: '/gestionrhs/94',
           exact: true

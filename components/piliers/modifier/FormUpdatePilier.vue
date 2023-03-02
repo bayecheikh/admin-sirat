@@ -30,7 +30,7 @@
             :headers="headers"
             :items="listaxes"
             :loading="listaxes.length?false:true" 
-            loading-text="Loading... Please wait"
+            loading-text="Chargement... Patientez svp"
             :single-select="singleSelect"
             item-key="nom_axe"
             show-select
@@ -102,7 +102,7 @@ import { mapMutations, mapGetters } from 'vuex'
       rules:{
         nameRules: [
           v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -115,19 +115,19 @@ import { mapMutations, mapGetters } from 'vuex'
         let validation = this.$refs.form.validate()
         let selectedaxes = this.selected.map((item)=>{return item.id})
         let id = this.model.id
-        console.log('Donées formulaire ++++++ : ',{...this.model,axes:selectedaxes})
+        console.log('Données formulaire ++++++ : ',{...this.model,axes:selectedaxes})
         
-        validation && this.$msasApi.put('/piliers/'+id, {...this.model,axes:selectedaxes})
+        validation && this.$siratApi.put('/piliers/'+id, {...this.model,axes:selectedaxes})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Modification réussie'})
             this.$router.push('/piliers');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
         });
       },
       resetForm () {

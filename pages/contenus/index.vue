@@ -34,7 +34,7 @@ import ListContenu from '@/components/contenus/ListContenu'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'contenus', icon: 'mdi-lock',link:'/contenus',position:2  }
         ],
         headerItems: [

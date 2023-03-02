@@ -40,7 +40,7 @@ import FormUpdateUser from '@/components/profil/modifier/FormUpdateUser';
         ],
         headerItems: [
         {
-          text: 'Modification profil',
+          text: 'Modification du profil',
           disabled: true,
           to: '/utilisateurs/94',
           exact: true

@@ -11,7 +11,7 @@ export default () => ({
         }, */
         { text: 'Description', value: 'description' },
         { text: 'Permissions', value: 'permissions',sortable: false },
-        /* { text: 'Status', value: 'status' }, */
+        /* { text: 'Statut', value: 'status' }, */
         { text: 'Actions', value: 'actions', sortable: false },
     ],
     detailrole :{}

@@ -5,7 +5,7 @@ M<template>
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container pl-10 pt-10 pb-10 pr-10" flat>  
-      <form-add-gestionrh></form-add-gestionrh>
+      <form-add-gestion-r-h></form-add-gestion-r-h>
     </v-card>
   </div> 
 </div>
@@ -14,13 +14,13 @@ M<template>
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import FormAddGestionrh from '@/components/gestionrhs/FormAddGestionrh';
+import FormAddGestionRH from '@/components/gestionrhs/FormAddGestionRH';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      FormAddGestionrh
+      FormAddGestionRH
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){
@@ -30,8 +30,8 @@ import FormAddGestionrh from '@/components/gestionrhs/FormAddGestionrh';
     data () {
       return {
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
-          { text: 'Gestionrhs', icon: 'mdi-lock',link:'/Gestionrhs',position:2  }
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Gestion RH', icon: 'mdi-lock',link:'/gestionrhs',position:2  }
         ],
         headerItems: [
         {
@@ -41,9 +41,9 @@ import FormAddGestionrh from '@/components/gestionrhs/FormAddGestionrh';
           exact: true
         },
         {
-          text: 'Nouveau marché public',
+          text: 'Nouvelle offre',
           disabled: true,
-          to: '/gestionrhs/addGestionrh',
+          to: '/gestionrhs/addGestionRH',
           exact: true
         }
         
@@ -56,7 +56,7 @@ import FormAddGestionrh from '@/components/gestionrhs/FormAddGestionrh';
         menu2: false,
         menu3: false,
         modal: false,
-        Gestionrhs: ['Sperviseur national'],
+        gestionrhs: ['Sperviseur national'],
         localisations: ['Thiès','Dakar'],
 
       }

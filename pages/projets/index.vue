@@ -34,7 +34,7 @@ import ListProjet from '@/components/projets/ListProjet'
       return {
         selectedItem: 0,
         leftmenuItems: [
-          { text: 'Roles', icon: 'mdi-lock',link:'/roles',position:1  },
+          { text: 'Rôles', icon: 'mdi-lock',link:'/roles',position:1  },
           { text: 'projets', icon: 'mdi-lock',link:'/projets',position:2  }
         ],
         headerItems: [

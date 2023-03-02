@@ -19,11 +19,15 @@
           ></v-textarea>
         </v-col>
         <v-col md="12" lg="12" sm="12">
-          <p>Body *</p>
+          <p>Contenu *</p>
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
-              <tiptap-vuetify v-model="model.body" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
+              <tiptap-vuetify
+                v-model="model.body"
+                :extensions="extensions"
+                :card-props="{ flat: false, color: '' }"
+                :rules="[rules.textRules]" />
             </ClientOnly>
           </template>
         </v-col>
@@ -33,13 +37,13 @@
         sm="12"
         >
           <v-autocomplete
-              v-model="listcategories[this.$route.query.categorie_id]"
+              v-model="model.categories"
               :items="listcategories"
               :rules="rules.categoriesRules"
               outlined
               dense
               small-chips
-              label="Categorie"
+              label="Catégorie"
               item-text="libelle"
               item-value="id"
               return-object
@@ -117,7 +121,11 @@ import {
       TiptapVuetify
     },
     mounted: function() {
+      
       this.$store.dispatch('categories/getList')
+      if(this.$route.query.categorie_slug){
+        this.getCategorie()
+      }
     },
     computed: {
       ...mapGetters({
@@ -168,7 +176,7 @@ import {
       },
       rules:{
         textRules: [
-          v => !!v || 'Libelle est obligatoire',
+          v => !!v || 'Ce champ est obligatoire',
           v => !!v || 'Contenu obligatoire',
         ],
         descriptionRules: [
@@ -177,10 +185,27 @@ import {
       },
     }),
     methods: {
+      getCategorie(){
+          this.progress=true
+          this.$siratApi.$get('/categories')
+        .then(async (response) => {
+            //console.log('Détail contenu +++++hhhhhhhhhhhhhhhhh+++++',response.data.categories.map((item)=>{return item})[0])
+            /*this.model.id_categorie = response.data.categories.map((item)=>{return item.id})[0] */
+            this.model.categorie= response.data.categorie 
+          /*  this.model.categories = response.data.categories.map((item)=>{return item.id})[0] */
+            
+            this.changeCategorie(response.data.find(categorie => categorie.slug === this.$route.query.categorie_slug))   
+        }).catch((error) => {
+             this.$toast.error(error?.response?.data?.message).goAway(3000)
+            console.log('Code error ++++++: ', error?.response?.data?.message)
+        }).finally(() => {
+            console.log('Requête envoyée ')
+        });
+      },
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
-        /* console.log('Donées formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
+        /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
         let formData = new FormData();
@@ -196,22 +221,27 @@ import {
 
         console.log('donnee envoyées++++++++++++++',this.model)
 
-       validation && this.$msasFileApi.post('/contenus',formData)
+       validation && this.$siratFileApi.post('/contejhnus',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
-            
+       
             if(this.$route.path=='/contenus/addContenu'){
-            this.$router.push('/contenus');
+              this.$router.push('/contenus');
             }
-            else
+            else if(this.$route.query.categorie_slug){
+              $href = this.$route.query.categorie_slug.replace("-", "")
+              this.$router.push('/'+$href);
+            }
+            else {
             this.$store.dispatch('contenus/getSelectList')
+            }
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {
@@ -265,6 +295,7 @@ import {
         console.log("id categorie : ++++++++++++ ",value)
         this.model.categorie = value.libelle
         this.model.categories = value
+        this.model.id_categorie = value.id
 
         //this.selectedRegions.push(value.id)
         

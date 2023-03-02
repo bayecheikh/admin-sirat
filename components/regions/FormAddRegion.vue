@@ -62,7 +62,7 @@
             :headers="headers"
             :items="listdepartements"
             :loading="listdepartements.length?false:true" 
-            loading-text="Loading... Please wait"
+            loading-text="Chargement... Patientez svp"
             :single-select="singleSelect"
             item-key="nom_departement"
             show-select
@@ -126,8 +126,8 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         nom_regionRules: [
-          v => !!v || 'Libelle est obligatoire',
-          v => (v && v.length <= 50) || 'Nom doit etre inférieur à 20 caratères',
+          v => !!v || 'Libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Nom doit être inférieur à 20 caractères',
         ],
         slugRules: [
           v => !!v || 'Slug est obligatoire'
@@ -139,19 +139,19 @@ import { mapMutations, mapGetters } from 'vuex'
         this.loading = true;
         let validation = this.$refs.form.validate()
         let selecteddepartements = this.selected.map((item)=>{return item.id})
-        console.log('Donées formulaire ++++++ : ',{...this.model,departements:selecteddepartements})
+        console.log('Données formulaire ++++++ : ',{...this.model,departements:selecteddepartements})
         
-        validation && this.$msasApi.post('/regions', {...this.model,departements:selecteddepartements})
+        validation && this.$siratApi.post('/regions', {...this.model,departements:selecteddepartements})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/regions');
           })
           .catch((error) => {
                console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       resetForm () {

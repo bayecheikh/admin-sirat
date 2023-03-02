@@ -12,7 +12,7 @@
       :items-per-page="perpage"
       class="flat pt-4"
       :loading="progress"
-      loading-text="Loading... Please wait"
+      loading-text="Chargement... Patientez svp"
       hide-default-footer
       :search="search"
     >
@@ -58,7 +58,7 @@
       <v-dialog v-model="dialog" width="500">
         <v-card>
           <v-card-title class="text-h5"> Confirmation </v-card-title>
-          <v-card-text>Voulez-vous supprimer cet element ?</v-card-text>
+          <v-card-text>Voulez-vous supprimer cet élément ?</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -161,9 +161,9 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
     methods: {
       getList(page){
           this.progress=true
-          this.$msasApi.$get('/demandes?page='+page)
+          this.$siratApi.$get('/demandes?page='+page)
         .then(async (response) => {
-            console.log('Données reçu demandes ++++++: ', response.data.data)
+            console.log('Données reçues demandes ++++++: ', response.data.data)
             let totalPages = Math.ceil(response.data.total / response.data.per_page)
             this.$store.dispatch('demandes/getTotalPage',totalPages)
             this.$store.dispatch('demandes/getPerPage',response.data.per_page)
@@ -174,14 +174,14 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
             this.progress=false
         });
         //console.log('total items++++++++++',this.paginationdemande)
       },
        getResult(page,param){
          this.progress=true
-         this.$msasApi.get('/demande-multiple-search/'+param+'?page='+page)
+         this.$siratApi.get('/demande-multiple-search/'+param+'?page='+page)
           .then(async (response) => {
             console.log('Données reçus++++++++++++',response.data.data.data)
             await this.$store.dispatch('demandes/getList',response.data.data.data)
@@ -194,7 +194,7 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
            // this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé')
+            console.log('Requête envoyée')
              this.progress=false;
         });
       },
@@ -202,7 +202,7 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
         console.log('------------- demande active',id)
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'})  
-        this.$msasApi.$get('/active_demande/'+id)
+        this.$siratApi.$get('/active_demande/'+id)
         .then(async (response) => {   
           console.log('------------- reponse active',response)          
             this.$store.dispatch('toast/getMessage',{type:'success',text:'Opération réussie!' })
@@ -210,7 +210,7 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
               this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Opération échoué'})
               console.log('Code error ++++++: ',error)
             }).finally(() => {              
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       handlePageChange(value){
@@ -232,15 +232,15 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
       async deleteItem () {
         this.dialog=false   
         this.$store.dispatch('toast/getMessage',{type:'processing',text:'Traitement en cours ...'})  
-        this.$msasApi.$delete('/demandes/'+this.activeItem.id)
+        this.$siratApi.$delete('/demandes/'+this.activeItem.id)
         .then(async (response) => {             
             this.$store.dispatch('demandes/deletedemande',this.activeItem.id)
             this.$store.dispatch('toast/getMessage',{type:'success',text:response.data.message || 'Suppression réussie'})
             }).catch((error) => {
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de la suppression'})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de la suppression'})
               console.log('Code error ++++++: ',error)
             }).finally(() => {              
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
        opendialog (item) {
@@ -252,7 +252,7 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
       },
       visualiser(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let demande = this.selected.map(function(value){ return value})[0]
           this.$store.commit('demandes/initdetail',demande)
@@ -261,7 +261,7 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
       },
       modifier(){
         if(this.selected.length!=1)
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
         else{
           let demande = this.selected.map(function(value){ return value})[0]
           this.$store.commit('demandes/initdetail',demande)
@@ -272,13 +272,13 @@ import RechercheDemande from '@/components/demandes/RechercheDemande';
         if(this.selected.length>=1)
         alert('Supprimer '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       },
       exporter(){
         if(this.selected.length>=1)
         alert('Exporter '+this.selected.map(function(value){ return value.id}))
         else
-        alert('Veuillez selectionner un element')
+        alert('Veuillez sélectionner un élément')
       }
     },
     data: () => ({

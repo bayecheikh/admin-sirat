@@ -113,7 +113,7 @@
                 dense
               >
                 <template slot="prepend-inner">
-                  <div>{{selectedModeFinancementsLibelle[i]}}</div>
+                  <div>{{selectedModeFinancementsLibellé[i]}}</div>
                 </template>
                 <template slot="append">
                   <div>{{devise}}</div>
@@ -526,7 +526,7 @@ import { mapMutations, mapGetters } from 'vuex'
       selectedDimension: [],
       selectedRegions: [],
       selectedModeFinancements: [],
-      selectedModeFinancementsLibelle: [],
+      selectedModeFinancementsLibellé: [],
 
       model: {
         id : '',
@@ -552,10 +552,10 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         emailRules: [
           v => !!v || 'l\'E-mail est obligatoire',
-          v => /.+@.+\..+/.test(v) || 'E-mail mdoit etre valide',
+          v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         rolesRules: [
-          v => (v && !!v.length) || 'Role est obligatoire',
+          v => (v && !!v.length) || 'Rôle est obligatoire',
         ],
         telephoneRules: [
           v => !!v || 'Téléphone est obligatoire',
@@ -572,18 +572,18 @@ import { mapMutations, mapGetters } from 'vuex'
         ],
         adresseRules: [
           v => !!v || 'Adresse est obligatoire',
-          v => (v && v.length <= 100) || 'Adresse doit etre inférieur à 50 caratères',
+          v => (v && v.length <= 100) || 'Adresse doit être inférieur à 50 caractères',
         ],
         nationalityRules: [
           v => !!v || 'Nationalité est obligatoire',
-          v => (v && v.length <= 50) || 'Nationalité doit etre inférieur à 15 caratères',
+          v => (v && v.length <= 50) || 'Nationalité doit être inférieur à 15 caractères',
         ],
         date_of_birthRules: [
           v => !!v || 'Date de naissance est obligatoire',
         ],
         place_of_birthRules: [
           v => !!v || 'Lieu de naissance est obligatoire',
-          v => (v && v.length <= 50) || 'Lieu de naissance doit etre inférieur à 20 caratères',
+          v => (v && v.length <= 50) || 'Lieu de naissance doit être inférieur à 20 caractères',
         ],
         /* sexeRules: [
           v => !!v || 'Civilité est obligatoire',
@@ -607,9 +607,9 @@ import { mapMutations, mapGetters } from 'vuex'
     methods: {
       getUserDetail(id){
           this.progress=true
-          this.$msasApi.$get('/users/'+id)
+          this.$siratApi.$get('/users/'+id)
         .then(async (response) => {
-            console.log('Detail user++++++++++',response.data)
+            console.log('Détail user++++++++++',response.data)
             this.$store.dispatch('utilisateurs/getDetail',response.data)
             this.idStructure = response.data?.structures[0]?.id
             this.natureStructure = response.data?.structures[0]?.donneur_receveur_mixte
@@ -617,16 +617,16 @@ import { mapMutations, mapGetters } from 'vuex'
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
       getDetail(id){
           this.progress=true
-          this.$msasApi.$get('/investissements/'+id)
+          this.$siratApi.$get('/investissements/'+id)
         .then(async (response) => {
           this.LigneFinancementInputs = JSON.parse(JSON.stringify(response.data.ligne_financements))
-            console.log('Detail investissement ++++++++++',response.data)
+            console.log('Détail investissement ++++++++++',response.data)
             this.$store.dispatch('investissements/getDetail',response.data)
             this.model.id= response.data.id
             this.selectedAnnee = response.data.annee[0]?response.data.annee[0]:''
@@ -640,7 +640,7 @@ import { mapMutations, mapGetters } from 'vuex'
             for(let i=0;i<=response.data.mode_financements.length;i++){
               this.counterrow_mode2 += 1;
               this.selectedModeFinancements.push(response.data.mode_financements[i].montant)
-              this.selectedModeFinancementsLibelle.push(response.data.mode_financements[i].libelle)
+              this.selectedModeFinancementsLibellé.push(response.data.mode_financements[i].libelle)
               this.modes2.push({id:this.counterrow_mode2})
             }
           
@@ -666,7 +666,7 @@ import { mapMutations, mapGetters } from 'vuex'
              this.$toast.error(error?.response?.data?.message).goAway(3000)
             console.log('Code error ++++++: ', error?.response?.data?.message)
         }).finally(() => {
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
         //console.log('total items++++++++++',this.paginationstructure)
       },
@@ -701,7 +701,7 @@ import { mapMutations, mapGetters } from 'vuex'
         let dimension = this.selectedDimension
 
         let montantModeFinancements = this.selectedModeFinancements
-        let libelleModeFinancements = this.selectedModeFinancementsLibelle
+        let libelleModeFinancements = this.selectedModeFinancementsLibellé
         let libAutreModeFinance = this.model.libAutreModeFinance
         let montantAutreModeFinance = this.model.montantAutreModeFinance
         let autreMode = this.modes
@@ -852,28 +852,28 @@ import { mapMutations, mapGetters } from 'vuex'
           
         }
 
-        console.log('Donées formulaire investissement ++++++: ',data)
+        console.log('Données formulaire investissement ++++++: ',data)
 
 
 
-       validation && this.$msasFileApi.post('/investissements/'+this.model.id,formData)
+       validation && this.$siratFileApi.post('/investissements/'+this.model.id,formData)
           .then((res) => {
-            console.log('Donées reçus ++++++: ',res)
+            console.log('Données reçus ++++++: ',res)
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message})
            this.$router.push('/investissements');
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)
-              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Echec de l\'ajout '})
+              this.$store.dispatch('toast/getMessage',{type:'error',text:error || 'Échec de l\'ajout '})
           }).finally(() => {
             this.loading = false;
-            console.log('Requette envoyé ')
+            console.log('Requête envoyée ')
         });
       },
       submitLigne () {
         if(this.montantBienServiceExecutes0>this.montantBienServiceMobilises0 || this.montantInvestissementExecutes0>this.montantInvestissementMobilises0)
         {
-          alert('Le montant exécuté doit etre inférieur ou égal au montant mobilisé')
+          alert('Le montant exécuté doit être inférieur ou égal au montant mobilisé')
         }
         else{
           this.counterrow += 1;
@@ -884,7 +884,7 @@ import { mapMutations, mapGetters } from 'vuex'
           }
                 
           if(this.natureStructure=='Receveur'){
-            console.log('Detail Struct +++ ',this.findStructureName(this.detailUtilisateur?.structures[0]?.id))
+            console.log('Détail Struct +++ ',this.findStructureName(this.detailUtilisateur?.structures[0]?.id))
             this.selectedStructureBeneficiaires0 = this.findStructureName(this.detailUtilisateur?.structures[0]?.id)
             this.selectedstructurebeneficiaires.push(this.findStructureName(this.detailUtilisateur?.structures[0]?.id))
             this.selectedRegions0 = this.findStructureName(this.detailUtilisateur?.structures[0]?.id)?.regions[0]
@@ -925,7 +925,7 @@ import { mapMutations, mapGetters } from 'vuex'
             montantInvestissementExecutes:this.montantInvestissementExecutes0
           })
           this.resetLigneFinancement()
-          console.log('Donées LigneFinancementInputs ++++++: ',this.LigneFinancementInputs)
+          console.log('Données LigneFinancementInputs ++++++: ',this.LigneFinancementInputs)
         }
         
       },
@@ -977,19 +977,19 @@ import { mapMutations, mapGetters } from 'vuex'
         console.log('Index---- ',index);
         this.modes2.splice(index,1);
         this.selectedModeFinancements.splice(index,1);
-        this.selectedModeFinancementsLibelle.splice(index,1);
+        this.selectedModeFinancementsLibellé.splice(index,1);
 
       },
       submitLigneFichier () {
         this.counterrow_fichier += 1;
         this.fichiers.push({id:this.counterrow_fichier,libelle_fichier:this.libelle_fichiers[this.counterrow_fichier],input_fichier:this.inputfichiers[this.counterrow_fichier]})
-        console.log('Donées fichier row ++++++: ',this.fichiers)
+        console.log('Données fichier row ++++++: ',this.fichiers)
       },
       submitLigneMode () {
         this.counterrow_mode += 1;
         this.modes.push({id:this.counterrow_mode,libelle_mode:this.model.libAutreModeFinance[this.counterrow_mode],input_mode:this.model.montantAutreModeFinance[this.counterrow_mode]})
-        console.log('Donées fichier row ++++++: ',this.model.libAutreModeFinance)
-        console.log('Donées fichier row ++++++: ',this.model.montantAutreModeFinance)
+        console.log('Données fichier row ++++++: ',this.model.libAutreModeFinance)
+        console.log('Données fichier row ++++++: ',this.model.montantAutreModeFinance)
       },
       resetForm () {
         this.$refs.form.reset()

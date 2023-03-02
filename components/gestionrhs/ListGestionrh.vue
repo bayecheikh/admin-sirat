@@ -11,7 +11,7 @@
         depressed
         rounded
         color="primary"
-        @click="goToAddgestionrh"
+        @click="goToAddGestionRH"
         >
           <v-icon left>
             mdi-plus
@@ -23,27 +23,27 @@
     
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in tabItems"  :key="item.value" >
-          <table-gestionrh :tab="item.value"></table-gestionrh> 
+          <table-gestion-r-h :tab="item.value"></table-gestion-r-h> 
       </v-tab-item>          
     </v-tabs-items>
   </div>
 </template>
 <script>
-import TableGestionrh from '@/components/gestionrhs/TableGestionrh'
+import TableGestionRH from '@/components/gestionrhs/TableGestionRH'
   export default {
     components: {
-      TableGestionrh
+      TableGestionRH
     },
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
     methods:{
-      goToAddgestionrh() {      
-        this.$router.push('/gestionrhs/addGestionrh');
+      goToAddGestionRH() {      
+        this.$router.push('/gestionrhs/addGestionRH');
       },
     }
   }

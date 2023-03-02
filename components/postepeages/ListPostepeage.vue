@@ -16,7 +16,7 @@
           <v-icon left>
             mdi-plus
           </v-icon>
-          Ajouter un poste de peage
+          Ajouter un poste de péage
         </v-btn>
       </div>
     </div>
@@ -37,7 +37,7 @@ import TablePostepeage from '@/components/postepeages/TablePostepeage'
     data: () => ({
       tab: null,
       tabItems: [
-        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'innactif'}
+        {title:'Tout',value:'tout'}, {title:'Actifs',value:'actif'}, {title:'Inactifs',value:'inactif'}
       ],
       selected: []
     }),
