@@ -95,7 +95,17 @@
           @change="actveDesactiveUser(item.id)"
           v-if="$hasRole('super_admin')"
         ></v-switch>
-        <div v-else>{{item.status=='actif'?'Actif':'Inactif'}}</div>
+        
+    
+      
+
+      <v-chip v-else
+        :color="$getColore(item.status)"
+        outlined
+      >
+        {{item.status=='actif'?'Actif':'Inactif'}}
+
+      </v-chip>
       </template>
 
       <template v-slot:[`item.roles`]="{ item }">

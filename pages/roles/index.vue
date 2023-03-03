@@ -18,9 +18,9 @@ import ListRole from '@/components/roles/ListRole'
   export default {
     layout: "dashboard",
     middleware: function ({redirect,$hasPermission}) {
-     /* if(!$hasPermission('gerer-roles')){
+      if(!$hasPermission('gerer-roles')){
         return redirect('/')
-      }*/
+      }
     },
     components: {
       LeftMenu,
