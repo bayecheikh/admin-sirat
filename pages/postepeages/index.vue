@@ -5,7 +5,7 @@
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container" flat>  
-      <list-postepeage></list-postepeage>
+      <list-poste-peage></list-poste-peage>
     </v-card>
   </div> 
 </div>
@@ -14,7 +14,7 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import ListPostepeage from '@/components/postepeages/ListPostepeage'
+import ListPostePeage from '@/components/postepeages/ListPostePeage'
   export default {
     layout: "dashboard",
     middleware: function ({redirect,$hasPermission}) {
@@ -25,7 +25,7 @@ import ListPostepeage from '@/components/postepeages/ListPostepeage'
     components: {
       LeftMenu,
       PageHeader,
-      ListPostepeage
+      ListPostePeage
     },
     mounted: function() {
       this.$store.dispatch('postepeages/getList')

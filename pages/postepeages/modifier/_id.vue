@@ -5,7 +5,7 @@
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container pl-10 pt-10 pb-10 pr-10" flat>  
-      <form-update-postepeage></form-update-postepeage>
+      <form-update-poste-peage></form-update-poste-peage>
     </v-card>
   </div> 
 </div>
@@ -14,13 +14,13 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import FormUpdatePostepeage from '@/components/postepeages/modifier/FormUpdatePostepeage';
+import FormUpdatePostePeage from '@/components/postepeages/modifier/FormUpdatePostePeage';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      FormUpdatePostepeage
+      FormUpdatePostePeage
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){

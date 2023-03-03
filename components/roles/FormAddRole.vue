@@ -4,7 +4,7 @@
     <v-row>
       <v-col md="6" lg="6" sm="12">
         <v-text-field
-          label="Nom"
+          label="Nom *"
           outlined dense
           v-model="model.name"
           :rules="rules.nameRules"
@@ -12,7 +12,7 @@
       </v-col>
       <v-col md="6" lg="6" sm="12">
         <v-text-field
-          label="Description"
+          label="Description *"
           outlined dense
           v-model="model.description"
           :rules="rules.descriptionRules"
@@ -26,7 +26,7 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Rechercher une permission"
+              label="Rechercher une permission *"
               outlined
               dense
               hide-details
@@ -100,22 +100,23 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         nameRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
+          v => !!v || 'Le nom est obligatoire',
+          v => (v && v.length <= 50) || 'Le nom doit être inférieur à 50 caractères',
+          v => (v && v.length >= 2) || 'Le nom doit être supérieur à 2 caractères',
         ],
         descriptionRules: [
-          v => !!v || 'Nom est obligatoire'
-        ],
+          v => !!v || 'La description est obligatoire',
+          v => (v && v.length <= 500) || 'La description doit être inférieure à 500 caractères',
+          v => (v && v.length >= 2) || 'La description doit être supérieure à 2 caractères',
+        ]
       },
     }),
     methods: {
       submitForm () {
         this.loading = true;
-        let validation = this.$refs.form.validate()
         let selectedPermissions = this.selected.map((item)=>{return item.id})
         console.log('Données formulaire ++++++ : ',{...this.model,permissions:selectedPermissions})
-        
-        validation && this.$siratApi.post('/roles', {...this.model,permissions:selectedPermissions})
+        this.validateForm() && this.$siratApi.post('/roles', {...this.model,permissions:selectedPermissions})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             this.$router.push('/roles');
@@ -127,6 +128,7 @@ import { mapMutations, mapGetters } from 'vuex'
             this.loading = false;
             console.log('Requête envoyée ')
         });
+        this.loading = false;
       },
       resetForm () {
         this.$refs.form.reset()
@@ -134,6 +136,15 @@ import { mapMutations, mapGetters } from 'vuex'
       resetValidationForm () {
         this.$refs.form.resetValidation()
       },
+      validateForm() {
+      if (this.selected.map((item)=>{return item.id}).length==0) {
+        alert("Veuillez sélectionner un rôle.");
+        return false;
+      }
+      return true;
+    },
+      
     }
+   
   }
 </script>

@@ -23,16 +23,16 @@
     
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in tabItems"  :key="item.value" >
-          <table-postepeage :tab="item.value"></table-postepeage> 
+          <table-poste-peage :tab="item.value"></table-poste-peage> 
       </v-tab-item>          
     </v-tabs-items>
   </div>
 </template>
 <script>
-import TablePostepeage from '@/components/postepeages/TablePostepeage'
+import TablePostePeage from '@/components/postepeages/TablePostePeage'
   export default {
     components: {
-      TablePostepeage
+      TablePostePeage
     },
     data: () => ({
       tab: null,
@@ -43,7 +43,7 @@ import TablePostepeage from '@/components/postepeages/TablePostepeage'
     }),
     methods:{
       goToAddpostepeage() {      
-        this.$router.push('/postepeages/addPostepeage');
+        this.$router.push('/postepeages/addPostePeage');
       },
     }
   }

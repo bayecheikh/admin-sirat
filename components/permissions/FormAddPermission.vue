@@ -51,11 +51,14 @@ import Notification from '@/components/Notification'
       },
       rules:{
         nameRules: [
-          v => !!v || 'Libellé est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
+          v => !!v || 'Le nom est obligatoire',
+          v => (v && v.length <= 50) || 'Le nom doit être inférieur à 50 caractères',
+          v => (v && v.length >= 2) || 'Le nom doit être supérieur à 2 caractères',
         ],
         descriptionRules: [
-          v => !!v || 'Description est obligatoire'
+          v => !!v || 'La description est obligatoire',
+          v => (v && v.length <= 500) || 'La description doit être inférieure à 500 caractères',
+          v => (v && v.length >= 2) || 'La description doit être supérieure à 2 caractères',
         ],
       },
     }),

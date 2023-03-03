@@ -5,7 +5,7 @@
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container pl-10 pt-10 pb-10 pr-10" flat>  
-      <form-add-postepeage></form-add-postepeage>
+      <form-add-poste-peage></form-add-poste-peage>
     </v-card>
   </div> 
 </div>
@@ -14,13 +14,13 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import FormAddPostepeage from '@/components/postepeages/FormAddPostepeage';
+import FormAddPostePeage from '@/components/postepeages/FormAddPostePeage';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      FormAddPostepeage
+      FormAddPostePeage
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){
@@ -43,7 +43,7 @@ import FormAddPostepeage from '@/components/postepeages/FormAddPostepeage';
         {
           text: 'Nouveau poste de péage',
           disabled: true,
-          to: '/postepeages/addPostepeage',
+          to: '/postepeages/addPostePeage',
           exact: true
         }
         

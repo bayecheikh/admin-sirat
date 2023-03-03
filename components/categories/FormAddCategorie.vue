@@ -7,7 +7,7 @@
             label="Libellé"
             outlined dense
             v-model="model.libelle"
-            :rules="rules.nameRules"
+            :rules="rules.libelleRules"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -69,13 +69,11 @@ import Notification from '@/components/Notification'
         description: ''
       },
       rules:{
-        nameRules: [
-          v => !!v || 'Libellé est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
-        ],
-        descriptionRules: [
-          v => !!v || 'Description est obligatoire'
-        ],
+        libelleRules: [
+          (v) => !!v || 'Le libellé est obligatoire',
+          (v) => (v && v.length <= 50) || "Le libellé ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length >= 2) || "Le libellé doit contenir au moins 2 caractères"
+        ]
       },
     }),
     methods: {

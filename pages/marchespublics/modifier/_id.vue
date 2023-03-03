@@ -5,7 +5,7 @@ M<template>
   </div> 
   <div class="custom-container mt-5">
     <v-card class="container pl-10 pt-10 pb-10 pr-10" flat>  
-      <form-update-marchepublic></form-update-marchepublic>
+      <form-update-marche-public></form-update-marche-public>
     </v-card>
   </div> 
 </div>

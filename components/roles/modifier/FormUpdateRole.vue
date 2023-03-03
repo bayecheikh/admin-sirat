@@ -13,7 +13,7 @@
       </v-col>-->
       <v-col md="6" lg="6" sm="12">
         <v-text-field
-          label="Description"
+          label="Description *"
           outlined dense
           v-model="model.description"
           :rules="rules.descriptionRules"
@@ -27,7 +27,7 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Rechercher une permission"
+              label="Rechercher une permission *"
               outlined
               dense
               hide-details
@@ -45,6 +45,7 @@
             show-select
             class="elevation-1"
             :search="search"
+            @change="updateSelected"
           >
           </v-data-table>
         </template>
@@ -75,7 +76,7 @@ import { mapMutations, mapGetters } from 'vuex'
       this.model.id = this.detailrole.id
       this.model.name = this.detailrole.name
       this.model.description = this.detailrole.description
-      this.selected = this.detailrole.permissions
+      this.selected= this.detailrole.permissions
     },
     computed: mapGetters({
       detailrole:'roles/detailrole',
@@ -106,24 +107,24 @@ import { mapMutations, mapGetters } from 'vuex'
         description: ''
       },
       rules:{
-        nameRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
-        ],
-        descriptionRules: [
-          v => !!v || 'Nom est obligatoire'
-        ],
+         descriptionRules: [
+          v => !!v || 'La description est obligatoire',
+          v => (v && v.length <= 500) || 'La description doit être inférieure à 500 caractères',
+          v => (v && v.length >= 2) || 'La description doit être supérieure à 2 caractères',
+        ]
       },
     }),
     methods: {
+      updateSelected(){
+        this.selected = selected
+      },
       submitForm () {
-        //this.loading = true;
-        let validation = this.$refs.form.validate()
         let selectedPermissions = this.selected.map((item)=>{return item.id})
+        console.log("SELECTED PERMISSION", selectedPermissions)
         let id = this.model.id
         console.log('Données formulaire ++++++ : ',{...this.model,permissions:selectedPermissions})
         
-        validation && this.$siratApi.put('/roles/'+id, {...this.model,permissions:selectedPermissions})
+         this.validateForm() && this.$siratApi.put('/roles/'+id, {...this.model,permissions:selectedPermissions})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Modification réussie'})
             this.$router.push('/roles');
@@ -142,6 +143,15 @@ import { mapMutations, mapGetters } from 'vuex'
       resetValidationForm () {
         this.$refs.form.resetValidation()
       },
+       validateForm() {
+        console.log("aaaaaaaaaaaaaaa", this.selected)
+      if (this.selected.map((item)=>{return item.id}).length==0) {
+        console.log("Selec Perm", this.selected)
+        alert("Veuillez sélectionner un rôle.");
+        return false;
+      }
+      return true;
+    },
     }
   }
 </script>

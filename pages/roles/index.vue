@@ -39,7 +39,7 @@ import ListRole from '@/components/roles/ListRole'
         ],
         headerItems: [
           {
-            text: 'Liste des roles',
+            text: 'Liste des rôles',
             disabled: true,
             to: '/roles',
             exact: true

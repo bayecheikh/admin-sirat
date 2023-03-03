@@ -7,7 +7,7 @@
             label="Titre *"
             outlined dense
             v-model="model.titre"
-            :rules="rules.textRules"
+            :rules="rules.titreRules"
           ></v-text-field>
         </v-col>
         <v-col md="12" lg="12" sm="12">
@@ -15,7 +15,7 @@
             label="Résumé *"
             outlined dense
             v-model="model.resume"
-            :rules="rules.textRules"
+            :rules="rules.resumeRules"
           ></v-textarea>
         </v-col>
         <v-col md="12" lg="12" sm="12">
@@ -51,6 +51,7 @@
             label="Lien externe (optionel)"
             outlined dense
             v-model="model.lien"
+            :rules="rules.lienRules"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -92,7 +93,7 @@
 </template>
 
 <script>
-import Notification from '@/components/Notification'
+
 import { mapMutations, mapGetters } from 'vuex'
 import {
   TiptapVuetify,
@@ -169,13 +170,22 @@ import {
         lien:''
       },
       rules:{
-        textRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => !!v || 'Contenu obligatoire',
+          titreRules: [
+          v => !!v || 'Le titre est obligatoire',
+          (v) => (v && v.length <= 50) || "Le titre ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length >= 2) || "Le titre doit contenir au moins 2 caractères"
         ],
-        descriptionRules: [
-          v => !!v || 'Description est obligatoire'
+        resumeRules: [
+          v => !!v || 'Le résumé est obligatoire',
+          (v) => (v && v.length <= 500) || "Le résumé ne doit pas dépasser 500 caractères",
+          (v) => (v && v.length >= 2) || "Le résumé doit contenir au moins 2 caractères"
         ],
+        categoriesRules: [
+          v => !!v || 'La catégorie est obligatoire',
+        ],
+        lienRules: [
+        (v) => !v || /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$|^www\.[^\s/$.?#].[^\s]*$/i.test(v) || "Le lien doit être valide"
+        ]
       },
     }),
     methods: {
@@ -189,7 +199,7 @@ import {
             this.model.id= response.data.id
             this.model.resume= response.data.resume
             this.model.body= response.data.body
-            this.model.lien= response.data.lien || "#"
+            this.model.lien= response.data.lien || ""
             this.model.categorie= response.data.categorie
             this.model.futured_image= response.data.futured_image  
             this.model.categories = response.data.categories.map((item)=>{return item.id})[0] 

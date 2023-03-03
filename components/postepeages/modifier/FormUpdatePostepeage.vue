@@ -4,26 +4,26 @@
       <v-row>
         <v-col md="12" lg="12" sm="12">
           <v-text-field
-            label="Titre"
+            label="Nom *"
             outlined dense
             v-model="model.titre"
-            :rules="rules.textRules"
+            :rules="rules.titreRules"
           ></v-text-field>
         </v-col>
         <v-col md="6" lg="6" sm="12">
           <v-text-field
-            label="Latitude"
+            label="Latitude *"
             outlined dense
             v-model="model.latitude"
-            :rules="rules.textRules"
+            :rules="rules.latitudeRules"
           ></v-text-field>
         </v-col>
         <v-col md="6" lg="6" sm="12">
           <v-text-field
-            label="Longitude"
+            label="Longitude *"
             outlined dense
             v-model="model.longitude"
-            :rules="rules.textRules"
+            :rules="rules.longitudeRules"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import Notification from '@/components/Notification'
 import { mapMutations, mapGetters } from 'vuex'
 import {
   TiptapVuetify,
@@ -118,13 +117,28 @@ import {
         id_categorie:''
       },
       rules:{
-        textRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => !!v || 'postepeage obligatoire',
+         titreRules: [
+          v => !!v || 'Le nom est obligatoire',
+          (v) => (v && v.length <= 50) || "Le nom ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length >= 2) || "Le nom doit contenir au moins 2 caractères"
         ],
         descriptionRules: [
-          v => !!v || 'Description est obligatoire'
+          v => !!v || 'La description est obligatoire'
         ],
+        latitudeRules: [
+        (v) =>
+            /^-?\d+(\.\d+)?$/.test(v) &&
+            parseFloat(v) >= -90 &&
+            parseFloat(v) <= 90 ||
+            'La latitude doit être un decimal (écrit avec ".") entre -90 and 90'
+        ],
+        longitudeRules: [
+        (v) =>
+            /^-?\d+(\.\d+)?$/.test(v) &&
+            parseFloat(v) >= -180 &&
+            parseFloat(v) <= 180 ||
+            'La longitude doit être un decimal (écrit avec ".") entre -180 and 180'
+        ]
       },
     }),
     methods: {

@@ -8,10 +8,10 @@
      <v-row align="center"
             justify="center">
             <v-col cols="12" md="12" lg="12" sm="12">
-              <info-postepeage></info-postepeage>
+              <info-poste-peage></info-poste-peage>
             </v-col>
             <v-col cols="12" md="12" lg="12" sm="12">
-              <actions-postepeage></actions-postepeage>
+              <actions-poste-peage></actions-poste-peage>
             </v-col>
           </v-row>
     </v-card>
@@ -22,15 +22,15 @@
 <script>
 import LeftMenu from '@/components/LeftMenu';
 import PageHeader from '@/components/PageHeader';
-import InfoPostepeage from '@/components/postepeages/detail/InfoPostepeage';
-import ActionsPostepeage from '@/components/postepeages/detail/ActionsPostepeage';
+import InfoPostePeage from '@/components/postepeages/detail/InfoPostePeage';
+import ActionsPostePeage from '@/components/postepeages/detail/ActionsPostePeage';
   export default {
     layout: "dashboard",
     components: {
       LeftMenu,
       PageHeader,
-      InfoPostepeage,
-      ActionsPostepeage
+      InfoPostePeage,
+      ActionsPostePeage
     },
     middleware: function ({redirect,$hasPermission}) {
       if(!$hasPermission('gerer-parametres')){

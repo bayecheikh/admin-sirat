@@ -7,7 +7,7 @@
             label="Titre *"
             outlined dense
             v-model="model.titre"
-            :rules="rules.textRules"
+            :rules="rules.titreRules"
           ></v-text-field>
         </v-col>
         <v-col md="12" lg="12" sm="12">
@@ -15,7 +15,7 @@
             label="Résumé *"
             outlined dense
             v-model="model.resume"
-            :rules="rules.textRules"
+            :rules="rules.resumeRules"
           ></v-textarea>
         </v-col>
         <v-col md="12" lg="12" sm="12">
@@ -27,7 +27,7 @@
                 v-model="model.body"
                 :extensions="extensions"
                 :card-props="{ flat: false, color: '' }"
-                :rules="[rules.textRules]" />
+                :rules="[rules.bodyRules]" />
             </ClientOnly>
           </template>
         </v-col>
@@ -43,7 +43,7 @@
               outlined
               dense
               small-chips
-              label="Catégorie"
+              label="Catégorie *"
               item-text="libelle"
               item-value="id"
               return-object
@@ -56,6 +56,7 @@
             label="Lien externe (optionel)"
             outlined dense
             v-model="model.lien"
+            :rules="rules.lienRules"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -73,6 +74,8 @@
               </v-btn>
             </v-flex>
             <v-flex>{{filename}}</v-flex>
+            <template>
+            <form @submit.prevent="onSubmit">
             <input
               type="file"
               id="file"
@@ -80,7 +83,11 @@
               ref="file"
               v-on:change="handleFileUpload"
               style="display: none"
+             
             />
+            
+          </form>
+        </template>
           </v-col>
       </v-row>
       <v-btn
@@ -98,6 +105,7 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
+
 import {
   TiptapVuetify,
   Heading,
@@ -121,7 +129,6 @@ import {
       TiptapVuetify
     },
     mounted: function() {
-      
       this.$store.dispatch('categories/getList')
       if(this.$route.query.categorie_slug){
         this.getCategorie()
@@ -164,27 +171,38 @@ import {
       selectedItem: 0,
       valid: true,
       filename : '',
+      
       model: {
         futured_image:'',
         titre: '',
         resume: '',
         body: ``,
-        categories: [],
+        categories: null,
         categorie:'',
         id_categorie:'',
         lien:''
       },
       rules:{
-        textRules: [
-          v => !!v || 'Ce champ est obligatoire',
-          v => !!v || 'Contenu obligatoire',
+        titreRules: [
+          v => !!v || 'Le titre est obligatoire',
+          (v) => (v && v.length <= 50) || "Le titre ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length >= 2) || "Le titre doit contenir au moins 2 caractères"
         ],
-        descriptionRules: [
-          v => !!v || 'Description est obligatoire'
+        resumeRules: [
+          v => !!v || 'Le résumé est obligatoire',
+          (v) => (v && v.length <= 500) || "Le résumé ne doit pas dépasser 500 caractères",
+          (v) => (v && v.length >= 2) || "Le résumé doit contenir au moins 2 caractères"
         ],
+        categoriesRules: [
+          v => !!v || 'La catégorie est obligatoire',
+        ],
+        lienRules: [
+        (v) => !v || /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$|^www\.[^\s/$.?#].[^\s]*$/i.test(v) || "Le lien doit être valide"
+        ]
       },
     }),
     methods: {
+    
       getCategorie(){
           this.progress=true
           this.$siratApi.$get('/categories')
@@ -202,6 +220,7 @@ import {
             console.log('Requête envoyée ')
         });
       },
+      
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
@@ -221,7 +240,7 @@ import {
 
         console.log('donnee envoyées++++++++++++++',this.model)
 
-       validation && this.$siratFileApi.post('/contejhnus',formData)
+       validation && this.$siratFileApi.post('/contenus',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
        
@@ -292,10 +311,13 @@ import {
         return slug;
       },
       async changeCategorie(value) {
-        console.log("id categorie : ++++++++++++ ",value)
+        if(value){
+          console.log("id categorie : ++++++++++++ ",value)
         this.model.categorie = value.libelle
         this.model.categories = value
         this.model.id_categorie = value.id
+        }
+       
 
         //this.selectedRegions.push(value.id)
         

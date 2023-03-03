@@ -4,10 +4,10 @@
       <v-row>
         <v-col md="12" lg="12" sm="12">
           <v-text-field
-            label="Référence"
+            label="Référence *"
             outlined dense
             v-model="model.reference"
-            :rules="rules.textRules"
+            :rules="rules.referenceRules"
           ></v-text-field>
         </v-col>
 
@@ -24,9 +24,10 @@
           <v-select
             :items="itemsTypeMarches"
             v-model="model.type_marche"
-            label="Type de marché"
+            label="Type de marché *"
             item-text="libelle"
             item-value="libelle"
+            :rules="rules.typeMarcheRules"
             outlined
             dense
           ></v-select>
@@ -43,8 +44,9 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 v-model="model.date_publication"
-                label="Date publication"
+                label="Date publication *"
                 append-icon="mdi-calendar"
+                :rules="rules.datePublicationRules"
                 readonly
                 v-bind="attrs"
                 v-on="on"
@@ -70,9 +72,10 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 v-model="model.date_limite"
-                label="Date limite"
+                label="Date limite *"
                 append-icon="mdi-calendar"
                 readonly
+                :rules="rules.dateLimiteRules"
                 v-bind="attrs"
                 v-on="on"
                 outlined
@@ -90,6 +93,7 @@
             label="Lien externe"
             outlined dense
             v-model="model.lien"
+            :rules="rules.lienRules"
           ></v-text-field>
         </v-col>
 
@@ -105,7 +109,7 @@
               outlined
               dense
               small-chips
-              label="Catégorie"
+              label="Catégorie *"
               item-text="libelle"
               item-value="id"
               return-object
@@ -230,16 +234,29 @@ import {
         date_limite: '',
         futured_image: '',
         lien: '',
-        categories: []
+        categories: null
       },
       rules:{
-        textRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => !!v || 'marchepublic obligatoire',
+          referenceRules: [
+          v => !!v || 'La référence est obligatoire',
+          v => (v && v.length <= 50) || 'La référence doit être inférieure à 50 caractères',
+          v => (v && v.length >= 2) || 'La référence doit être supérieure à 2 caractères',
         ],
-        descriptionRules: [
-          v => !!v || 'Description est obligatoire'
+        typeMarcheRules: [
+          v => !!v || 'Le type de marché est obligatoire'
         ],
+        datePublicationRules: [
+          v => !!v || 'La date de publication est obligatoire'
+        ],
+        dateLimiteRules: [
+          v => !!v || 'La date limite est obligatoire'
+        ],
+        categoriesRules: [
+          v => !!v || 'La catégorie est obligatoire'
+        ],
+        lienRules: [
+          (v) => !v || /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$|^www\.[^\s/$.?#].[^\s]*$/i.test(v) || "Le lien doit être valide"
+        ]
       },
     }),
     methods: {

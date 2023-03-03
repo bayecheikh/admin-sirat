@@ -45,7 +45,7 @@ import FormAddRole from '@/components/roles/FormAddRole';
           exact: true
         },
         {
-          text: 'Nouveau role',
+          text: 'Nouveau rôle',
           disabled: false,
           to: '/roles/addRole',
           exact: true

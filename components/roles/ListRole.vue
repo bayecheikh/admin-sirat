@@ -16,7 +16,7 @@
           <v-icon left>
             mdi-plus
           </v-icon>
-          Nouveau role
+          Nouveau rôle
         </v-btn>
       </div>
     </div>
