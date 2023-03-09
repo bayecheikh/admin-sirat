@@ -172,7 +172,7 @@ import {
       rules:{
           titreRules: [
           v => !!v || 'Le titre est obligatoire',
-          (v) => (v && v.length <= 50) || "Le titre ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length <= 200) || "Le titre ne doit pas dépasser 200 caractères",
           (v) => (v && v.length >= 2) || "Le titre doit contenir au moins 2 caractères"
         ],
         resumeRules: [
@@ -276,7 +276,7 @@ import {
             this.model.futured_image= files[0];
             this.filename = files[0].name
           }else{
-            alert("Seul les fichiers jpg/jpeg/png/pdf/doc/docx et de taille inférieur à 5Mb sont acceptés!");
+            alert("Seuls les fichiers aux formats jpg/jpeg/png/pdf/doc/docx et de taille inférieure à 5Mb sont acceptés !");
           }
         }
       },

@@ -3,6 +3,18 @@
   "homePage":"/dashboard",
   "menuItems":[
     {
+      "icon": "mdi-file-account-outline",
+      "href": "/roles",
+      "title": "Rôles",
+      "name": "gerer-roles"
+    },
+    {
+      "icon": "mdi-close-octagon-outline",
+      "href": "/permissions",
+      "title": "Permissions",
+      "name": "gerer-permissions"
+    },
+    {
       "icon": "mdi-file-tree-outline",
       "href": "/categories",
       "title": "Catégories",
@@ -31,14 +43,14 @@
     {
       "icon": "mdi-account-question-outline",
       "href": "/quisommesnous",
-      "title": "Qui sommes-nous",
+      "title": "Qui sommes-nous ?",
       "name": "gerer-parametres",
       "slug": "qui-sommes-nous"
     },
     {
       "icon": "mdi-phone-in-talk-outline",
       "href": "/numerosverts",
-      "title": "Numéros Verts",
+      "title": "Numéros verts",
       "name": "gerer-parametres",
       "slug": "numero-vert"
     },
@@ -52,7 +64,7 @@
     {
       "icon": "mdi-cash-multiple",
       "href": "/tarifspeages",
-      "title": "Tarifs Péages",
+      "title": "Tarifs péages",
       "name": "gerer-parametres",
       "slug": "tarifs-peages"
     },
@@ -60,7 +72,8 @@
       "icon": "mdi-folder-text-outline",
       "href": "/marchespublics",
       "title": "Marchés publics",
-      "name": "gerer-parametres"
+      "name": "gerer-parametres",
+      "slug": "marches-publics"
     },
     {
       "icon": "mdi-car-brake-parking",
@@ -76,16 +89,138 @@
       "slug": "projets"
     },
     {
-      "icon": "mdi-account-details",
+      "icon": "mdi-account-details-outline",
       "href": "/gestionrhs",
       "title": "Gestion RH",
       "name": "gerer-parametres"
     },
     {
-      "icon": "mdi-account-tie-outline",
-      "href": "/roles",
-      "title": "Rôles",
-      "name": "gerer-roles"
+      "icon": "mdi-note-text-outline",
+      "href": "/projetsintros",
+      "title": "Projets Intro",
+      "name": "gerer-parametres",
+      "slug": "projets-intro"
+    },
+    {
+      "icon": "mdi-call-split",
+      "href": "/avisconcurrences",
+      "title": "Avis d'appel à concurrence",
+      "name": "gerer-parametres",
+      "slug": "avis-d-appel-a-concurence"
+    },
+    {
+      "icon": "mdi-book-open-page-variant-outline",
+      "href": "/avisgeneraux",
+      "title": "Avis généraux",
+      "name": "gerer-parametres",
+      "slug": "avis-generaux"
+    },
+    {
+      "icon": "mdi-account-convert-outline",
+      "href": "/emplois",
+      "title": "Emplois",
+      "name": "gerer-parametres",
+      "slug": "emplois"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/offresemploisintros",
+      "title": "Offres d'emploi Intro",
+      "name": "gerer-parametres",
+      "slug": "offre-emploi-intro"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/foireauxquestionsintros",
+      "title": "Foire aux questions Intro",
+      "name": "gerer-parametres",
+      "slug": "foire-aux-questions-intro"
+    },
+    {
+      "icon": "mdi-information-outline",
+      "href": "/infosutiles",
+      "title": "Informations utiles",
+      "name": "gerer-parametres",
+      "slug": "informations-utiles"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/missionsintros",
+      "title": "Missions Intro",
+      "name": "gerer-parametres",
+      "slug": "mission-intro"
+    },
+    {
+      "icon": "mdi-target",
+      "href": "/missions",
+      "title": "Missions",
+      "name": "gerer-parametres",
+      "slug": "mission-section"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/penalitesintros",
+      "title": "Pénalités Intro",
+      "name": "gerer-parametres",
+      "slug": "penalites-intro"
+    },
+    {
+      "icon": "mdi-format-horizontal-align-center",
+      "href": "/planspassations",
+      "title": "Plans de passation",
+      "name": "gerer-parametres",
+      "slug": "plan-de-passation"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/postepeagesintros",
+      "title": "Postes de péage Intro",
+      "name": "gerer-parametres",
+      "slug": "postes-de-peages-intro"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/quisommesnousintros",
+      "title": "Qui sommes-nous Intro",
+      "name": "gerer-parametres",
+      "slug": "qui-sommes-nous-intro"
+    },
+    {
+      "icon": "mdi-account-star-outline",
+      "href": "/servicesabonnements",
+      "title": "Services Abonnements",
+      "name": "gerer-parametres",
+      "slug": "service-abonnement"
+    },
+    {
+      "icon": "mdi-credit-card-outline",
+      "href": "/slidersaccueils",
+      "title": "Slider Accueil",
+      "name": "gerer-parametres",
+      "slug": "slider-accueil"
+    },
+    {
+      "icon": "mdi-library-outline",
+      "href": "/stages",
+      "title": "Stages",
+      "name": "gerer-parametres",
+      "slug": "stages"
+    },
+    {
+      "icon": "mdi-deskphone",
+      "href": "/numerosutiles",
+      "title": "Numéros utiles",
+      "name": "gerer-parametres",
+      "slug": "numeros-utiles"
+    },
+    {
+      "icon": "mdi-note-text-outline",
+      "href": "/numerosutilesintros",
+      "title": "Numéros utiles intro",
+      "name": "gerer-parametres",
+      "slug": "numeros-utiles-intro"
     }
+
+
   ]
  }

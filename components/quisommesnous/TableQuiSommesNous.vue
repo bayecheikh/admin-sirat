@@ -26,7 +26,7 @@
 </v-card-title>
 <v-data-table
   :headers="headers"
-  :items="tab=='tout'?listquisommesnous.filter(contenu => contenu.categorie === 'quisommesnous') : listquisommesnous.filter(contenu => contenu.categorie === 'quisommesnous' && contenu.status === tab)"
+  :items="tab=='tout'?listquisommesnous.filter(contenu => contenu.categorie === 'qui-sommes-nous') : listquisommesnous.filter(contenu => contenu.categorie === 'qui-sommes-nous' && contenu.status === tab)"
   item-key="id"
   items-per-page="20"
   class="flat pt-4"

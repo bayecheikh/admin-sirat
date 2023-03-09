@@ -9,7 +9,7 @@
           outlined dense
           v-model="model.firstname"
           :rules="rules.firstnameRules"
-        ></v-text-field>=
+        ></v-text-field>
       </v-col>
       <v-col md="6" lg="6" sm="12">
         <v-text-field

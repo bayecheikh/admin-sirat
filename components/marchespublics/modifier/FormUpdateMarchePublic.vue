@@ -344,7 +344,7 @@ import {
             this.model.futured_image= files[0];
             this.filename = files[0].name
           }else{
-            alert("Seul les fichiers jpg/jpeg/png/pdf/doc/docx et de taille inférieur à 5Mb sont acceptés!");
+            alert("Seuls les fichiers aux formats jpg/jpeg/png/pdf/doc/docx et de taille inférieure à 5Mb sont acceptés !");
           }
         }
       },

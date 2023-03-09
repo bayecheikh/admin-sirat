@@ -184,6 +184,9 @@ import {
     },
     mounted: function() {
       this.$store.dispatch('categories/getList')
+        if(this.$route.query.categorie_slug){
+        this.getCategorie()
+      }
     },
     computed: {
       ...mapGetters({
@@ -266,6 +269,23 @@ import {
       menu2: false,
     }),
     methods: {
+       getCategorie(){
+          this.progress=true
+          this.$siratApi.$get('/categories')
+        .then(async (response) => {
+            //console.log('Détail contenu +++++hhhhhhhhhhhhhhhhh+++++',response.data.categories.map((item)=>{return item})[0])
+            /*this.model.id_categorie = response.data.categories.map((item)=>{return item.id})[0] */
+            this.model.categorie= response.data.categorie 
+          /*  this.model.categories = response.data.categories.map((item)=>{return item.id})[0] */
+            
+            this.changeCategorie(response.data.find(categorie => categorie.slug === this.$route.query.categorie_slug))   
+        }).catch((error) => {
+             this.$toast.error(error?.response?.data?.message).goAway(3000)
+            console.log('Code error ++++++: ', error?.response?.data?.message)
+        }).finally(() => {
+            console.log('Requête envoyée ')
+        });
+      },
       submitForm () {
         let validation = this.$refs.form.validate()
         this.loading = true;
@@ -291,6 +311,24 @@ import {
             
             if(this.$route.path=='/marchespublics/addMarchePublic'){
             this.$router.push('/marchespublics');
+            }
+             else if(this.$route.query.categorie_slug ){
+              if(this.$route.query.categorie_slug === "avis-d-appel-a-concurence"){
+                $href = "avisconcurrences"
+                this.$router.push('/'+$href);
+              }
+                
+              else if(this.$route.query.categorie_slug === "avis-generaux"){
+                $href = "avisgeneraux"
+                this.$router.push('/'+$href);
+              }
+              else{
+                $href = "planspassations"
+                this.$router.push('/'+$href);
+
+              }
+              
+             
             }
             else
             this.$store.dispatch('marchespublics/getSelectList')
@@ -324,7 +362,7 @@ import {
             this.model.futured_image= files[0];
             this.filename = files[0].name
           }else{
-            alert("Seul les fichiers jpg/jpeg/png/pdf/doc/docx et de taille inférieur à 5Mb sont acceptés!");
+            alert("Seuls les fichiers aux formats jpg/jpeg/png/pdf/doc/docx et de taille inférieure à 5Mb sont acceptés !");
           }
         }
       },
@@ -350,9 +388,15 @@ import {
         
         return slug;
       },
-      async changeCategorie(value) {
-        console.log("id categorie : ",value.id)
+       async changeCategorie(value) {
+        if(value){
+          console.log("id categorie : ++++++++++++ ",value)
         this.model.categorie = value.libelle
+        this.model.categories = value
+        this.model.id_categorie = value.id
+        }
+       
+
         //this.selectedRegions.push(value.id)
         
       },

@@ -36,6 +36,12 @@
   hide-default-footer
   :search="search"
 >
+<template v-slot:header.objet="{ header }">
+    <span class="d-none">{{ header.text }}</span>
+  </template>
+  <template v-slot:item.objet="{ item }">
+    <span class="d-none">{{ item.objet }}</span>
+  </template>
   <template v-slot:top="{ pagination, options, updateOptions }">
     <v-row class="mb-1 border-bottom-small">
       <v-col md="6" sm="12" lg="6" class="pb-0 pt-4">
@@ -81,9 +87,7 @@
     </div>
     </v-row>  
   </template> 
-  <template v-slot:[`item.objet`]="{ item }">
-        <div class="card-text" v-html="item.objet"></div>  
-  </template>
+  
   <template v-slot:[`item.categories`]="{ item }">
       <v-chip
         color="primary"
@@ -122,7 +126,7 @@
                   >Modifier
                 </v-list-item-title>
               </v-list-item>
-              <v-list-item v-if="$hasRole('super_admin')" @click="opendialog(item)" class="custom-v-list-action pl-2 pr-1" >
+              <v-list-item v-if="$hasPermission('supprimer-contenu')" @click="opendialog(item)" class="custom-v-list-action pl-2 pr-1" >
                 <v-list-item-title>
                   <v-icon small class="mr-2" v-bind="attrs" v-on="on">
                     mdi-delete-outline </v-icon
@@ -138,7 +142,7 @@
 
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
   export default {
     mounted: function() {
       this.$store.dispatch('categories/getList')

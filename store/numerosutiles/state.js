@@ -1,0 +1,15 @@
+export default () => ({
+    listnumerosutiles: [],
+
+    headernumerosutiles : [
+        /* {
+            text: 'Nom',
+            align: 'start',
+            sortable: true,
+            value: 'name',
+        }, */
+        { text: 'Titre', value: 'titre' },
+        { text: 'Actions', value: 'actions', sortable: false },
+    ],
+    detailnumeroutile :{}
+})

@@ -96,7 +96,6 @@
           v-if="$hasRole('super_admin')"
         ></v-switch>
         
-    
       
 
       <v-chip v-else
