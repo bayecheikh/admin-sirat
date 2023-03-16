@@ -109,7 +109,7 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import { required } from 'vuelidate/lib/validators';
+import { required, helpers  } from 'vuelidate/lib/validators';
 import { validationMixin } from 'vuelidate';
 import {
   TiptapVuetify,
@@ -129,6 +129,16 @@ import {
   HorizontalRule,
   History
 } from 'tiptap-vuetify'
+
+    const notEmptyParagraph = (value) => {
+      const regex = /<p>(\s*)<\/p>/gi;
+      const trimmedValue = value.replace(regex, "<p></p>");
+      if (trimmedValue === "<p></p>") {
+        return false;
+      }
+      return true;
+    };
+
   export default {
     mixins: [validationMixin],
     methods: {
@@ -152,6 +162,7 @@ import {
     validations: {
  body: {
       required,
+      notEmptyParagraph,
     },
    
   },
@@ -257,11 +268,11 @@ import {
         formData.append("slug", this.sanitizeTitle(this.model.titre));
         formData.append("lien", this.sanitizeTitle(this.model.lien));
 
-        console.log('donnee envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model, this.body)
 
       
      
-      !this.$v.$invalid && validation && this.$siratFileApi.post('/contednus',formData)
+      !this.$v.$invalid && validation && this.$siratFileApi.post('/contenus',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
        

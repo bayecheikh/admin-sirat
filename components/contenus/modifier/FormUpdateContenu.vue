@@ -23,13 +23,16 @@
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
-              <tiptap-vuetify v-model="model.body" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
+              <tiptap-vuetify v-model="body" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
             </ClientOnly>
           </template>
         </v-col>
+        <div v-if="$v.body.$error">
+          <span class="errorcustom">Le contenu est obligatoire</span>
+        </div>
         <v-col
-        lg="6"
-        md="6"
+        lg="12"
+        md="12"
         sm="12"
         >
           <v-autocomplete
@@ -43,7 +46,7 @@
               item-text="libelle"
               item-value="id"
               multiple
-              :disabled="categorieHrefParamExists"
+              :disabled="true"
             >
           </v-autocomplete>
         </v-col>
@@ -96,6 +99,8 @@
 <script>
 
 import { mapMutations, mapGetters } from 'vuex'
+import { required, helpers  } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
 import {
   TiptapVuetify,
   Heading,
@@ -114,7 +119,17 @@ import {
   HorizontalRule,
   History
 } from 'tiptap-vuetify'
+const notEmptyParagraph = (value) => {
+      const regex = /<p>(\s*)<\/p>/gi;
+      const trimmedValue = value.replace(regex, "<p></p>");
+      if (trimmedValue === "<p></p>") {
+        return false;
+      }
+      return true;
+    };
+
   export default {
+    mixins: [validationMixin],
     components: {
       TiptapVuetify
     },
@@ -127,11 +142,19 @@ import {
       detailcontenu: 'contenus/detailcontenu',
       listcategories: 'categories/listcategories',
     }),
-    categorieHrefParamExists() {
-      return this.$route.query.categorie_href !== undefined;
+    //categorieHrefParamExists() {
+    //  return this.$route.query.categorie_href !== undefined;
+   // },
+  },
+  validations: {
+ body: {
+      required,
+      notEmptyParagraph,
     },
+   
   },
     data: () => ({
+      body: ``,
       extensions: [
       History,
       Blockquote,
@@ -169,7 +192,6 @@ import {
         futured_image:'',
         titre: '',
         resume: '',
-        body: '',
         categories: [],
         categorie:'',
         id_categorie:'',
@@ -204,7 +226,7 @@ import {
             this.model.titre= response.data.titre
             this.model.id= response.data.id
             this.model.resume= response.data.resume
-            this.model.body= response.data.body
+            this.body= response.data.body
             this.model.lien= response.data.lien || ""
             this.model.categorie= response.data.categorie
             this.model.futured_image= response.data.futured_image  
@@ -221,7 +243,8 @@ import {
       },
       submitForm () {
         let validation = this.$refs.form.validate()
-        this.loading = true;
+        this.$v.$touch();
+        if(!this.$v.$invalid && validation)this.loading = true;
         /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
@@ -230,7 +253,7 @@ import {
         formData.append("titre", this.model.titre );
         formData.append("slug", this.sanitizeTitle(this.model.titre));
         formData.append("resume", this.model.resume );
-        formData.append("body", this.model.body);
+        formData.append("body", this.body);
         formData.append("lien", this.model.lien);
         formData.append("categorie", this.sanitizeTitle(this.model.categorie));
         formData.append("id_categorie", this.model.id_categorie);
@@ -239,10 +262,10 @@ import {
         formData.append("_method", "put");
         
 
-        console.log('Données envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model, this.body)
 
         
-        validation && this.$siratFileApi.post('/contenus/'+this.model.id, formData)
+        !this.$v.$invalid && validation && this.$siratFileApi.post('/contenus/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Mofication réussie'})
             if(this.$route.query.categorie_href){
@@ -319,3 +342,17 @@ import {
     }
   }
 </script>
+
+<style>
+.v-toolbar__content {
+  height: 67px;
+  box-shadow: 0px 0px 0px 0px !important;
+}
+
+.errorcustom{
+  color:#dd2c00 !important;
+  background-color: white !important;
+  margin-left: 25px;
+}
+
+</style>
