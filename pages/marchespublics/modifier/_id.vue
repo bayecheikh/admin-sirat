@@ -41,7 +41,7 @@ import FormUpdateMarchePublic from '@/components/marchespublics/modifier/FormUpd
           exact: true
         },
         {
-          text: 'Détail marché public',
+          text: 'Modification marché public',
           disabled: true,
           to: '/marchespublics/94',
           exact: true

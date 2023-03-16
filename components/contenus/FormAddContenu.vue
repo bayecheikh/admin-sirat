@@ -18,23 +18,26 @@
             :rules="rules.resumeRules"
           ></v-textarea>
         </v-col>
-        <v-col md="12" lg="12" sm="12" :rules="[rules.bodyRules]">
+        <v-col md="12" lg="12" sm="12" >
           <p>Contenu *</p>
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
               <tiptap-vuetify
-                v-model="model.body"
+                v-model="body"
                 :extensions="extensions"
                 :card-props="{ flat: false, color: '' }"
-              
               />
             </ClientOnly>
           </template>
         </v-col>
+        <div v-if="$v.body.$error">
+          <span class="errorcustom">Le contenu est obligatoire</span>
+        </div>
+       
         <v-col
-        lg="6"
-        md="6"
+        lg="12"
+        md="12"
         sm="12"
         >
           <v-autocomplete
@@ -106,7 +109,8 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-
+import { required } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
 import {
   TiptapVuetify,
   Heading,
@@ -126,6 +130,7 @@ import {
   History
 } from 'tiptap-vuetify'
   export default {
+    mixins: [validationMixin],
     methods: {
     downloadFile(lien) {
       window.location.href = lien;
@@ -144,8 +149,14 @@ import {
       ...mapGetters({
       listcategories: 'categories/listcategories',
     })},
-    
+    validations: {
+ body: {
+      required,
+    },
+   
+  },
     data: () => ({
+      body: ``,
       extensions: [
       History,
       Blockquote,
@@ -183,7 +194,6 @@ import {
         futured_image:'',
         titre: '',
         resume: '',
-        body: ``,
         categories: null,
         categorie:'',
         id_categorie:'',
@@ -206,9 +216,7 @@ import {
         lienRules: [
         (v) => !v || /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$|^www\.[^\s/$.?#].[^\s]*$/i.test(v) || "Le lien doit être valide"
         ],
-        bodyRules:[
-          (v) => !!v || 'Le contenu est obligatoire.'
-        ]
+       
       },
     }),
     methods: {
@@ -233,7 +241,8 @@ import {
       
       submitForm () {
         let validation = this.$refs.form.validate()
-        this.loading = true;
+        this.$v.$touch();
+        if(!this.$v.$invalid && validation)this.loading = true;
         /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
@@ -241,7 +250,7 @@ import {
         formData.append("futured_image", this.model.futured_image);
         formData.append("titre", this.model.titre );
         formData.append("resume", this.model.resume );
-        formData.append("body", this.model.body);
+        formData.append("body", this.body);
         formData.append("id_categorie", this.model.id_categorie);
         formData.append("categories", [this?.model?.categories]?.map((item)=>{return item.id}));
         formData.append("categorie", this.sanitizeTitle(this.model.categorie));
@@ -250,7 +259,9 @@ import {
 
         console.log('donnee envoyées++++++++++++++',this.model)
 
-       validation && this.$siratFileApi.post('/contenus',formData)
+      
+     
+      !this.$v.$invalid && validation && this.$siratFileApi.post('/contednus',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
        
@@ -340,4 +351,10 @@ import {
   height: 67px;
   box-shadow: 0px 0px 0px 0px !important;
 }
+
+.errorcustom{
+  color:#dd2c00 !important;
+  background-color: white !important;
+}
+
 </style>

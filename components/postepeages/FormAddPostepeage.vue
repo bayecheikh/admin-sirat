@@ -124,11 +124,11 @@ import {
           v => !!v || 'La description est obligatoire'
         ],
         latitudeRules: [
-        (v) =>
-            /^-?\d+(\.\d+)?$/.test(v) &&
-            parseFloat(v) >= -90 &&
-            parseFloat(v) <= 90 ||
-            'La latitude doit être un decimal (écrit avec ".") entre -90 and 90'
+        v => v || (
+    /^-?\d+(\.\d+)?$/.test(v) &&
+    parseFloat(v) >= -90 &&
+    parseFloat(v) <= 90
+  ) || 'La latitude doit être un decimal (écrit avec ".") entre -90 et 90'
         ],
         longitudeRules: [
         (v) =>

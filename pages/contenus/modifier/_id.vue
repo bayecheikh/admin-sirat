@@ -41,7 +41,7 @@ import FormUpdateContenu from '@/components/contenus/modifier/FormUpdateContenu'
           exact: true
         },
         {
-          text: 'Détail contenu',
+          text: 'Modification contenu',
           disabled: true,
           to: '/contenus/94',
           exact: true

@@ -76,7 +76,7 @@
         </v-col>-->
         <v-col md="6" lg="6" sm="12">
           <v-text-field
-            label="Adresse Email"
+            label="Adresse e-mail"
             outlined dense
             v-model="model.email"
             :rules="rules.emailRules"
@@ -185,7 +185,7 @@
               dense
               multiple
               small-chips
-              label="Role"
+              label="Rôle"
               item-text="description"
               item-value="id"
               clearable
@@ -269,24 +269,28 @@
         },
         rules:{
           firstnameRules: [
-            v => !!v || 'Prénom est obligatoire',
-            v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
-          ],
-          lastnameRules: [
-            v => !!v || 'Nom est obligatoire',
-            v => (v && v.length <= 50) || 'Nom doit être inférieur à 10 caractères',
-          ],
-          emailRules: [
-            v => !!v || 'E-mail est obligatoire',
-            v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
-          ],
-          usernameRules: [
-            v => !!v || 'Login est obligatoire',
-            v => (v && v.length <= 10) || 'Nom doit être inférieur à 10 caractères',
-          ],
-          rolesRules: [
-            v => (v && !!v.length) || 'Rôle est obligatoire',
-          ],
+          (v) => !!v || 'Le prénom et le nom sont obligatoires',
+          (v) => /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'-]+$/.test(v) || "Le prénom et le nom ne doivent contenir que des caractères alphabétiques et des caractères spéciaux tels que des espaces, des tirets et des apostrophes",
+          (v) => (v && v.length <= 100) || "Le prénom et le nom ne doivent pas dépasser 100 caractères",
+          (v) => (v && v.length >= 2) || "Le prénom et le nom doivent contenir au moins 2 caractères"
+        ],
+        lastnameRules: [
+          (v) => !!v || 'Le nom est obligatoire',
+          (v) => /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'-]+$/.test(v) || "Le nom ne doit contenir que des caractères alphabétiques et des caractères spéciaux tels que des espaces, des tirets et des apostrophes",
+          (v) => (v && v.length <= 50) || "Le nom ne doit pas dépasser 50 caractères",
+          (v) => (v && v.length >= 2) || "Le nom doit contenir au moins 2 caractères"
+        ],
+        emailRules: [
+          v => !!v || 'L\'adresse e-mail est obligatoire',
+          v => /.+@.+\..+/.test(v) || 'L\'adresse e-mail doit être valide',
+        ],
+        usernameRules: [
+          v => !!v || 'Login est obligatoire',
+          v => (v && v.length <= 10) || 'Login doit être inférieur à 10 caractères',
+        ],
+        rolesRules: [
+          v => (v && !!v.length) || 'Le rôle est obligatoire',
+        ],
           telephoneRules: [
             v => !!v || 'Téléphone est obligatoire',
           ],

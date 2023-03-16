@@ -62,9 +62,6 @@
         component.title.toLowerCase().includes(this.input.toLowerCase())
         ))
         
-        
-        
-        
       }
     }
 

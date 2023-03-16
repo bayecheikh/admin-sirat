@@ -43,6 +43,7 @@
               item-text="libelle"
               item-value="id"
               multiple
+              :disabled="categorieHrefParamExists"
             >
           </v-autocomplete>
         </v-col>
@@ -121,10 +122,15 @@ import {
       this.$store.dispatch('categories/getList')
       this.getDetail(this.$nuxt._route.params.id)
     },
-    computed: mapGetters({
-      detailcontenu:'contenus/detailcontenu',
+    computed: {
+    ...mapGetters({
+      detailcontenu: 'contenus/detailcontenu',
       listcategories: 'categories/listcategories',
     }),
+    categorieHrefParamExists() {
+      return this.$route.query.categorie_href !== undefined;
+    },
+  },
     data: () => ({
       extensions: [
       History,
