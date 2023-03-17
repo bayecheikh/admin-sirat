@@ -12,15 +12,18 @@
         </v-col>
 
         <v-col md="12" lg="12" sm="12">
-          <h3>Détail de l'offre</h3> 
+          <h3>Détail de l'offre *</h3> 
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
-              <tiptap-vuetify v-model="model.objet" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
+              <tiptap-vuetify v-model="objet" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
             </ClientOnly>
           </template>
         </v-col>
-        <v-col md="4" lg="4" sm="12">
+        <div v-if="$v.objet.$error">
+          <span class="errorcustom">Le détail de l'offre est obligatoire</span>
+        </div>
+        <v-col md="12" lg="12" sm="12">
           <v-text-field
             label="Secteur"
             outlined dense
@@ -100,7 +103,7 @@
         >
           <v-autocomplete
               v-model="model.categories"
-              :items="listcategories"
+              :items="listcategoriesgestionrhs"
               :rules="rules.categoriesRules"
               outlined
               dense
@@ -152,6 +155,8 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
+import { required, helpers  } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
 import {
   TiptapVuetify,
   Heading,
@@ -170,7 +175,17 @@ import {
   HorizontalRule,
   History
 } from 'tiptap-vuetify'
+const notEmptyParagraph = (value) => {
+      const regex = /<p>(\s*)<\/p>/gi;
+      const trimmedValue = value.replace(regex, "<p></p>");
+      if (trimmedValue === "<p></p>") {
+        return false;
+      }
+      return true;
+    };
+
   export default {
+    mixins: [validationMixin],
     components: {
       TiptapVuetify
     },
@@ -182,14 +197,22 @@ import {
     },
     computed: {
       ...mapGetters({
-      listcategories: 'categories/listcategories',
+      listcategoriesgestionrhs: 'categories/listcategoriesgestionrhs',
     })},
+    validations: {
+ objet: {
+      required,
+      notEmptyParagraph,
+    },
+   
+  },
     data: () => ({
       itemsTypeMarches:[{id:'Travaux',libelle:'Travaux'},
         {id:'Fournitures',libelle:'Fournitures'},
         {id:'Services',libelle:'Services'},
         {id:'Prestations intellectuelles',libelle:'Prestations intellectuelles'}
       ],
+      objet: ``,
       extensions: [
       History,
       Blockquote,
@@ -224,7 +247,6 @@ import {
       filename : '',
       model: {
         reference: '',
-        objet: '',
         secteur: '',
         categorie: '',
         date_publication: '',
@@ -282,14 +304,15 @@ import {
       },
       submitForm () {
         let validation = this.$refs.form.validate()
-        this.loading = true;
+        this.$v.$touch();
+        if(!this.$v.$invalid && validation)this.loading = true;
         /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
         let formData = new FormData();
         formData.append("futured_image", this.model.futured_image);
         formData.append("reference", this.model.reference);
-        formData.append("objet", this.model.objet );
+        formData.append("objet", this.objet );
         formData.append("secteur", this.model.secteur);
         formData.append("categorie", this.sanitizeTitle(this.model.categorie));
         formData.append("date_publication", this.model.date_publication);
@@ -297,9 +320,9 @@ import {
         formData.append("lien", this.model.lien);
         formData.append("categories", [this?.model?.categories]?.map((item)=>{return item.id}));
 
-        console.log('Données envoyées++++++++++++++',this.model)
+        console.log('Données envoyées++++++++++++++',this.model, this.objet)
 
-       validation && this.$siratFileApi.post('/gestionrhs',formData)
+        !this.$v.$invalid && validation && this.$siratFileApi.post('/gestcionrhs',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             
@@ -387,4 +410,10 @@ import {
   height: 67px;
   box-shadow: 0px 0px 0px 0px !important;
 }
+.errorcustom{
+  color:#dd2c00 !important;
+  background-color: white !important;
+  margin-left: 25px;
+}
+
 </style>

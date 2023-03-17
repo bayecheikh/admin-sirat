@@ -271,7 +271,7 @@ import {
     methods: {
        getCategorie(){
           this.progress=true
-          this.$siratApi.$get('/categories')
+          this.$siratFileApi.$get('/categories')
         .then(async (response) => {
             //console.log('Détail contenu +++++hhhhhhhhhhhhhhhhh+++++',response.data.categories.map((item)=>{return item})[0])
             /*this.model.id_categorie = response.data.categories.map((item)=>{return item.id})[0] */

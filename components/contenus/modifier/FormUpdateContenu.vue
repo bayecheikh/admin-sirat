@@ -45,8 +45,8 @@
               label="Catégorie"
               item-text="libelle"
               item-value="id"
-              multiple
-              :disabled="true"
+              return-object
+              @change="changeCategorie"
             >
           </v-autocomplete>
         </v-col>
@@ -332,12 +332,13 @@ const notEmptyParagraph = (value) => {
         return slug;
       },
       async changeCategorie(value) {
-        console.log("id categorie : ++++++++++++ ",value)
+        if(value){
+          console.log("id categorie : ++++++++++++ ",value)
         this.model.categorie = value.libelle
         this.model.categories = value
-
-        //this.selectedRegions.push(value.id)
-        
+        this.model.id_categorie = value.id
+        }
+       
       },
     }
   }

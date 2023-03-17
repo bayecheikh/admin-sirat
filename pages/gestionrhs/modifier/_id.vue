@@ -41,7 +41,7 @@ import FormUpdateGestionRH from '@/components/gestionrhs/modifier/FormUpdateGest
           exact: true
         },
         {
-          text: 'Détail offre',
+          text: 'Modification offre',
           disabled: true,
           to: '/gestionrhs/94',
           exact: true

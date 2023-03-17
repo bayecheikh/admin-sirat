@@ -366,6 +366,7 @@ import {
 .errorcustom{
   color:#dd2c00 !important;
   background-color: white !important;
+  margin-left: 25px;
 }
 
 </style>
