@@ -330,10 +330,15 @@ const notEmptyParagraph = (value) => {
         console.log('donnee envoyées++++++++++++++',this.model)
 
         
-        !this.$v.$invalid && validation && this.$siratFileApi.post('/gestiondrhs/'+this.model.id, formData)
+        !this.$v.$invalid && validation && this.$siratFileApi.post('/gestionrhs/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Mofication réussie'})
-            this.$router.push('/gestionrhs');
+            if(!this.$route.query.categorie_slug){
+              this.$router.push('/gestionrhs')
+            }
+            else{
+              this.$router.push('/'+this.$route.query.categorie_slug)
+            }
             console.log('donnee recu modifie ++++++++++++++',res)
           })
           .catch((error) => {

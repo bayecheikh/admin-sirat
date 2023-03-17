@@ -41,7 +41,7 @@ import FormUpdateCategorie from '@/components/categories/modifier/FormUpdateCate
           exact: true
         },
         {
-          text: 'Détail catégorie',
+          text: 'Modification catégorie',
           disabled: true,
           to: '/categories/94',
           exact: true

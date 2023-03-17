@@ -124,7 +124,7 @@ import { mapMutations, mapGetters } from 'vuex'
         let id = this.model.id
         console.log('Données formulaire ++++++ : ',{...this.model,permissions:selectedPermissions})
         
-         this.validateForm() && this.$siratApi.put('/roles/'+id, {...this.model,permissions:selectedPermissions})
+         this.validateForm() && this.$siratApi.put('/roldes/'+id, {...this.model,permissions:selectedPermissions})
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Modification réussie'})
             this.$router.push('/roles');
@@ -147,7 +147,7 @@ import { mapMutations, mapGetters } from 'vuex'
         console.log("aaaaaaaaaaaaaaa", this.selected)
       if (this.selected.map((item)=>{return item.id}).length==0) {
         console.log("Selec Perm", this.selected)
-        alert("Veuillez sélectionner un rôle.");
+        alert("Veuillez sélectionner une permission.");
         return false;
       }
       return true;

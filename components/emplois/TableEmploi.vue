@@ -158,7 +158,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       editItem (item) {   
         this.$store.dispatch('gestionrhs/getDetail',item)
-        this.$router.push('/gestionrhs/modifier/'+item.id);
+        this.$router.push({path: '/gestionrhs/modifier/'+item.id, query: {categorie_slug: "emplois"}});
       },
        deleteItem (item) {
         this.dialog=false   

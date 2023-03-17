@@ -12,15 +12,18 @@
         </v-col>
 
         <v-col md="12" lg="12" sm="12">
-          <h3>Objet</h3> 
+          <h3>Objet *</h3> 
           <template>
             <ClientOnly>
               <!-- Use the component in the right place of the template -->
-              <tiptap-vuetify v-model="model.objet" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
+              <tiptap-vuetify v-model="objet" :extensions="extensions" :card-props="{ flat: false, color: '' }"/>
             </ClientOnly>
           </template>
         </v-col>
-        <v-col md="4" lg="4" sm="12">
+        <div v-if="$v.objet.$error">
+          <span class="errorcustom">L'objet est obligatoire</span>
+        </div>
+        <v-col md="12" lg="12" sm="12">
           <v-select
             :items="itemsTypeMarches"
             v-model="model.type_marche"
@@ -104,7 +107,7 @@
         >
           <v-autocomplete
               v-model="model.categories"
-              :items="listcategories"
+              :items=" listcategoriesmarchepublics"
               :rules="rules.categoriesRules"
               outlined
               dense
@@ -157,6 +160,8 @@
 <script>
 import Notification from '@/components/Notification'
 import { mapMutations, mapGetters } from 'vuex'
+import { required, helpers  } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
 import {
   TiptapVuetify,
   Heading,
@@ -175,7 +180,16 @@ import {
   HorizontalRule,
   History
 } from 'tiptap-vuetify'
+const notEmptyParagraph = (value) => {
+      const regex = /<p>(\s*)<\/p>/gi;
+      const trimmedValue = value.replace(regex, "<p></p>");
+      if (trimmedValue === "<p></p>") {
+        return false;
+      }
+      return true;
+    }
   export default {
+    mixins: [validationMixin],
     components: {
       TiptapVuetify
     },
@@ -185,13 +199,21 @@ import {
     },
     computed: mapGetters({
       detailmarchepublic:'marchespublics/detailmarchepublic',
-      listcategories: 'categories/listcategories',
+      listcategoriesmarchepublics: 'categories/listcategoriesmarchepublics',
     }),
+    validations: {
+ objet: {
+      required,
+      notEmptyParagraph,
+    },
+   
+  },
     data: () => ({
       itemsTypeMarches:[{id:'Travaux',libelle:'Travaux'},
         {id:'Fournitures',libelle:'Fournitures'},
         {id:'Services',libelle:'Services'}
       ],
+      objet:``,
       extensions: [
       History,
       Blockquote,
@@ -227,7 +249,6 @@ import {
       model: {
         id:'',
         reference: '',
-        objet: '',
         type_marche: '',
         categorie: '',
         date_publication: '',
@@ -268,12 +289,16 @@ import {
             this.$store.dispatch('marchespublics/getDetail',response.data)
             this.model.reference= response.data.reference
             this.model.id= response.data.id
-            this.model.objet= response.data.objet
+            this.objet= response.data.objet
             this.model.type_marche= response.data.type_marche
             this.model.categorie= response.data.categorie
             this.model.date_publication= response.data.date_publication
             this.model.date_limite= response.data.date_limite
-            this.model.lien= response.data.lien
+            if(response.data.lien === "null") {
+                this.model.lien = "";
+              } else {
+                this.model.lien = response.data.lien;
+              }
             this.model.futured_image= response.data.futured_image  
             this.model.categories = response.data.categories.map((item)=>{return item.id})[0] 
             this.changeCategorie(response.data.categories.map((item)=>{return item})[0])        
@@ -288,14 +313,15 @@ import {
       },
       submitForm () {
         let validation = this.$refs.form.validate()
-        this.loading = true;
+        this.$v.$touch();
+        if(!this.$v.$invalid && validation)this.loading = true;
         /* console.log('Données formulaire++++++: ',{...this.model,categories:selectedcategories,...this.model.futured_image}) */
 
 
         let formData = new FormData();
         formData.append("futured_image", this.model.futured_image);
         formData.append("reference", this.model.reference);
-        formData.append("objet", this.model.objet );
+        formData.append("objet", this.objet );
         formData.append("type_marche", this.model.type_marche);
         formData.append("categorie", this.sanitizeTitle(this.model.categorie));
         formData.append("date_publication", this.model.date_publication);
@@ -309,10 +335,23 @@ import {
         console.log('donnee envoyées++++++++++++++',this.model)
 
         
-        validation && this.$siratFileApi.post('/marchepublics/'+this.model.id, formData)
+        !this.$v.$invalid && validation && this.$siratFileApi.post('/marchepublics/'+this.model.id, formData)
           .then((res) => {    
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Mofication réussie'})
+            if(!this.$route.query.categorie_slug){
             this.$router.push('/marchespublics');
+            }
+             else if(this.$route.query.categorie_slug === "avis-d-appel-a-concurence"){
+                this.$router.push( "/avisconcurrences");
+              }
+                
+              else if(this.$route.query.categorie_slug === "avis-generaux"){
+                this.$router.push("/avisgeneraux");
+              }
+              else if(this.$route.query.categorie_slug === "plan-de-passation"){
+                this.$router.push("/planspassations");
+
+              }
             console.log('donnee recu modifie ++++++++++++++',res)
           })
           .catch((error) => {

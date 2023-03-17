@@ -138,7 +138,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       validateForm() {
       if (this.selected.map((item)=>{return item.id}).length==0) {
-        alert("Veuillez sélectionner un rôle.");
+        alert("Veuillez sélectionner une permission.");
         return false;
       }
       return true;

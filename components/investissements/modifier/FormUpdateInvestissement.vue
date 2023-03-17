@@ -555,7 +555,7 @@ import { mapMutations, mapGetters } from 'vuex'
           v => /.+@.+\..+/.test(v) || 'E-mail doit être valide',
         ],
         rolesRules: [
-          v => (v && !!v.length) || 'Rôle est obligatoire',
+          v => (v && !!v.length) || 'Le rôle est obligatoire',
         ],
         telephoneRules: [
           v => !!v || 'Téléphone est obligatoire',

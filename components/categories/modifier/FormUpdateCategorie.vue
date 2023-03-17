@@ -77,8 +77,9 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       rules:{
         nameRules: [
-          v => !!v || 'Prénom est obligatoire',
-          v => (v && v.length <= 50) || 'Prénom doit être inférieur à 20 caractères',
+          v => !!v || 'Le libellé est obligatoire',
+          v => (v && v.length <= 50) || 'Le libellé doit être inférieur à 50 caractères',
+          v => (v && v.length >= 2) || 'Le libellé doit contenir au moins 2 caractères',
         ],
         descriptionRules: [
           v => !!v || 'Nom est obligatoire'
@@ -90,7 +91,7 @@ import { mapMutations, mapGetters } from 'vuex'
           this.progress=true
           this.$siratApi.$get('/categories/'+id)
         .then(async (response) => {
-            console.log('Détail catégorie ++++++++++',response.data)
+            console.log('Modification catégorie ++++++++++',response.data)
             this.$store.dispatch('categories/getDetail',response.data)
             this.model.libelle= response.data.libelle
             this.model.id= response.data.id

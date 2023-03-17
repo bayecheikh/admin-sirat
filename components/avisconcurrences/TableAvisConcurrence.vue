@@ -159,7 +159,7 @@ import { mapMutations, mapGetters } from 'vuex'
       },
       editItem (item) {   
         this.$store.dispatch('marchespublics/getDetail',item)
-        this.$router.push('/marchespublics/modifier/'+item.id);
+        this.$router.push({path: '/marchespublics/modifier/'+item.id, query: {categorie_slug: "avis-d-appel-a-concurence"}});
       },
        deleteItem (item) {
         this.dialog=false   

@@ -22,15 +22,15 @@ export default function ({ $axios, store ,redirect}, inject) {
         /* if (response.status === 404) {
             console.log('Page 404')
         } */
-        console.log('Reponse ----- : ',response.data.mmsasage)
+        console.log('Reponse ----- : ',response.data.message)
     })
 
     siratApi.onError((error) => {
         console.log('**************************-----------------error: ',error.response)
         let code = parseInt(error.response && error.response.status)
         console.log('**************************-----------------code: ',code)
-        let mmsasage = error.response.data.message
-        console.log('**************************-----------------mmsasage: ',mmsasage)
+        let message = error.response.data.message
+        console.log('**************************-----------------message: ',message)
 
         //Deconnecte l'utilisateur si le token n'est plus valide
         if (code === 401) {
@@ -68,7 +68,7 @@ export default function ({ $axios, store ,redirect}, inject) {
         /* if (response.status === 404) {
             console.log('Page 404')
         } */
-        console.log('Reponse ----- : ',response.data.mmsasage)
+        console.log('Reponse ----- : ',response.data.message)
     })
 
     siratFileApi.onError(error => {
@@ -80,7 +80,7 @@ export default function ({ $axios, store ,redirect}, inject) {
 
     /** Api for Export ************************************************/
 
-    const msasExportApi = $axios.create({
+    const siratExportApi = $axios.create({
         baseURL: process.env.baseUrl,
         headers : {
             common: {
@@ -104,7 +104,7 @@ export default function ({ $axios, store ,redirect}, inject) {
         /* if (response.status === 404) {
             console.log('Page 404')
         } */
-        console.log('Reponse ----- : ',response.data.mmsasage)
+        console.log('Reponse ----- : ',response.data.message)
     })
 
     siratFileApi.onError(error => {
@@ -116,6 +116,6 @@ export default function ({ $axios, store ,redirect}, inject) {
 
     inject('siratApi', siratApi)
     inject('siratFileApi', siratFileApi)
-    inject('msasExportApi', siratFileApi)
+    inject('siratExportApi', siratFileApi)
     
 }

@@ -113,6 +113,7 @@
               item-value="id"
               return-object
               @change="changeCategorie"
+              :disabled ="categorieSlugParamExists"
             >
           </v-autocomplete>
         </v-col>
@@ -198,7 +199,11 @@ const notEmptyParagraph = (value) => {
     computed: {
       ...mapGetters({
       listcategoriesgestionrhs: 'categories/listcategoriesgestionrhs',
-    })},
+    }),
+    categorieSlugParamExists() {
+      return this.$route.query.categorie_slug !== undefined;
+   },
+  },
     validations: {
  objet: {
       required,
@@ -322,17 +327,17 @@ const notEmptyParagraph = (value) => {
 
         console.log('Données envoyées++++++++++++++',this.model, this.objet)
 
-        !this.$v.$invalid && validation && this.$siratFileApi.post('/gestcionrhs',formData)
+        !this.$v.$invalid && validation && this.$siratFileApi.post('/gestionrhs',formData)
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
             
-            if(this.$route.path=='/gestionrhs/addGestionRH'){
-            this.$router.push('/gestionrhs');
+            if(!this.$route.query.categorie_slug){
+              this.$router.push('/gestionrhs')
             }
-            else if(this.$route.query.categorie_slug){
-              this.$router.push('/'+$href);
+            else{
+              this.$router.push('/'+this.$route.query.categorie_slug)
             }
-            else
+        
             this.$store.dispatch('gestionrhs/getSelectList')
           })
           .catch((error) => {

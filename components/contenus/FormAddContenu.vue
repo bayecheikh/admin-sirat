@@ -42,7 +42,7 @@
         >
           <v-autocomplete
               v-model="model.categories"
-              :items="listcategories"
+              :items="listcategoriescontenus"
               :rules="rules.categoriesRules"
               outlined
               dense
@@ -52,6 +52,7 @@
               item-value="id"
               return-object
               @change="changeCategorie"
+              :disabled="categorieSlugParamExists"
             >
           </v-autocomplete>
         </v-col>
@@ -157,8 +158,11 @@ import {
     },
     computed: {
       ...mapGetters({
-      listcategories: 'categories/listcategories',
-    })},
+      listcategoriescontenus: 'categories/listcategoriescontenus',
+    }),
+    categorieSlugParamExists() {
+      return this.$route.query.categorie_slug !== undefined;
+   },},
     validations: {
  body: {
       required,
@@ -276,16 +280,75 @@ import {
           .then((res) => {
             this.$store.dispatch('toast/getMessage',{type:'success',text:res.data.message || 'Ajout réussi'})
        
-            if(this.$route.path=='/contenus/addContenu'){
+            if(!this.$route.query.categorie_slug){
               this.$router.push('/contenus');
             }
-            else if(this.$route.query.categorie_slug){
-              $href = this.$route.query.categorie_slug.replace("-", "")
-              this.$router.push('/'+$href);
+            else if(this.$route.query.categorie_slug === "activites"){
+              this.$router.push('/activites');
             }
-            else {
-            this.$store.dispatch('contenus/getSelectList')
+            else if(this.$route.query.categorie_slug === "actualites"){
+              this.$router.push('/actualites');
             }
+            else if(this.$route.query.categorie_slug === "foire-aux-questions"){
+              this.$router.push('/foireauxquestions');
+            }
+            else if(this.$route.query.categorie_slug === "foire-aux-questions-intro"){
+              this.$router.push('/foireauxquestionsintros');
+            }
+            else if(this.$route.query.categorie_slug === "informations-utiles"){
+              this.$router.push('/infosutiles');
+            }
+            else if(this.$route.query.categorie_slug === "marches-publics"){
+              this.$router.push('/marchespublics');
+            }
+            else if(this.$route.query.categorie_slug === "mission-intro"){
+              this.$router.push('/missionsintros');
+            }
+            else if(this.$route.query.categorie_slug === "mission-section"){
+              this.$router.push('/missions');
+            }
+            else if(this.$route.query.categorie_slug === "numero-vert"){
+              this.$router.push('/numerosverts');
+            }
+            else if(this.$route.query.categorie_slug === "numeros-utiles"){
+              this.$router.push('/numerosutiles');
+            }
+            else if(this.$route.query.categorie_slug === "numeros-utiles-intro"){
+              this.$router.push('/numerosutilesintros');
+            }
+            else if(this.$route.query.categorie_slug === "offre-emploi-intro"){
+              this.$router.push('/offresemploisintros');
+            }
+            else if(this.$route.query.categorie_slug === "penalites-intro"){
+              this.$router.push('/penalitesintros');
+            }
+            else if(this.$route.query.categorie_slug === "postes-de-peages-intro"){
+              this.$router.push('/postepeagesintros');
+            }
+            else if(this.$route.query.categorie_slug === "projets"){
+              this.$router.push('/projets');
+            }
+            else if(this.$route.query.categorie_slug === "projets-intro"){
+              this.$router.push('/projetsintros');
+            }
+            else if(this.$route.query.categorie_slug === "qui-sommes-nous"){
+              this.$router.push('/quisommesnous');
+            }
+            else if(this.$route.query.categorie_slug === "qui-sommes-nous-intro"){
+              this.$router.push('/quisommesnousintros');
+            }
+            else if(this.$route.query.categorie_slug === "service-abonnement"){
+              this.$router.push('/servicesabonnements');
+            }
+            else if(this.$route.query.categorie_slug === "slider-accueil"){
+              this.$router.push('/slidersaccueils');
+            }
+            else if(this.$route.query.categorie_slug === "tarifs-peages"){
+              this.$router.push('/tarifspeages');
+            }
+
+             this.$store.dispatch('contenus/getSelectList')
+            
           })
           .catch((error) => {
               console.log('Code error ++++++: ', error)

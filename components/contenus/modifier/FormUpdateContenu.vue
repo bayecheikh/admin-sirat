@@ -37,7 +37,7 @@
         >
           <v-autocomplete
               v-model="model.categories"
-              :items="listcategories"
+              :items="listcategoriescontenus"
               :rules="rules.categoriesRules"
               outlined
               dense
@@ -140,7 +140,7 @@ const notEmptyParagraph = (value) => {
     computed: {
     ...mapGetters({
       detailcontenu: 'contenus/detailcontenu',
-      listcategories: 'categories/listcategories',
+      listcategoriescontenus: 'categories/listcategoriescontenus',
     }),
     //categorieHrefParamExists() {
     //  return this.$route.query.categorie_href !== undefined;

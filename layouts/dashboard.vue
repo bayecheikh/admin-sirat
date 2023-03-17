@@ -85,7 +85,7 @@
                   flat
                   tile
                 >
-                  <v-btn text deprmsased @click="goToProfile" class="customTopNav pop-user-button flex text-sm-center">
+                  <v-btn text depressed @click="goToProfile" class="customTopNav pop-user-button flex text-sm-center">
                     Paramètres
                   </v-btn> 
                 </v-card>
@@ -161,11 +161,11 @@
       async logout() {
         try {
             this.loading = true; 
-            //this.$store.dispatch('toast/getMessage',{type:'procmsasing',text:'Deconnexion en cours ...'})
+            //this.$store.dispatch('toast/getMessage',{type:'processing',text:'Deconnexion en cours ...'})
             await this.$siratApi.$post('/logout').then(async (response) => { 
             this.$loggout()
             this.loading = false;
-            //this.$store.dispatch('toast/getMessage',{type:'succmsas',text:'Deconnexion réussie'})   
+            //this.$store.dispatch('toast/getMessage',{type:'success',text:'Deconnexion réussie'})   
             this.$router.push('/login');
           })
         } catch (e) {

@@ -41,7 +41,7 @@ import FormUpdatePermission from '@/components/permissions/modifier/FormUpdatePe
           exact: true
         },
         {
-          text: 'Détail permission',
+          text: 'Modification permission',
           disabled: true,
           to: '/permissions/94',
           exact: true

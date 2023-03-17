@@ -222,7 +222,7 @@ import { mapMutations, mapGetters } from 'vuex'
           v => (v && v.length <= 10) || 'Login doit être inférieur à 10 caractères',
         ],
         rolesRules: [
-          v => (v && !!v.length) || 'Rôle est obligatoire',
+          v => (v && !!v.length) || 'Le rôle est obligatoire',
         ],
         telephoneRules: [
         (v) => !!v || 'Le numéro de téléphone est obligatoire',

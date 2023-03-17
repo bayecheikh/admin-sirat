@@ -41,7 +41,7 @@ import FormUpdatePostePeage from '@/components/postepeages/modifier/FormUpdatePo
           exact: true
         },
         {
-          text: 'Détail poste de péage',
+          text: 'Modification poste de péage',
           disabled: true,
           to: '/postepeages/94',
           exact: true
