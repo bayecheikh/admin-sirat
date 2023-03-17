@@ -564,7 +564,7 @@ import { mapMutations, mapGetters } from 'vuex'
         },
         ],
         rolesRules: [
-          v => (v && !!v.length) || 'Rôle est obligatoire',
+          v => (v && !!v.length) || 'Le rôle est obligatoire',
         ],
         telephoneRules: [
           v => !!v || 'Téléphone est obligatoire',
